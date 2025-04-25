@@ -33,6 +33,7 @@ Para que as funcionalidades sejam implementadas de maneira adequadas, é preciso
 que os registros descrito no tópico "Requisitos" sejam devidamente armazenados.
 
 ## Diagrama de navegação
+<img src="diagrama.png" alt="navigation diagram" width="700"/>
 
 ## Comentários sobre o código
 
