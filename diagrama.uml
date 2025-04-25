@@ -1,0 +1,37 @@
+@startuml
+scale 2
+top to bottom direction
+
+usecase "Homepage" as home
+usecase "Buscar" as busca
+usecase "Filtrar" as filtro
+usecase "Sobre a loja" as about
+usecase "Carrinho" as carrinho
+usecase "Entrar" as login
+usecase "Entrar como cliente" as login_client
+usecase "Entrar como administrador" as login_admin
+usecase "Inserir ou remover produtos" as addrem_admin
+usecase "Criar conta cliente" as create_client
+usecase "Inserir dados das compras" as dados_compra
+usecase "Finalizar compra" as finalizar_compra
+usecase "Estoque" as estoque
+usecase "Produtos vendidos" as prod_vend
+usecase "Catálogo" as compras
+
+home --> login
+login --> login_client
+login --> login_admin
+login --> create_client
+login_admin --> addrem_admin
+login_admin --> estoque
+login_admin --> prod_vend
+home --> about
+home --> compras
+compras --> filtro
+compras --> busca
+home --> carrinho
+carrinho --> dados_compra
+dados_compra --> finalizar_compra
+
+@enduml
+

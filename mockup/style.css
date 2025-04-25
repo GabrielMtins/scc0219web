@@ -1,0 +1,157 @@
+/* paleta de cores: https://lospec.com/palette-list/crimson */
+:root {
+	--light_color: #eff9d6;
+	--dark_color: #1b0326;
+	--comp_dark_color: #7a1c4b;
+	--comp_light_color: #ba5044;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* font-family: 'Arial', sans-serif;*/
+	font-family: 'Playfair Display', serif;
+}
+
+body {
+	background-color: var(--light_color);
+	color: var(--dark_color);
+}
+
+.hero-image {
+	width: 100%;
+	height: 40vh; /* Altura desejada (60% da tela) */
+	
+	/* Configurações da imagem */
+	background-image: url('https://t4.ftcdn.net/jpg/06/28/30/41/360_F_628304123_IDQBKBHPWPIu2lccIyaLbFAmbi0IoNMA.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	/* Efeito de blur */
+	filter: blur(2px);
+	
+	/* Corta o excesso sem distorcer */
+	overflow: hidden;
+}
+
+/* Container do conteúdo principal (começa APÓS a imagem) */
+.main-content {
+	font-size: 16px;
+	text-align: justify;
+	padding-left: 160px;
+	padding-right: 160px;
+	flex: 1; /* Ocupa o resto do espaço vertical */
+}
+
+.main-content h1 {
+	text-align: center;
+	color: var(--comp_dark_color);
+}
+
+.main-content h2 {
+	text-align: center;
+	color: var(--comp_dark_color);
+}
+
+.top-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+	background-color: var(--dark_color);
+	color: var(--light_color);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.nav-links {
+	color: var(--light_color);
+	display: flex;
+}
+
+.nav-links a {
+	color: var(--light_color);
+	text-decoration: none;
+	transition: background-color 0.3s;
+	background-color: transparent;
+	padding: 8px 16px;
+	border-radius: 2px;
+}
+
+.nav-links a:hover {
+	background-color: var(--comp_dark_color);
+}
+
+/* Container principal */
+.livros-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	justify-content: center;
+	padding: 2rem;
+}
+
+/* Card individual */
+.livro-card {
+	width: 280px;
+	background: var(--dark_color);
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s;
+}
+
+.livro-card:hover {
+	transform: translateY(-5px);
+}
+
+.livro-card img {
+	width: 100%;
+	height: 320px;
+	object-fit: cover;
+	border-bottom: 1px solid var(--comp_dark_color);
+}
+
+.livro-info {
+	padding: 1.5rem;
+}
+
+.livro-info h3 {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.4rem;
+	color: var(--light_color);
+}
+
+.autor {
+	color: var(--comp_light_color);
+	font-style: italic;
+	margin: 0.3rem 0;
+}
+
+.preco {
+	font-weight: bold;
+	color: var(--comp_light_color);
+	font-size: 1.2rem;
+	margin: 0.5rem 0;
+}
+
+.btn-comprar {
+	background: var(--comp_dark_color);
+	color: white;
+	border: none;
+	padding: 0.6rem 1.2rem;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 100%;
+	transition: background 0.3s;
+}
+
+.btn-comprar:hover {
+	background: var(--comp_light_color);
+}
