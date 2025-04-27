@@ -35,7 +35,7 @@ que os registros descrito no tópico "Requisitos" sejam devidamente armazenados.
 ## Diagrama de navegação
 <img src="diagrama.png" alt="navigation diagram" width="700"/>
 
-Inserir aqui mockup do figma.
+Todos os mockups estão na pasta "mockup/".
 
 ## Comentários sobre o código
 
