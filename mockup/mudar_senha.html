@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Recuperar Senha - Livraria Pedro II</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<header class="top-bar">
+		<a href="index.html" class="logo">Livraria Pedro II</a>
+		<nav class="nav-links">
+			<a href="entrar.html">Login</a>
+			<a href="catalogo.html">Catálogo</a>
+			<a href="carrinho.html">Carrinho</a>
+			<a href="about.html">Sobre a livraria</a>
+		</nav>
+	</header>
+
+	<div class="recuperar-container">
+    <div class="recuperar-box">
+      <h2>Recuperar Senha</h2>
+      
+      <form id="form-recuperar" action="/redefinir_senha" method="post">
+        
+		<div id="etapa-email">
+			<label for="email">Digite seu email:</label>
+			<input type="email" id="email" name="email" required>
+			<button type="button" onclick="enviarCodigo()">Enviar código</button>
+		</div>
+
+		<div id="etapa-codigo" class="hidden">
+			<label for="codigo">Digite o código recebido:</label>
+			<input type="text" id="codigo" name="codigo" required>
+			<button type="button" onclick="confirmarCodigo()">Confirmar código</button>
+		</div>
+
+		<div id="etapa-senha" class="hidden">
+			<label for="nova_senha">Nova senha:</label>
+			<input type="password" id="nova_senha" name="nova_senha" required>
+
+			<label for="confirmar_nova_senha">Confirme a nova senha:</label>
+			<input type="password" id="confirmar_nova_senha" name="confirmar_nova_senha" required>
+
+			<input type="submit" value="Redefinir Senha">
+		</div>
+
+    </form>
+	</div>
+	</div>
+
+  <script>
+    function enviarCodigo() {
+      const email = document.getElementById('email').value;
+      if (email) {
+        // Fazer uma chamada ao backend para enviar o código
+        document.getElementById('etapa-email').classList.add('hidden');
+        document.getElementById('etapa-codigo').classList.remove('hidden');
+      } else {
+        alert("Digite um email válido.");
+      }
+    }
+
+    function confirmarCodigo() {
+      const codigo = document.getElementById('codigo').value;
+
+      // Validar o código real via backend
+
+      if (codigo.length >= 4) { // Simulação de validação
+        document.getElementById('etapa-codigo').classList.add('hidden');
+        document.getElementById('etapa-senha').classList.remove('hidden');
+      } else {
+        alert("Código inválido. Tente novamente.");
+      }
+    }
+  </script>
+
+</body>
+</html>
