@@ -1,19 +1,19 @@
 /* paleta de cores: https://lospec.com/palette-list/crimson */
+/*
 :root {
 	--light_color: #eff9d6;
 	--dark_color: #1b0326;
 	--comp_dark_color: #7a1c4b;
 	--comp_light_color: #ba5044;
 }
-
-/*
-:root {
-	--light_color: #f5e9bf;
-	--dark_color:  #372a39;
-	--comp_dark_color:  #788374;
-	--comp_light_color:   #aa644d;
-}
 */
+
+:root {
+	--light_color: #e8d6c0;
+	--dark_color:  #000000;
+	--comp_dark_color:  #791209;
+	--comp_light_color:   #a88d7c;
+}
 
 * {
 	margin: 0;
@@ -81,6 +81,16 @@ body {
 .logo {
 	font-size: 1.5rem;
 	font-weight: bold;
+	text-decoration: none;
+	color: var(--light_color);
+	font-family: 'Playfair Display', serif;
+}
+
+.logo:visited,
+.logo:hover,
+.logo:active {
+  color: var(--light_color);
+  text-decoration: none;
 }
 
 .nav-links {
@@ -167,6 +177,7 @@ body {
 .btn-comprar:hover {
 	background: var(--comp_light_color);
 }
+
 .btn-filtro {
 	display: flex;
 	align-items: center;
@@ -186,8 +197,241 @@ body {
 }
 
 
-
 /*--CARRINHO--*/
+=======
+.login-container {
+	display: flex;
+	justify-content: center;
+	gap: 50px;
+	padding: 150px 30px 50px; /* Topo com espaço para a top-bar */
+}
+
+.login-box {
+	background-color: white;
+	border-radius: 10px;
+	padding: 30px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	width: 300px;
+	color: var(--dark_color);
+}
+
+.login-box h2 {
+	text-align: center;
+	color: var(--comp_dark_color);
+}
+
+.login-box label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin: 8px 0 20px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-family: 'Playfair Display', serif;
+}
+
+.login-box input[type="submit"] {
+	width: 100%;
+	background-color: var(--comp_dark_color);
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.login-box input[type="submit"]:hover {
+	background-color: var(--comp_light_color);
+}
+
+.criar-conta-container {
+	display: flex;
+	justify-content: center;
+	padding: 150px 30px 50px;
+}
+
+.criar-conta-box {
+	background-color: white;
+	border-radius: 10px;
+	padding: 40px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	width: 400px;
+	color: var(--dark_color);
+}
+
+.criar-conta-box h2 {
+	text-align: center;
+	color: var(--comp_dark_color);
+	margin-bottom: 20px;
+}
+
+.criar-conta-box label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.criar-conta-box input[type="text"],
+.criar-conta-box input[type="password"],
+.criar-conta-box input[type="email"] {
+	width: 100%;
+	padding: 10px;
+	margin: 8px 0 20px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-family: 'Playfair Display', serif;
+}
+
+.criar-conta-box input[type="submit"] {
+	width: 100%;
+	background-color: var(--comp_dark_color);
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.criar-conta-box input[type="submit"]:hover {
+	background-color: var(--comp_light_color);
+}
+
+.recuperar-container {
+	display: flex;
+	justify-content: center;
+	padding: 150px 30px 50px;
+}
+
+.recuperar-box {
+	background-color: white;
+	border-radius: 10px;
+	padding: 40px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	width: 400px;
+	color: var(--dark_color);
+}
+
+.recuperar-box h2 {
+	text-align: center;
+	color: var(--comp_dark_color);
+	margin-bottom: 20px;
+}
+
+.recuperar-box label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.recuperar-box input[type="email"],
+.recuperar-box input[type="text"],
+.recuperar-box input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin: 8px 0 20px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-family: 'Playfair Display', serif;
+}
+
+.recuperar-box input[type="submit"],
+.recuperar-box button {
+	width: 100%;
+	background-color: var(--comp_dark_color);
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.recuperar-box input[type="submit"]:hover,
+.recuperar-box button:hover {
+	background-color: var(--comp_light_color);
+}
+
+.hidden {
+	display: none;
+}
+
+.admin-container {
+	padding: 2rem 10%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.section-title {
+	font-size: 2rem;
+	color: var(--comp_dark_color);
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: white;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+	padding: 1rem;
+	border-bottom: 1px solid var(--comp_dark_color);
+	text-align: center;
+}
+
+th {
+	background-color: var(--comp_dark_color);
+	color: white;
+}
+
+.add-form, .vendas-historico {
+	background-color: white;
+	padding: 2rem;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	border-radius: 8px;
+}
+
+.add-form input {
+	margin-bottom: 1rem;
+	width: 100%;
+	padding: 0.8rem;
+	border: 1px solid var(--dark_color);
+	border-radius: 4px;
+}
+
+.btn-adicionar, .btn-remover {
+	background-color: var(--comp_dark_color);
+	color: white;
+	border: none;
+	padding: 0.8rem 1.2rem;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s;
+	margin-top: 1rem;
+	width: 100%;
+}
+
+.btn-adicionar:hover, .btn-remover:hover {
+	background-color: var(--comp_light_color);
+}
+
+.vendas-historico ul {
+	list-style: inside;
+	font-size: 1.1rem;
+	padding-top: 1rem;
+}
+>>>>>>> tst
 
 .carrinho-container{
 	display: flex;

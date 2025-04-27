@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Administração - Livraria Pedro II</title>
+  	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header class="top-bar">
+		<a href="index.html" class="logo">Livraria Pedro II</a>
+		<nav class="nav-links">
+			<a href="entrar.html">Login</a>
+			<a href="catalogo.html">Catálogo</a>
+			<a href="carrinho.html">Carrinho</a>
+			<a href="about.html">Sobre a livraria</a>
+		</nav>
+	</header>
+
+	<div class="hero-image"></div>
+
+	<main class="admin-container">
+
+		<section class="estoque">
+		<h2 class="section-title">Estoque Atual</h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Título</th>
+				<th>Autor</th>
+				<th>Preço</th>
+				<th>Quantidade</th>
+				<th>Remover</th>
+			</tr>
+			</thead>
+			<tbody id="estoque-lista">
+			<tr>
+				<td>Dom Casmurro</td>
+				<td>Machado de Assis</td>
+				<td>R$ 29,90</td>
+				<td>15</td>
+				<td><button class="btn-remover">Remover</button></td>
+			</tr>
+			<tr>
+				<td>O Pequeno Príncipe</td>
+				<td>Antoine de Saint-Exupéry</td>
+				<td>R$ 39,90</td>
+				<td>20</td>
+				<td><button class="btn-remover">Remover</button></td>
+			</tr>
+			</tbody>
+		</table>
+		</section>
+
+		<section class="adicionar-livro">
+		<h2 class="section-title">Adicionar Novo Livro</h2>
+		<form class="add-form" id="form-add">
+			<input type="text" id="titulo" placeholder="Título do Livro" required>
+			<input type="text" id="autor" placeholder="Autor" required>
+			<input type="number" id="preco" placeholder="Preço (R$)" step="0.01" required>
+			<input type="number" id="quantidade" placeholder="Quantidade" required>
+			<button type="submit" class="btn-adicionar">Adicionar ao Estoque</button>
+		</form>
+		</section>
+
+		<section class="vendas-historico">
+		<h2 class="section-title">Histórico de Vendas</h2>
+		<ul id="historico-vendas">
+			<li>23/04/2025 - Dom Casmurro - 2 unidades vendidas</li>
+			<li>24/04/2025 - O Pequeno Príncipe - 1 unidade vendida</li>
+		</ul>
+		</section>
+
+	</main>
+
+	<script>
+		const estoqueLista = document.getElementById('estoque-lista');
+		const formAdd = document.getElementById('form-add');
+
+		formAdd.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const titulo = document.getElementById('titulo').value;
+		const autor = document.getElementById('autor').value;
+		const preco = document.getElementById('preco').value;
+		const quantidade = document.getElementById('quantidade').value;
+
+		const newRow = document.createElement('tr');
+		newRow.innerHTML = `
+			<td>${titulo}</td>
+			<td>${autor}</td>
+			<td>R$ ${parseFloat(preco).toFixed(2)}</td>
+			<td>${quantidade}</td>
+			<td><button class="btn-remover">Remover</button></td>
+		`;
+		estoqueLista.appendChild(newRow);
+		formAdd.reset();
+		});
+
+		estoqueLista.addEventListener('click', (e) => {
+		if (e.target.classList.contains('btn-remover')) {
+			e.target.closest('tr').remove();
+		}
+		});
+	</script>
+
+</body>
+</html>
