@@ -35,6 +35,8 @@ que os registros descrito no tópico "Requisitos" sejam devidamente armazenados.
 ## Diagrama de navegação
 <img src="diagrama.png" alt="navigation diagram" width="700"/>
 
+Inserir aqui mockup do figma.
+
 ## Comentários sobre o código
 
 ## Plano de testes
