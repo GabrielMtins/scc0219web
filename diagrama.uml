@@ -17,8 +17,13 @@ usecase "Finalizar compra" as finalizar_compra
 usecase "Estoque" as estoque
 usecase "Produtos vendidos" as prod_vend
 usecase "Catálogo" as compras
+usecase "Navbar" as navbar
 
-home <--> login
+navbar <--> home
+navbar <--> login
+navbar <--> about
+navbar <--> compras
+navbar <--> carrinho
 login <--> login_client
 login <--> login_admin
 login <--> create_client
@@ -27,11 +32,8 @@ login_client --> dados_compra
 login_admin <--> addrem_admin
 login_admin <--> estoque
 login_admin <--> prod_vend
-home <--> about
-home <--> compras
 compras <--> filtro
 compras <--> busca
-home <--> carrinho
 carrinho <--> dados_compra
 dados_compra <--> finalizar_compra
 
