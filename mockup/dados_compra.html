@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Livraria Pedro II</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ADD NO STYLE.CSS DEPOIS */
+        .form-compra {
+            max-width: 500px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-family: sans-serif;
+        }
+        .form-compra h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--comp_dark_color);
+        }
+        .form-compra label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .form-compra select,
+        .form-compra input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-compra .btn-toggle {
+            display: inline-block;
+            margin: 10px 0;
+            background: none;
+            border: none;
+            color: var(--comp_dark_color);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 14px;
+			font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-group {
+            margin-top: 15px;
+        }
+        .btn-comprar {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+			background-color: var(--comp_dark_color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-comprar:hover {
+            background-color: var(--comp_light_color);
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <a href="index.html" class="logo">Livraria Pedro II</a>
+        <nav class="nav-links">
+            <a href="entrar.html">Login</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="carrinho.html">Carrinho</a>
+            <a href="about.html">Sobre a livraria</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <br><br><br>
+        <h1>Finalizar Compra</h1>
+
+        <form class="form-compra">
+            <!-- Comprador -->
+            <h2>Comprador</h2>
+            <select id="comprador-select">
+                <option value="perfil1">João Silva</option>
+                <option value="perfil2">Maria Oliveira</option>
+            </select>
+            <button type="button" class="btn-toggle" data-section="comprador">Cadastrar novo comprador</button>
+            <div id="comprador-form" class="hidden">
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone">
+                </div>
+            </div>
+
+            <!-- Endereço -->
+            <h2>Endereço de Entrega</h2>
+            <select id="endereco-select">
+                <option value="end1">Rua A, 123 - São Paulo, SP</option>
+                <option value="end2">Av. B, 456 - Rio de Janeiro, RJ</option>
+            </select>
+            <button type="button" class="btn-toggle" data-section="endereco">Cadastrar novo endereço</button>
+            <div id="endereco-form" class="hidden">
+                <div class="form-group">
+                    <label for="rua">Rua e número</label>
+                    <input type="text" id="rua" name="rua">
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" id="bairro" name="bairro">
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" name="cidade">
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" name="cep">
+                </div>
+            </div>
+
+            <!-- Pagamento -->
+            <h2>Método de Pagamento</h2>
+            <select id="pagamento-select">
+                <option value="cartao1">Visa •••• 1234</option>
+                <option value="cartao2">Mastercard •••• 5678</option>
+            </select>
+            <button type="button" class="btn-toggle" data-section="pagamento">Cadastrar novo método</button>
+            <div id="pagamento-form" class="hidden">
+                <div class="form-group">
+                    <label for="cartao">Número do Cartão</label>
+                    <input type="text" id="cartao" name="cartao">
+                </div>
+                <div class="form-group">
+                    <label for="validade">Validade (MM/AA)</label>
+                    <input type="text" id="validade" name="validade">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-comprar">Confirmar Compra</button>
+        </form>
+    </main>
+
+    <script>
+        document.querySelectorAll('.btn-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sec = btn.getAttribute('data-section');
+                const select = document.getElementById(`${sec}-select`);
+                const form = document.getElementById(`${sec}-form`);
+                const isNew = form.classList.contains('hidden');
+
+                if (isNew) {
+                    select.classList.add('hidden');
+                    form.classList.remove('hidden');
+                    btn.textContent = `Usar ${sec} salvo`;
+                } else {
+                    form.classList.add('hidden');
+                    select.classList.remove('hidden');
+                    btn.textContent = `Cadastrar novo ${sec}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
