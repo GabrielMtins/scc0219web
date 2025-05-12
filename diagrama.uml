@@ -18,20 +18,22 @@ usecase "Estoque" as estoque
 usecase "Produtos vendidos" as prod_vend
 usecase "Catálogo" as compras
 
-home --> login
-login --> login_client
-login --> login_admin
-login --> create_client
-login_admin --> addrem_admin
-login_admin --> estoque
-login_admin --> prod_vend
-home --> about
-home --> compras
-compras --> filtro
-compras --> busca
-home --> carrinho
-carrinho --> dados_compra
-dados_compra --> finalizar_compra
+home <--> login
+login <--> login_client
+login <--> login_admin
+login <--> create_client
+carrinho --> login_client
+login_client --> dados_compra
+login_admin <--> addrem_admin
+login_admin <--> estoque
+login_admin <--> prod_vend
+home <--> about
+home <--> compras
+compras <--> filtro
+compras <--> busca
+home <--> carrinho
+carrinho <--> dados_compra
+dados_compra <--> finalizar_compra
 
 @enduml
 
