@@ -178,6 +178,36 @@ body {
 	background: var(--comp_light_color);
 }
 
+.barra-busca {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.input-busca {
+	padding: 10px;
+	width: 300px;
+	border: 1px solid #ccc;
+	border-radius: 4px 0 0 4px;
+	outline: none;
+	font-size: 16px;
+}
+
+.btn-busca {
+	padding: 10px 20px;
+	background: var(--comp_dark_color);
+	color: var(--light_color);
+	border: none;
+	border-radius: 0 4px 4px 0;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.btn-busca:hover {
+	background: var(--comp_light_color);
+}
+
 .btn-filtro {
 	display: flex;
 	align-items: center;
@@ -196,8 +226,6 @@ body {
 	background: var(--comp_light_color);
 }
 
-
-/*--CARRINHO--*/
 .login-container {
 	display: flex;
 	justify-content: center;
