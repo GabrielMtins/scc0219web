@@ -58,5 +58,22 @@
 			</div>
 		</div>
 	</section>
+
+<script src="carrinho.js"></script>
+<script>
+    document.querySelectorAll('.btn-comprar').forEach(button => {
+        button.addEventListener('click', () => {
+            const card = button.closest('.livro-card');
+            const titulo = card.querySelector('h3').textContent;
+            const autor = card.querySelector('.autor').textContent;
+            const preco = card.querySelector('.preco').textContent;
+            const img = card.querySelector('img').src;
+            adicionarAoCarrinho({ titulo, autor, preco, img });
+            alert('Livro adicionado ao carrinho!');
+        });
+    });
+</script>
+
 </body>
 </html>
+
