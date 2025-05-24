@@ -6,7 +6,7 @@
 	<title>Carrinho - Livraria Pedro II</title>
 	<link rel="stylesheet" href="style.css">
 
-    <!--Link para icones da páginas-->
+  
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -20,56 +20,25 @@
 		</nav>
 	</header>
 
+
     <div class="carrinho-container">
         <div class="carrinho">
             <div class="cabecalho-carrinho">
                 <button>
-                    <!--Botão de voltar-->
                     <i class="bx bx-chevron-left"></i>
                 </button>
                 <h3>Meu carrinho</h3>
             </div>
-            <ul>
-                <li class="carrinho-item">
-                    <div class="imagem">
-                        <img src="https://m.media-amazon.com/images/I/819js3EQwbL._AC_UF1000,1000_QL80_.jpg" alt="">
-                    </div>
-                    <div class="info">
-                        <h4 class="nome-livro">1984</h4>
-                        <div class="preco-carrinho">
-                            <p class="preco-livro">R$25,50</p>
-                            <div class="contador">
-                                <i class="bx bx-minus"></i>
-                                <span>1</span>
-                                <i class="bx bx-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="carrinho-item">
-                    <div class="imagem">
-                        <img src="https://boitempoeditorial.fbitsstatic.net/img/p/o-capital-livro-1-152742/338393.jpg?w=290&h=420&v=no-value" alt="">
-                    </div>
-                    <div class="info">
-                        <h4 class="nome-livro">O capital</h4>
-                        <div class="preco-carrinho">
-                            <p class="preco-livro">R$89,90</p>
-                            <div class="contador">
-                                <i class="bx bx-minus"></i>
-                                <span>1</span>
-                                <i class="bx bx-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+            
+            <ul id="lista-carrinho">
+                <!-- Itens serão inseridos aqui via JavaScript -->
             </ul>
-            <a href="dados_compra.html">
-                <button class="pagar">Pagar R$115.4</button>
-            </a>
+            
+            <button class="pagar">Pagar R$0,00</button>
         </div>
     </div>
 
+    <script src="carrinho.js"></script>
+
 </body>
 </html>
-
