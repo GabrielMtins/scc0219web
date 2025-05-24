@@ -22,7 +22,7 @@
 		<div class="login-box">
 		  <h2>Login Cliente</h2>
 		  <br>
-		  <form action="index.html" method="post">
+		  <form id = "loginCliente" action="index.html" method="post">
 			<label for="cliente-usuario">Usuário:</label>
 			<input type="text" id="cliente-usuario" name="usuario" required>
 	
@@ -33,7 +33,7 @@
 		  </form>
 
 		  <p style="text-align: center; margin-top: 15px;">
-			Esqueceu a seneha?
+			Esqueceu a senha?
 			<a href="mudar_senha.html" style="color: var(--comp_dark_color); font-weight: bold;">Mudar senha</a>
 			<br>
 			Não tem uma conta? 
@@ -56,5 +56,28 @@
 		</div>
 	  </div>
 
+	<script>
+
+		document.getElementById("loginCliente").addEventListener("submit", function(e) {
+			e.preventDefault();
+			
+			const usuario = document.getElementById("cliente-usuario").value.trim();
+			const senha = document.getElementById("cliente-senha").value.trim();
+
+			// Recupera a lista de usuários
+			const usuarios = JSON.parse(sessionStorage.getItem("usuarios") || "[]");
+
+			// Verifica se existe um usuário com esse nome e senha
+			const usuarioValido = usuarios.find(u => u.usuario === usuario && u.senha === senha);
+			
+			if (usuarioValido) {
+				sessionStorage.setItem("clienteLogado", "true");
+				sessionStorage.setItem("usuarioAtual", usuario); // Opcional: armazena o nome do usuário logado
+				window.location.href = "carrinho.html";
+			} else {
+				alert("Usuário ou senha incorretos!");
+			}
+		});
+	</script>
 </body>
 </html>
