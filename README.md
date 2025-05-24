@@ -51,5 +51,6 @@ Todos os mockups estão na pasta "mockup/".
 ## Comentários
 
 Fiz com que pra pagar fosse exigido um login, também ta armazenando as contas criadas e impedindo criação de contas duplicadas.
-o carrinho também ta funcional. Rodei usando python -m http.server 8000 e http://localhost:8000/index.html
+o carrinho também ta funcional, os botões de comprar do index e do catalago estão adicionando coisas no carrinho agora. 
+Rodei usando python -m http.server 8000 e http://localhost:8000/index.html
 
