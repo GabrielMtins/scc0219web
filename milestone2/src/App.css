@@ -1,0 +1,40 @@
+/* Reset básico para remover margens padrão */
+html, body, #root {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: 'Playfair Display', serif;
+}
+
+.App {
+	background-color: var(--light_color);
+	color: var(--dark_color);
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.main-content {
+	font-size: 16px;
+	text-align: justify;
+	padding-left: 160px;
+	padding-right: 160px;
+	flex: 1; /* Ocupa o resto do espaço vertical */
+}
+
+.main-content p {
+	font-size: 24px;
+}
+
+.main-content h1 {
+	text-align: center;
+	color: var(--comp_dark_color);
+}
+
+.main-content h2 {
+	text-align: center;
+	color: var(--comp_dark_color);
+}

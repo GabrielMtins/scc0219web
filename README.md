@@ -26,7 +26,6 @@ O projeto é uma livraria online que tem como objetivo oferecer as seguintes fun
 - Adicionar ou remover produtos do carrinho.
 - Finalização de compras.
 - Filtrar por gênero, autor, editor.
-- Botão "estou com sorte", onde um livro é escolhido aleatoriamente, para o usuário conhecer novos livros.
 - Busca por nome.
 - Adicionar ou remover novos produtos no catálogo (administrador).
 
