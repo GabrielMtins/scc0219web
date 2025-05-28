@@ -11,11 +11,10 @@ function Navbar() {
 			<nav class="nav-links">
 				<NavLink to="/catalogo"> Catálogo </NavLink>
 				<NavLink to="/carrinho"> Carrinho </NavLink>
-				<NavLink to="/sobre"> Sobre </NavLink>
+				<NavLink to="/about"> Sobre </NavLink>
 			</nav>
 		</div>
 	);
 }
 
 export default Navbar;
-
