@@ -9,6 +9,7 @@ function Navbar() {
 			<Link to="/" class="logo"> Livraria Pedro II </Link>
 
 			<nav class="nav-links">
+				<NavLink to="/login"> Login </NavLink>
 				<NavLink to="/catalogo"> Catálogo </NavLink>
 				<NavLink to="/carrinho"> Carrinho </NavLink>
 				<NavLink to="/about"> Sobre </NavLink>
