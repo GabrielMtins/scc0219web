@@ -23,7 +23,6 @@ function FilterBox({filterOptions, addFilter, resetFilter, applyFilter}) {
 	
 				<div className="filter-buttons-container">
 					<button onClick={resetFilter}> Limpar filtro </button>
-					<button onClick={applyFilter}> Filtrar </button>
 				</div>
 			</div>
 		</div>

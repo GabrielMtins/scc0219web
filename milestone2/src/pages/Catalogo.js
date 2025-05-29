@@ -48,7 +48,6 @@ function Catalogo() {
 	useEffect(() => {
 		applyAnyFilters();
 	}, [actualSearch]);
-
 	
 	const addFilter = (object) => {
 		setFilterOptions(filterOptions => ({...filterOptions, ...object}));
@@ -56,8 +55,11 @@ function Catalogo() {
 
 	const resetFilter = () => {
 		setFilterOptions({});
-		setFilteredCatalog(catalog);
 	}
+
+	useEffect(() => {
+		applyAnyFilters();
+	}, [filterOptions]);
 
 	const displayFilter = () => {
 		if(useFilter == true){
