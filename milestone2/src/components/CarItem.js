@@ -1,4 +1,5 @@
 import './CarList.css'
+import '../palette.css'
 import {useCar} from '../contexts/CarContext';
 import {useState, useEffect} from 'react';
 
@@ -26,18 +27,18 @@ function CarItem({id}) {
 	});
 
 	return (
-		<div class="carrinho-item">
-			<div class="imagem">
+		<div className="carrinho-item">
+			<div className="imagem">
 				<img src={foundItem.img_link} alt="" / >
 			</div>
 
-			<div class="info">
-				<h4 class="nome-livro"> {foundItem.title} </h4>
+			<div className="info">
+				<div className="nome-livro"> <h4> {foundItem.title} </h4> </div>
 
-				<div class="preco-carrinho">
-					<p class="preco-livro">R$ {foundItem.price}</p>
+				<div className="preco-carrinho">
+					<div className="preco-livro"> <p> R$ {foundItem.price} </p> </div>
 
-					<div class="contador">
+					<div className="contador">
 						<button onClick={resetItem} className="mini_button"> Remover </button>
 						<button onClick={removeItem} className="mini_button"> - </button>
 						<span> {quantity} </span>

@@ -46,3 +46,7 @@
 	background: var(--comp_light_color);
 }
 
+.display-main {
+	display: flex;
+	flex-direction: row;
+};

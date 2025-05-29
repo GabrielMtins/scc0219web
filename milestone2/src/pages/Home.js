@@ -10,7 +10,7 @@ function Home() {
 
 	return (
 		<div className="page">
-			<div class="hero-image"></div>
+			<div className="hero-image"></div>
 
 			<div className="main-content">
 				<h1> Bem vindo à Livraria Pedro II</h1>

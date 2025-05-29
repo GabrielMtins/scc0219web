@@ -1,3 +1,4 @@
+import '../palette.css'
 import './CarList.css'
 import CarItem from '../components/CarItem'
 import {useCar} from '../contexts/CarContext';
@@ -41,9 +42,9 @@ function CarList({car_list}) {
 	});
 
 	return (
-		<div class="carrinho-container">
-    	    <div class="carrinho">
-    	        <div class="cabecalho-carrinho">
+		<div className="carrinho-container">
+    	    <div className="carrinho">
+    	        <div className="cabecalho-carrinho">
     	            <Link to="/catalogo"> <button> &larr; </button> </Link>
 
     	            <h3>Meu carrinho</h3>
@@ -52,7 +53,7 @@ function CarList({car_list}) {
 				{displayItems()}
 				
 				<a href="dados_compra.html">
-					<button class="pagar">Pagar R$ {price}</button>
+					<button className="pagar">Pagar R$ {price}</button>
 				</a>
 			</div>
 		</div>

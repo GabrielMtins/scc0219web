@@ -144,3 +144,12 @@
 	background:var(--comp_light_color);
 	border: 2px solid #1b0326;
 }
+
+.nome-livro{
+	font-size: 30px;
+}
+
+.preco-livro p{
+	color: var(--comp_light_color);
+	font-size: 20px;
+}
