@@ -1,6 +1,14 @@
-import './Bookcard.css'
+import './Bookcard.css';
+
+import {useCar} from '../contexts/CarContext';
 
 function Bookcard({book}) {
+	const {car, addToCar} = useCar();
+
+	const clicked = () => {
+		addToCar(book.id, 1);
+	};
+
 	return (
 		<div className="livro-card">
 			<img src={book.img_link} alt={book.title} />
@@ -8,8 +16,8 @@ function Bookcard({book}) {
 			<div className="livro-info">
 				<h3> {book.title} </h3>
 				<p className="autor"> {book.author} </p>
-				<p className="preco"> {book.price} </p>
-				<button className="btn-comprar"> Comprar </button>
+				<p className="preco"> R$ {book.price} </p>
+				<button className="btn-comprar" onClick={clicked}> Comprar </button>
 			</div>
 		</div>
 	);

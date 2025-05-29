@@ -1,28 +1,12 @@
-import '../palette.css'
-import './Home.css'
-import Bookcard from '../components/Bookcard.js'
-import Booklist from '../components/Booklist.js'
+import '../palette.css';
+import './Home.css';
+import Bookcard from '../components/Bookcard.js';
+import Booklist from '../components/Booklist.js';
+
+import {useCar} from '../contexts/CarContext';
 
 function Home() {
-	let book_example = {
-		author: 'George Orwell',
-		img_link: 'https://m.media-amazon.com/images/I/819js3EQwbL._AC_UF1000,1000_QL80_.jpg',
-		title: '1984',
-		price: 'R$ 29,90'
-	};
-
-	let book_list_example = [
-		book_example,
-		book_example,
-		book_example,
-		book_example,
-		book_example,
-		book_example,
-		book_example,
-		book_example,
-		book_example,
-		book_example,
-	];
+	const {catalog} = useCar();
 
 	return (
 		<div className="page">
@@ -33,7 +17,7 @@ function Home() {
 				<h2> Conheça o nosso catálogo: </h2>
 			</div>
 
-			<Booklist book_list={book_list_example} />
+			<Booklist book_list={catalog} />
 		</div>
 	);
 }
