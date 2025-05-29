@@ -39,6 +39,12 @@ function Catalogo() {
 		setActualSearch(search);
 	};
 
+	const handleKeyDown = (event) => {
+		if(event.key == 'Enter'){
+			searchButtonClick();
+		}
+	};
+
 	useEffect(() => {
 		applyAnyFilters();
 	}, [actualSearch]);
@@ -84,7 +90,7 @@ function Catalogo() {
 				<h1> Catálogo </h1>
 		
 				<div className="barra-busca">
-					<input type="text" placeholder="Buscar livros..." className="input-busca" onChange={(event) => setSearch(event.target.value)}/> 
+					<input type="text" placeholder="Buscar livros..." className="input-busca" onKeyDown={handleKeyDown} onChange={(event) => setSearch(event.target.value)}/> 
 					<button className="btn-busca" onClick={searchButtonClick}> Buscar </button>
 				</div>
 
