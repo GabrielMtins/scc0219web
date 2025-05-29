@@ -14,6 +14,10 @@
     color: var(--comp_dark_color);
     margin-bottom: 2rem;
   }
+
+  .form-container h4 {
+    text-align: center;
+  }
   
   .input {
     margin-bottom: 1rem;
@@ -42,21 +46,22 @@
     justify-content: center;
   }
   
-  .submit {
-    background-color: var(--comp_dark_color);
-    color: white;
-    width: 33%;
-    padding: 0.8rem 2rem;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-align: center;
-  }
-  
-  .submit:hover {
-    background-color: var(--comp_light_color);
-  }
+.submit {
+  background-color: var(--comp_dark_color);
+  color: white;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+  background-color: var(--comp_light_color);
+}
   
   .form-container a {
     color: var(--comp_dark_color);
@@ -69,4 +74,8 @@
   .form-container a:hover {
     color: var(--comp_light_color);
   }
+
+.hidden {
+	display: none;
+}
   

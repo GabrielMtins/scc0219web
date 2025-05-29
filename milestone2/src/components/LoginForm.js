@@ -16,13 +16,13 @@ const LoginForm = () => {
 			
 			<div>
 				<div className="input">
-					<label for="usuario">Usuário:</label>
-					<input type="text" id="usuario" required/>
+					<label>Usuário:</label>
+					<input type="text" required/>
 				</div>
 
 				<div className="input">
-					<label for="senha">Senha:</label>
-					<input type="password" id="senha" required/>
+					<label>Senha:</label>
+					<input type="password" required/>
 				</div>
 			</div>
 
