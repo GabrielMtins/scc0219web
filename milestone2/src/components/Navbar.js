@@ -5,10 +5,10 @@ import './Navbar.css';
 
 function Navbar() {
 	return (
-		<div class="top-bar">
-			<Link to="/" class="logo"> Livraria Pedro II </Link>
+		<div className="top-bar">
+			<Link to="/" className="logo"> Livraria Pedro II </Link>
 
-			<nav class="nav-links">
+			<nav className="nav-links">
 				<NavLink to="/login"> Login </NavLink>
 				<NavLink to="/catalogo"> Catálogo </NavLink>
 				<NavLink to="/carrinho"> Carrinho </NavLink>
