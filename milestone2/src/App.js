@@ -4,17 +4,18 @@ import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {CarProvider} from './contexts/CarContext'
+import {CarProvider} from './contexts/CarContext';
+import {LoginProvider} from './contexts/LoginContext';
 
-import Home from './pages/Home'
-import About from './pages/About'
-import Catalogo from './pages/Catalogo'
-import Carrinho from './pages/Carrinho'
+import Home from './pages/Home';
+import About from './pages/About';
+import Catalogo from './pages/Catalogo';
+import Carrinho from './pages/Carrinho';
 import Login from './pages/Login';
 import Recover from './pages/Recover';
 import SingUp from './pages/SingUp';
 
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 
@@ -25,15 +26,17 @@ function App() {
 			
 			<main>
 				<CarProvider>
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/about" element={<About />} />
-						<Route path="/catalogo" element={<Catalogo />} />
-						<Route path="/carrinho" element={<Carrinho />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/recover" element={<Recover />} />
-						<Route path="/singUp" element={<SingUp />} />
-					</Routes>
+					<LoginProvider>
+						<Routes>
+							<Route path="/" element={<Home />} />
+							<Route path="/about" element={<About />} />
+							<Route path="/catalogo" element={<Catalogo />} />
+							<Route path="/carrinho" element={<Carrinho />} />
+							<Route path="/login" element={<Login />} />
+							<Route path="/recover" element={<Recover />} />
+							<Route path="/singUp" element={<SingUp />} />
+						</Routes>
+					</LoginProvider>
 				</CarProvider>
 			</main>
 

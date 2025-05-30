@@ -1,7 +1,11 @@
 import "./Form.css";
+import {useLogin} from '../contexts/LoginContext';
+import { toast } from 'react-toastify';
 
 const SignInForm = () => {
-	const validate = () => {
+	const { signUp } = useLogin();
+
+	const validate = async () => {
 		const nome = document.getElementById("nome").value.trim();
 		const usuario = document.getElementById("usuario").value.trim();
 		const email = document.getElementById("email").value.trim();
@@ -38,11 +42,27 @@ const SignInForm = () => {
 		}
 
 		// Enviar dados para o backend
-		const inputs = document.querySelectorAll('.input');
-		inputs.forEach((input) => {input.classList.add('hidden');});
+		const credentials = {
+			"name": nome,
+			"username": usuario,
+			"email": email,
+			"address": endereco,
+			"cep": cep,
+			"password": senha
+		};
 
-		document.getElementById("submit").classList.add("hidden");
-		document.getElementById("title").textContent = "Conta criada com sucesso";
+		const success = await signUp(credentials);
+
+		if(success){
+			const inputs = document.querySelectorAll('.input');
+			inputs.forEach((input) => {input.classList.add('hidden');});
+
+			document.getElementById("submit").classList.add("hidden");
+			document.getElementById("title").textContent = "Conta criada com sucesso";
+		}
+		else{
+			toast.error('Falha no cadastro. Por favor, tente novamente mais tarde.');
+		}
 	};
 
 	return (
