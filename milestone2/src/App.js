@@ -7,6 +7,8 @@ import About from './pages/About'
 import Login from './pages/Login';
 import Recover from './pages/Recover';
 import SingUp from './pages/SingUp';
+import Admin from './pages/Admin';
+import Checkout from './pages/CheckoutPage';
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer';
@@ -24,6 +26,8 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/recover" element={<Recover />} />
 					<Route path="/singUp" element={<SingUp />} />
+					<Route path="/admin" element={<Admin />} />
+					<Route path="/checkout" element={<Checkout />} />
 				</Routes>
 			</main>
 
