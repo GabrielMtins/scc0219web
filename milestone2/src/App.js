@@ -10,8 +10,12 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Catalogo from './pages/Catalogo'
 import Carrinho from './pages/Carrinho'
+import Login from './pages/Login';
+import Recover from './pages/Recover';
+import SingUp from './pages/SingUp';
 
 import Navbar from './components/Navbar'
+import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -26,6 +30,9 @@ function App() {
 						<Route path="/about" element={<About />} />
 						<Route path="/catalogo" element={<Catalogo />} />
 						<Route path="/carrinho" element={<Carrinho />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/recover" element={<Recover />} />
+						<Route path="/singUp" element={<SingUp />} />
 					</Routes>
 				</CarProvider>
 			</main>
@@ -41,6 +48,8 @@ function App() {
 				draggable
 				pauseOnHover
 			/>
+
+			<Footer />
 		</div>
 	);
 }
