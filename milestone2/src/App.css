@@ -17,7 +17,7 @@ html, body, #root {
 	flex: 1;
 }
 
-.main {
+.main-content {
 	font-size: 16px;
 	text-align: justify;
 	padding-left: 160px;
@@ -25,16 +25,16 @@ html, body, #root {
 	flex: 1; /* Ocupa o resto do espaço vertical */
 }
 
-.main p {
+.main-content p {
 	font-size: 24px;
 }
 
-.main h1 {
+.main-content h1 {
 	text-align: center;
 	color: var(--comp_dark_color);
 }
 
-.main h2 {
+.main-content h2 {
 	text-align: center;
 	color: var(--comp_dark_color);
 }
