@@ -12,7 +12,6 @@ export function CarProvider({children}) {
 			price: '29.90',
 			genre: 'Distopia',
 			publisher: 'Companhia das Letras',
-	
 		},
 		{
 			id: 1,
@@ -61,7 +60,7 @@ export function CarProvider({children}) {
 	};
 
 	return (
-		<CarContext.Provider value={{car, addToCar, catalog, resetId}}>
+		<CarContext.Provider value={{car, addToCar, catalog, resetId, setCatalog}}>
 			{children}
 		</CarContext.Provider>
 	);

@@ -1,14 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import "./Form.css"
+import {useLogin} from '../contexts/LoginContext';
+import "./Form.css";
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
-	const [inputData, setInputData] = useState("")
+	const [username, setUsername] = useState("")
+	const [password, setPassword] = useState("")
+	const [success, setSuccess] = useState(false);
 
-	const handleSubmit = (e) => {
-		console.log(e)
-	}
+	const {user, login, loading} = useLogin();
+	const navigate = useNavigate();
+
+	const handleSubmit = async (e) => {
+		const success = await login({
+			"username": username,
+			"password": password
+		});
+
+		if(success){
+			navigate('/');
+			toast.success('Login feito com sucesso!');
+		}
+	};
+
+	useEffect(() => {
+		if(success == true)
+			navigate("/");
+	}, [success]);
 
 	return (
 		<div className="form-container">
@@ -17,12 +38,12 @@ const LoginForm = () => {
 			<div>
 				<div className="input">
 					<label>Usuário:</label>
-					<input type="text" required/>
+					<input type="text" required onChange={(event) => setUsername(event.target.value)}/>
 				</div>
 
 				<div className="input">
 					<label>Senha:</label>
-					<input type="password" required/>
+					<input type="password" required onChange={(event) => setPassword(event.target.value)}/>
 				</div>
 			</div>
 
@@ -30,7 +51,7 @@ const LoginForm = () => {
 			<div>Ainda não tem conta? <Link to="/singUp">Criar conta</Link></div>
 
 			<div className="submit-container">
-				<div className="submit" onClick={() => {handleSubmit()}}>Entrar</div>
+				<div className="submit" onClick={handleSubmit}>Entrar</div>
 			</div>
 		</div>
 	);
