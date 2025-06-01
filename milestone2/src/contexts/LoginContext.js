@@ -28,6 +28,7 @@ export function LoginProvider({children}) {
 		try {
 			/* inserir api fake aqui */
 			const response = await fakeLoginAPI(credentials);
+			setUser(credentials);
 			return true;
 		} catch(error) {
 			console.error("Login failed: ", error);
@@ -43,6 +44,7 @@ export function LoginProvider({children}) {
 		try {
 			/* inserir api fake aqui */
 			const response = await fakeSignUpAPI(credentials);
+			setUser(credentials);
 			return true;
 		} catch(error) {
 			console.error("Login failed: ", error);

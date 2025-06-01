@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const CarContext = createContext();
 
@@ -49,11 +50,22 @@ export function CarProvider({children}) {
 	const [car, setCar] = useState({});
 	const [catalog, setCatalog] = useState(book_list);
 
+	const getItemCatalog = (id) => {
+		return catalog.find((book) => book.id == id)
+	};
+
 	const addToCar = (id, amount) => {
+		if(car[id] + amount > getItemCatalog(id).amount){
+			toast.error('Não há mais desse produto no estoque.');
+			return false;
+		}
+
 		setCar(car => ({
 			...car,
 			[id]: (car[id] || 0) + amount
 		}));
+
+		return true;
 	};
 
 	const resetId = (id) => {
@@ -72,10 +84,6 @@ export function CarProvider({children}) {
 			...catalog,
 			book,
 		]));
-	};
-
-	const getItemCatalog = (id) => {
-		return catalog.find((book) => book.id == id)
 	};
 
 	const removeCatalog = (id) => {

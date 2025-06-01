@@ -16,6 +16,7 @@ import Recover from './pages/Recover';
 import SingUp from './pages/SingUp';
 import Admin from './pages/Admin';
 import CheckoutPage from './pages/CheckoutPage';
+import ProfilePage from './pages/Profile';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -38,6 +39,7 @@ function App() {
 							<Route path="/recover" element={<Recover />} />
 							<Route path="/singUp" element={<SingUp />} />
 							<Route path="/admin" element={<Admin />} />
+							<Route path="/profile" element={<ProfilePage />} />
 							<Route path="/checkout" element={<CheckoutPage />} />
 						</Routes>
 					</LoginProvider>

@@ -7,10 +7,12 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 	const [publisher, setEditora] = useState(''); // Adicionado
 	const [price, setPreco] = useState('');
 	const [amount, setQuantidade] = useState('');
+	const [genre, setGenre] = useState('');
+	const [img_link, setImgLink] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!title || !author || !publisher || !price || !amount) { // Editora adicionada à validação
+		if (!title || !author || !publisher || !price || !amount || !img_link || !genre) { // Editora adicionada à validação
 			alert('Por favor, preencha todos os campos, incluindo a publisher.');
 			return;
 		}
@@ -28,11 +30,13 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 		}
 
 		onAdicionarLivro({
-			title,
-			author,
-			publisher, // Adicionado
-			price: priceNum,
-			amount: amountNum,
+			'title': title,
+			'author': author,
+			'publisher': publisher, // Adicionado
+			'price': priceNum,
+			'amount': amountNum,
+			'img_link': img_link,
+			'genre': genre
 		});
 
 		setTitulo('');
@@ -65,6 +69,20 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 					value={publisher}
 					onChange={(e) => setEditora(e.target.value)}
 					placeholder="Editora"
+					required
+				/>
+				<input // Novo campo para gênero
+					type="text"
+					value={genre}
+					onChange={(e) => setGenre(e.target.value)}
+					placeholder="Gênero"
+					required
+				/>
+				<input // Novo campo para gênero
+					type="text"
+					value={img_link}
+					onChange={(e) => setImgLink(e.target.value)}
+					placeholder="Link para imagem"
 					required
 				/>
 				<input

@@ -7,8 +7,11 @@ function Bookcard({book}) {
 	const {car, addToCar} = useCar();
 
 	const clicked = () => {
-		addToCar(book.id, 1);
-		toast.success('Adicionado item ao carrinho');
+		const success = addToCar(book.id, 1);
+
+		if(success){
+			toast.success('Adicionado item ao carrinho');
+		}
 	};
 
 	return (
