@@ -12,15 +12,17 @@ export function CarProvider({children}) {
 			price: '29.90',
 			genre: 'Distopia',
 			publisher: 'Companhia das Letras',
+			amount: 4,
 		},
 		{
-			id: 1,
+			id: 9,
 			author: 'Karl Marx',
 			img_link: 'https://boitempoeditorial.fbitsstatic.net/img/p/o-capital-livro-1-152742/338393.jpg?w=290&h=420&v=no-value',
 			title: 'O Capital',
 			price: '89.90',
 			genre: 'Filosofia',
 			publisher: 'Boitempo Editorial',
+			amount: 4,
 		},
 		{
 			id: 2,
@@ -30,6 +32,7 @@ export function CarProvider({children}) {
 			price: '79.90',
 			genre: 'Filosofia',
 			publisher: 'Boitempo Editorial',
+			amount: 4,
 		},
 		{
 			id: 3,
@@ -39,6 +42,7 @@ export function CarProvider({children}) {
 			price: '79.90',
 			genre: 'Filosofia',
 			publisher: 'Boitempo Editorial',
+			amount: 4,
 		},
 	];
 
@@ -59,8 +63,30 @@ export function CarProvider({children}) {
 		}));
 	};
 
+	const updateCatalog = (id, book) => {
+		setCatalog(catalog => catalog.map((item, i) => (i === id ? {...item, ...book} : item)));
+	};
+
+	const addCatalog = (book) => {
+		setCatalog(catalog => ([
+			...catalog,
+			book,
+		]));
+	};
+
+	const getItemCatalog = (id) => {
+		return catalog.find((book) => book.id == id)
+	};
+
+	const removeCatalog = (id) => {
+		setCatalog(catalog => ([
+			...catalog.slice(0, id),
+			...catalog.slice(id + 1)
+		]));
+	};
+
 	return (
-		<CarContext.Provider value={{car, addToCar, catalog, resetId, setCatalog}}>
+		<CarContext.Provider value={{car, addToCar, catalog, resetId, setCatalog, updateCatalog, setCatalog, addCatalog, getItemCatalog, removeCatalog}}>
 			{children}
 		</CarContext.Provider>
 	);

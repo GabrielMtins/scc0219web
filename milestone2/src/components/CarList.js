@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 import {useEffect} from 'react';
 
 function CarList({car_list}) {
-	const {car, catalog} = useCar();
+	const {car, catalog, getItemCatalog} = useCar();
 
 	let price = 0;
 	let filtered_car_list = [];
 
 	const updatePrice = () => {
 		const price_list = car_list.map(
-			(id) => (catalog[id].price * car[id])
+			(id) => (getItemCatalog(id).price * car[id])
 		);
 
 		if(price_list.length == 0){
@@ -52,9 +52,9 @@ function CarList({car_list}) {
 
 				{displayItems()}
 				
-				<a href="dados_compra.html">
+    	        <Link to="/checkout"> 
 					<button className="pagar">Pagar R$ {price}</button>
-				</a>
+				</Link>
 			</div>
 		</div>
 	);
