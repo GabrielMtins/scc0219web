@@ -45,6 +45,16 @@ Todos os mockups estão na pasta "mockup/".
 
 ## Procedimentos de build
 
+Para executar o projeto, instale primeiro o _nodejs_, o _npm_ e o _git_ através
+do seu instalador de pacote. Depois, basta digitar em seu terminal:
+
+```
+git clone https://github.com/GabrielMtins/scc0219web.git
+cd ssc0219web/milestone2
+npm install
+npm start
+```
+
 ## Problemas encontrados
 
 ## Comentários
