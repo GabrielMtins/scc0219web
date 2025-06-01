@@ -39,7 +39,31 @@ Todos os mockups estão na pasta "mockup/".
 
 ## Comentários sobre o código
 
+Utilizamos algumas bibliotecas, como react-router-dom para fazer as ligações
+entre as páginas e a navbar, e também a toastify, biblioteca para notificações.
+Utilizamos notificações para ter feedback ao usuário de que os livros foram
+adicionados no carrinho, por exemplo.
+
+O código está organizado na seguinte estrutura:
+- **milestone2/src/pages**: Equivalente às páginas html.
+- **milestone2/src/componentes**: Componentes modulares, que são reutilizados ao decorrer do código.
+- **milestone2/src/contexts**: Parte que utiliza a função createContext() do react para guardar contexto
+da aplicação, de forma que informações como itens no carrinho e contas também são salvas mesmo
+que a página seja trocada.
+
+Também utilizamos _mock objects_ para realizar as funções de API. No arquivo que armazena
+contexto de login, temos algumas funções responsáveis pelo login e o signup ao servidor,
+em que elas utilizam um timer de javascript para simular o tempo de resposta do servidor.
+
 ## Plano de testes
+
+Nós fizemos alguns testes manuais. Eles são:
+- Comprar um produto
+- Adicionar novo produto
+- Remover um produto
+- Atualizar um produto
+- Criar novo usuário
+- Login
 
 ## Resultado dos testes
 
