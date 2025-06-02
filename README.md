@@ -69,7 +69,7 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ### Comprar um produto
 
-[comprar](screenshots/comprar_01.png)
+![comprar](screenshots/comprar_01.png)
 
 ## Procedimentos de build
 
