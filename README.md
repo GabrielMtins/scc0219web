@@ -73,6 +73,13 @@ Nós fizemos alguns testes manuais. Eles são:
 ![comprar02](screenshots/comprar_02.png)
 ![comprar03](screenshots/comprar_03.png)
 
+### Adicionar novo produto
+
+![adicionar01](screenshots/adicionarlivro_01.png)
+![adicionar02](screenshots/adicionarlivro_02.png)
+
+### Remover um produto
+
 ## Procedimentos de build
 
 Para executar o projeto, instale primeiro o _nodejs_, o _npm_ e o _git_ através
