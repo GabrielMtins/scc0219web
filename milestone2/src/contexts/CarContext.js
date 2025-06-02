@@ -37,18 +37,39 @@ export function CarProvider({ children }) {
 		},
 		{
 			id: 3,
-			author: 'Karl Marx',
-			img_link: 'https://m.media-amazon.com/images/I/61D7dwT4jjL._AC_UF1000,1000_QL80_.jpg',
-			title: 'A Ideologia Alemã 1984',
+			author: 'René Descartes',
+			img_link: 'https://m.media-amazon.com/images/I/61n0pOJWpML._AC_UF1000,1000_QL80_.jpg',
+			title: 'Meditações Metafísicas',
 			price: '79.90',
 			genre: 'Filosofia',
-			publisher: 'Boitempo Editorial',
-			amount: 4,
+			publisher: 'WMF Martins Fonters',
+			amount: 2,
+		},
+		{
+			id: 4,
+			author: 'Luís de Camões',
+			img_link: 'https://m.media-amazon.com/images/I/710jGDp8QuL._AC_UF1000,1000_QL80_.jpg',
+			title: 'Sonetos',
+			price: '19.90',
+			genre: 'Poesia',
+			publisher: 'Principis',
+			amount: 10,
+		},
+		{
+			id: 5,
+			author: 'Andrei Tarkosvki',
+			img_link: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1569535201i/846751.jpg',
+			title: 'Esculpir o tempo',
+			price: '99.90',
+			genre: 'Cinema',
+			publisher: 'Principis',
+			amount: 2,
 		},
 	];
 
 	const [car, setCar] = useState({});
 	const [catalog, setCatalog] = useState(book_list);
+	const [nextId, setNextId] = useState(100);
 
 	const getItemCatalog = (id) => {
 		return catalog.find((book) => book.id == id)
@@ -82,8 +103,10 @@ export function CarProvider({ children }) {
 	const addCatalog = (book) => {
 		setCatalog(catalog => ([
 			...catalog,
-			{ 'id': catalog.length, ...book },
+			{ 'id': nextId, ...book },
 		]));
+
+		setNextId(nextId + 1);
 	};
 
 	const removeCatalog = (id) => {

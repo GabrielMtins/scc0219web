@@ -43,7 +43,7 @@ const SignInForm = () => {
 
 		// Enviar dados para o backend
 		const credentials = {
-			"name": nome,
+			"fullname": nome,
 			"username": usuario,
 			"email": email,
 			"address": endereco,
