@@ -27,7 +27,7 @@ function App() {
 		<div className="App">
 			<Navbar />
 			
-			<main className='main'>
+			<main className='main-content'>
 				<CarProvider>
 					<LoginProvider>
 						<Routes>

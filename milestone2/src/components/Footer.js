@@ -13,9 +13,9 @@ const Footer = () => {
 
                 <div className="footer-links">
                     <Link to="/about">Sobre nós</Link>
-                    <a href="#">Política de Privacidade</a>
-                    <a href="#">Termos de Uso</a>
-                    <a href="#">Contato</a>
+                    <Link to="/about">Política de Privacidade</Link>
+                    <Link to="/about">Termos de Uso</Link>
+                    <Link to="/about">Contato</Link>
                 </div>
             </div>
         </div>

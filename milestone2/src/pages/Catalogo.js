@@ -88,7 +88,6 @@ function Catalogo() {
 
 	return (
 		<div className="page">
-			<div className="main-content">
 				<h1> Catálogo </h1>
 		
 				<div className="barra-busca">
@@ -101,7 +100,6 @@ function Catalogo() {
 				{displayFilter()}
 
 				<Booklist book_list={filtered_catalog} />
-			</div>
 		</div>
 	);
 }

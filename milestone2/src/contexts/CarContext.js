@@ -16,7 +16,7 @@ export function CarProvider({children}) {
 			amount: 4,
 		},
 		{
-			id: 9,
+			id: 1,
 			author: 'Karl Marx',
 			img_link: 'https://boitempoeditorial.fbitsstatic.net/img/p/o-capital-livro-1-152742/338393.jpg?w=290&h=420&v=no-value',
 			title: 'O Capital',
@@ -82,7 +82,7 @@ export function CarProvider({children}) {
 	const addCatalog = (book) => {
 		setCatalog(catalog => ([
 			...catalog,
-			book,
+			{'id': catalog.length, ...book},
 		]));
 	};
 

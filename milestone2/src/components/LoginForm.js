@@ -15,6 +15,16 @@ const LoginForm = () => {
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
+		if(!username){
+			toast.error("Insira o nome de usuário.");
+			return;
+		}
+
+		if(!password){
+			toast.error("Insira a senha.");
+			return;
+		}
+
 		const success = await login({
 			"username": username,
 			"password": password
