@@ -80,6 +80,15 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ### Remover um produto
 
+![remover01](screenshots/remover_01.png)
+![remover02](screenshots/remover_02.png)
+
+### Atualizar um produto
+
+### Criar novo usuário
+
+### Login
+
 ## Procedimentos de build
 
 Para executar o projeto, instale primeiro o _nodejs_, o _npm_ e o _git_ através
