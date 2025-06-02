@@ -67,6 +67,10 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ## Resultado dos testes
 
+### Comprar um produto
+
+[comprar](screenshots/comprar_01.png)
+
 ## Procedimentos de build
 
 Para executar o projeto, instale primeiro o _nodejs_, o _npm_ e o _git_ através
