@@ -139,3 +139,7 @@ em que você pode remover ou adicionar itens do estoque.
 A conta do administrador no produto final não poderá ser capaz de comprar produtos,
 mas para casos de testes, enquanto o backend não for implementado, o admin
 é capaz de adicionar e remover produtos do carrinho.
+
+Para adicionar um item no carrinho, você primeiro precisa estar logado. Nesse caso,
+basta inserir qualquer usuário e senha no login, pois a verificação será feita
+no backend.
