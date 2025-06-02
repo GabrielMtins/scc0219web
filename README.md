@@ -64,6 +64,8 @@ Nós fizemos alguns testes manuais. Eles são:
 - Atualizar um produto
 - Criar novo usuário
 - Login
+- Busca
+- Filtro
 
 ## Resultado dos testes
 
@@ -99,6 +101,16 @@ Nós fizemos alguns testes manuais. Eles são:
 ![login01](screenshots/login_01.png)
 ![login02](screenshots/login_02.png)
 
+### Busca
+
+![busca01](screenshots/busca_01.png)
+![busca02](screenshots/busca_02.png)
+
+### Filtro
+
+![filtro01](screenshots/filtro_01.png)
+![filtro02](screenshots/filtro_02.png)
+
 ## Procedimentos de build
 
 Para executar o projeto, instale primeiro o _nodejs_, o _npm_ e o _git_ através
@@ -112,6 +124,9 @@ npm start
 ```
 
 ## Problemas encontrados
+
+Foi encontrando um problema na página de checkout, onde não é possível mais
+sair dela após ela ser acessada.
 
 ## Comentários
 
