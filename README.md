@@ -69,9 +69,9 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ### Comprar um produto
 
-![comprar](screenshots/comprar_01.png)
-![comprar](screenshots/comprar_02.png)
-![comprar](screenshots/comprar_03.png)
+![comprar01](screenshots/comprar_01.png)
+![comprar02](screenshots/comprar_02.png)
+![comprar03](screenshots/comprar_03.png)
 
 ## Procedimentos de build
 
