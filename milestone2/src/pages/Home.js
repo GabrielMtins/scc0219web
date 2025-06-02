@@ -3,10 +3,10 @@ import './Home.css';
 import Bookcard from '../components/Bookcard.js';
 import Booklist from '../components/Booklist.js';
 
-import {useCar} from '../contexts/CarContext';
+import { useCar } from '../contexts/CarContext';
 
 function Home() {
-	const {catalog} = useCar();
+	const { catalog } = useCar();
 
 	return (
 		<div className="page">

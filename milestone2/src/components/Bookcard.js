@@ -1,15 +1,15 @@
 import './Bookcard.css';
 
-import {useCar} from '../contexts/CarContext';
+import { useCar } from '../contexts/CarContext';
 import { ToastContainer, toast } from 'react-toastify';
 
-function Bookcard({book}) {
-	const {car, addToCar} = useCar();
+function Bookcard({ book }) {
+	const { car, addToCar } = useCar();
 
 	const clicked = () => {
 		const success = addToCar(book.id, 1);
 
-		if(success){
+		if (success) {
 			toast.success('Adicionado item ao carrinho');
 		}
 	};

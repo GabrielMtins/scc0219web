@@ -1,16 +1,16 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
-function FilterType({labelName, filterName, list, addFilter, filterOptions}) {
-	const [selectedValue, setSelectedValue] = useState(filterOptions[filterName]||"nil");
+function FilterType({ labelName, filterName, list, addFilter, filterOptions }) {
+	const [selectedValue, setSelectedValue] = useState(filterOptions[filterName] || "nil");
 
 
 	useEffect(() => {
-		setSelectedValue(filterOptions[filterName]||"nil");
+		setSelectedValue(filterOptions[filterName] || "nil");
 	}, [filterOptions]);
 
 	const handleChange = (event) => {
 		setSelectedValue(event.target.value);
-		addFilter({[filterName.toLowerCase()]: event.target.value});
+		addFilter({ [filterName.toLowerCase()]: event.target.value });
 	};
 
 	const mapItems = (item) => {

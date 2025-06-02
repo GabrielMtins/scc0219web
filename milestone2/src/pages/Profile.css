@@ -2,8 +2,9 @@
 	background-color: white;
 	border-radius: 10px;
 	text-align: center;
-	padding: 5px 40px; 
-	justify-content: center; align-items: center;
+	padding: 5px 40px;
+	justify-content: center;
+	align-items: center;
 }
 
 .profile-class h1 {
@@ -12,7 +13,8 @@
 }
 
 .profile-class p {
-	justify-content: center; align-items: center;
+	justify-content: center;
+	align-items: center;
 	color: black;
 	text-align: left;
 	padding: 5px 30px;

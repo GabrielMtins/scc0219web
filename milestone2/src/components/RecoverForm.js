@@ -13,16 +13,16 @@ const RecoverForm = () => {
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 			val = emailRegex.test(elemento); // Add teste real
 		} else if (aTag === "code") {
-			if(elemento.length >= 4){ // Mudar para teste real
+			if (elemento.length >= 4) { // Mudar para teste real
 				val = true;
 			}
-		}else if (aTag === "password") {
-			if((elemento.length >= 6)){
-				if(elemento === document.getElementById("passwordInput2").value){
+		} else if (aTag === "password") {
+			if ((elemento.length >= 6)) {
+				if (elemento === document.getElementById("passwordInput2").value) {
 					val = true
 					// Passar mudança para a base de dados
 				}
-			}else{
+			} else {
 				alert("A senha deve ter ao menos 6 dígitos")
 				return false;
 			}
@@ -30,7 +30,7 @@ const RecoverForm = () => {
 
 		if (val) {
 			document.getElementById(aTag).classList.add("hidden");
-			if(pTag != ""){
+			if (pTag != "") {
 				document.getElementById(pTag).classList.remove("hidden");
 			}
 		} else {
@@ -75,16 +75,16 @@ const RecoverForm = () => {
 					type="submit"
 					value="Avançar"
 					onClick={() => {
-						if(step === "email"){
-							if(nextStep({ id: "emailInput", aTag: "email", pTag: "code" })){
+						if (step === "email") {
+							if (nextStep({ id: "emailInput", aTag: "email", pTag: "code" })) {
 								setStep("code")
 							}
-						}else if(step === "code"){
-							if(nextStep({ id: "codeInput", aTag: "code", pTag: "password" })){
+						} else if (step === "code") {
+							if (nextStep({ id: "codeInput", aTag: "code", pTag: "password" })) {
 								setStep("password")
 							}
-						}else if(step === "password"){
-							if(nextStep({ id: "passwordInput1", aTag: "password", pTag: "" })){
+						} else if (step === "password") {
+							if (nextStep({ id: "passwordInput1", aTag: "password", pTag: "" })) {
 								document.getElementById("submit").classList.add("hidden");
 								document.getElementById("title").textContent = "Senha alterada com sucesso";
 							}

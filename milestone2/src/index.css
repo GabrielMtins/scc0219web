@@ -1,17 +1,19 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden; /* Previne rolagem horizontal */
+html,
+body {
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	/* Previne rolagem horizontal */
 	font-family: 'Playfair Display', serif;
 }
 
 #root {
-  min-height: 100%;
-  display: flex;
+	min-height: 100%;
+	display: flex;
 }

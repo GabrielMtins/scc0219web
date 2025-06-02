@@ -1,10 +1,10 @@
 import './CarList.css'
 import '../palette.css'
-import {useCar} from '../contexts/CarContext';
-import {useState, useEffect} from 'react';
+import { useCar } from '../contexts/CarContext';
+import { useState, useEffect } from 'react';
 
-function CarItem({id}) {
-	const {car, addToCar, catalog, resetId, getItemCatalog} = useCar();
+function CarItem({ id }) {
+	const { car, addToCar, catalog, resetId, getItemCatalog } = useCar();
 
 	//let foundItem = catalog.find((book) => (book.id === id));
 	let foundItem = getItemCatalog(id);
@@ -32,7 +32,7 @@ function CarItem({id}) {
 	return (
 		<div className="carrinho-item">
 			<div className="imagem">
-				<img src={foundItem.img_link} alt="" / >
+				<img src={foundItem.img_link} alt="" />
 			</div>
 
 			<div className="info">

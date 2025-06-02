@@ -9,7 +9,7 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 		return (
 			<section className="estoque">
 				<h2 className="section-title">Estoque Atual</h2>
-				<p style={{textAlign: 'center', padding: '1rem', backgroundColor: 'white', borderRadius: '8px'}}>Nenhum livro no estoque.</p>
+				<p style={{ textAlign: 'center', padding: '1rem', backgroundColor: 'white', borderRadius: '8px' }}>Nenhum livro no estoque.</p>
 			</section>
 		);
 	}

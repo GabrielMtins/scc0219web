@@ -18,7 +18,7 @@ const fakeSignUpAPI = async (credentials) => {
 	});
 };
 
-export function LoginProvider({children}) {
+export function LoginProvider({ children }) {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,7 @@ export function LoginProvider({children}) {
 			const response = await fakeLoginAPI(credentials);
 			setUser(credentials);
 			return true;
-		} catch(error) {
+		} catch (error) {
 			console.error("Login failed: ", error);
 			return false;
 		} finally {
@@ -46,7 +46,7 @@ export function LoginProvider({children}) {
 			const response = await fakeSignUpAPI(credentials);
 			setUser(credentials);
 			return true;
-		} catch(error) {
+		} catch (error) {
 			console.error("Login failed: ", error);
 			return false;
 		} finally {
@@ -55,7 +55,7 @@ export function LoginProvider({children}) {
 	};
 
 	return (
-		<LoginContext.Provider value={{user, login, signUp, loading}}>
+		<LoginContext.Provider value={{ user, login, signUp, loading }}>
 			{children}
 		</LoginContext.Provider>
 	);

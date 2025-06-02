@@ -7,16 +7,16 @@ import { useLogin } from '../contexts/LoginContext';
 import { useState, useEffect } from 'react';
 
 function ProfilePage() {
-	const {user, login, loading} = useLogin();
+	const { user, login, loading } = useLogin();
 	const navigate = useNavigate();
 	const username = user === null ? "teste" : user.username;
 	const fullname = user === null ? "user.fullname" : user.fullname;
 
 	useEffect(() => {
-		if(user == null){
+		if (user == null) {
 			navigate('/login');
 		}
-		else if(user.username == "admin"){
+		else if (user.username == "admin") {
 			navigate('/admin');
 		}
 	});

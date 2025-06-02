@@ -4,8 +4,8 @@ import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {CarProvider} from './contexts/CarContext';
-import {LoginProvider} from './contexts/LoginContext';
+import { CarProvider } from './contexts/CarContext';
+import { LoginProvider } from './contexts/LoginContext';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -26,7 +26,7 @@ function App() {
 	return (
 		<div className="App">
 			<Navbar />
-			
+
 			<main className='main-content'>
 				<CarProvider>
 					<LoginProvider>
@@ -46,7 +46,7 @@ function App() {
 				</CarProvider>
 			</main>
 
-			<ToastContainer 
+			<ToastContainer
 				position="bottom-right"
 				autoClose={2500}
 				hideProgressBar={false}

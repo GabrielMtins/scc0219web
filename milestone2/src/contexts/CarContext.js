@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const CarContext = createContext();
 
-export function CarProvider({children}) {
+export function CarProvider({ children }) {
 	const book_list = [
 		{
 			id: 0,
@@ -55,7 +55,7 @@ export function CarProvider({children}) {
 	};
 
 	const addToCar = (id, amount) => {
-		if(car[id] + amount > getItemCatalog(id).amount){
+		if (car[id] + amount > getItemCatalog(id).amount) {
 			toast.error('Não há mais desse produto no estoque.');
 			return false;
 		}
@@ -76,13 +76,13 @@ export function CarProvider({children}) {
 	};
 
 	const updateCatalog = (id, book) => {
-		setCatalog(catalog => catalog.map((item, i) => (i === id ? {...item, ...book} : item)));
+		setCatalog(catalog => catalog.map((item, i) => (i === id ? { ...item, ...book } : item)));
 	};
 
 	const addCatalog = (book) => {
 		setCatalog(catalog => ([
 			...catalog,
-			{'id': catalog.length, ...book},
+			{ 'id': catalog.length, ...book },
 		]));
 	};
 
@@ -94,7 +94,7 @@ export function CarProvider({children}) {
 	};
 
 	return (
-		<CarContext.Provider value={{car, addToCar, catalog, resetId, setCatalog, updateCatalog, setCatalog, addCatalog, getItemCatalog, removeCatalog}}>
+		<CarContext.Provider value={{ car, addToCar, catalog, resetId, setCatalog, updateCatalog, setCatalog, addCatalog, getItemCatalog, removeCatalog }}>
 			{children}
 		</CarContext.Provider>
 	);

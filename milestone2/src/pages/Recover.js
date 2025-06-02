@@ -1,11 +1,11 @@
 import RecoverForm from '../components/RecoverForm';
 
 const Recover = () => {
-	return ( 
+	return (
 		<div>
 			<RecoverForm />
 		</div>
 	);
 }
-	
+
 export default Recover;

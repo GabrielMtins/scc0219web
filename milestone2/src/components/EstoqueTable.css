@@ -1,173 +1,179 @@
 .estoque .section-title {
-  font-size: 2rem;
-  color: var(--comp_dark_color);
-  margin-bottom: 1.5rem;
-  text-align: center;
+	font-size: 2rem;
+	color: var(--comp_dark_color);
+	margin-bottom: 1.5rem;
+	text-align: center;
 }
 
 .estoque table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+	width: 100%;
+	border-collapse: collapse;
+	background-color: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
 }
 
 .estoque th,
 .estoque td {
-  padding: 1rem;
-  border-bottom: 1px solid var(--comp_light_color);
-  vertical-align: middle;
+	padding: 1rem;
+	border-bottom: 1px solid var(--comp_light_color);
+	vertical-align: middle;
 }
 
 .estoque th {
-  background-color: var(--comp_dark_color);
-  color: var(--light_color);
-  font-weight: bold;
-  border-bottom: none;
+	background-color: var(--comp_dark_color);
+	color: var(--light_color);
+	font-weight: bold;
+	border-bottom: none;
 }
 
 .estoque td {
-  color: var(--dark_color);
+	color: var(--dark_color);
 }
 
 .estoque th:nth-child(1),
 .estoque td:nth-child(1) {
-  text-align: left;
-  width: 25%;
+	text-align: left;
+	width: 25%;
 }
 
 .estoque th:nth-child(2),
 .estoque td:nth-child(2) {
-  text-align: left;
-  width: 20%;
+	text-align: left;
+	width: 20%;
 }
 
 .estoque th:nth-child(3),
 .estoque td:nth-child(3) {
-  text-align: left;
-  width: 20%;
+	text-align: left;
+	width: 20%;
 }
 
 .estoque th:nth-child(4),
 .estoque td:nth-child(4) {
-  text-align: center;
-  width: 10%;
+	text-align: center;
+	width: 10%;
 }
 
 .estoque th:nth-child(5),
 .estoque td:nth-child(5) {
-  text-align: center;
-  width: 10%;
+	text-align: center;
+	width: 10%;
 }
 
 .estoque th:nth-child(6),
 .estoque td:nth-child(6) {
-  text-align: center;
-  width: 15%;
+	text-align: center;
+	width: 15%;
 }
 
 .estoque td.actions-cell {
-  white-space: nowrap;
+	white-space: nowrap;
 }
 
 .estoque tbody tr:last-child td {
-  border-bottom: none;
+	border-bottom: none;
 }
 
 .estoque .edit-input {
-  width: 80px;
-  padding: 0.5rem;
-  border: 1px solid var(--comp_light_color);
-  border-radius: 4px;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem;
-  background-color: white;
-  color: var(--dark_color);
-  box-sizing: border-box;
+	width: 80px;
+	padding: 0.5rem;
+	border: 1px solid var(--comp_light_color);
+	border-radius: 4px;
+	font-family: 'Playfair Display', serif;
+	font-size: 0.9rem;
+	background-color: white;
+	color: var(--dark_color);
+	box-sizing: border-box;
 }
 
 .estoque .edit-input-editora {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid var(--comp_light_color);
-  border-radius: 4px;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem;
-  background-color: white;
-  color: var(--dark_color);
-  box-sizing: border-box;
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid var(--comp_light_color);
+	border-radius: 4px;
+	font-family: 'Playfair Display', serif;
+	font-size: 0.9rem;
+	background-color: white;
+	color: var(--dark_color);
+	box-sizing: border-box;
 }
 
 
-.estoque td:nth-child(4) .edit-input, /* Input de Preço */
-.estoque td:nth-child(5) .edit-input { /* Input de Quantidade */
-  text-align: right;
+.estoque td:nth-child(4) .edit-input,
+/* Input de Preço */
+.estoque td:nth-child(5) .edit-input {
+	/* Input de Quantidade */
+	text-align: right;
 }
 
 .estoque .btn-editar,
 .estoque .btn-salvar,
 .estoque .btn-cancelar,
 .estoque .btn-remover {
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.85rem;
-  margin: 0 3px;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
-  vertical-align: middle;
+	padding: 0.5rem 0.8rem;
+	border-radius: 4px;
+	border: 1px solid transparent;
+	cursor: pointer;
+	font-family: 'Playfair Display', serif;
+	font-size: 0.85rem;
+	margin: 0 3px;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+	vertical-align: middle;
 }
 
 .estoque .btn-editar:active,
 .estoque .btn-salvar:active,
 .estoque .btn-cancelar:active,
 .estoque .btn-remover:active {
-  transform: scale(0.96);
+	transform: scale(0.96);
 }
 
 .estoque .btn-editar {
-  background-color: var(--comp_light_color);
-  color: var(--dark_color);
-  border-color: var(--comp_light_color);
+	background-color: var(--comp_light_color);
+	color: var(--dark_color);
+	border-color: var(--comp_light_color);
 }
+
 .estoque .btn-editar:hover {
-  background-color: var(--dark_color);
-  color: var(--light_color);
-  border-color: var(--dark_color);
+	background-color: var(--dark_color);
+	color: var(--light_color);
+	border-color: var(--dark_color);
 }
 
 .estoque .btn-salvar {
-  background-color: var(--comp_dark_color);
-  color: var(--light_color);
-  border-color: var(--comp_dark_color);
+	background-color: var(--comp_dark_color);
+	color: var(--light_color);
+	border-color: var(--comp_dark_color);
 }
+
 .estoque .btn-salvar:hover {
-  background-color: var(--comp_light_color);
-  color: var(--dark_color);
-  border-color: var(--comp_light_color);
+	background-color: var(--comp_light_color);
+	color: var(--dark_color);
+	border-color: var(--comp_light_color);
 }
 
 .estoque .btn-cancelar {
-  background-color: transparent;
-  color: var(--dark_color);
-  border: 1px solid var(--comp_light_color);
+	background-color: transparent;
+	color: var(--dark_color);
+	border: 1px solid var(--comp_light_color);
 }
+
 .estoque .btn-cancelar:hover {
-  background-color: var(--comp_light_color);
-  color: var(--dark_color);
-  border-color: var(--comp_light_color);
+	background-color: var(--comp_light_color);
+	color: var(--dark_color);
+	border-color: var(--comp_light_color);
 }
 
 .estoque .btn-remover {
-  background-color: var(--comp_dark_color);
-  color: var(--light_color);
-  border-color: var(--comp_dark_color);
+	background-color: var(--comp_dark_color);
+	color: var(--light_color);
+	border-color: var(--comp_dark_color);
 }
+
 .estoque .btn-remover:hover {
-  background-color: var(--comp_light_color);
-  color: var(--dark_color);
-  border-color: var(--comp_light_color);
+	background-color: var(--comp_light_color);
+	color: var(--dark_color);
+	border-color: var(--comp_light_color);
 }

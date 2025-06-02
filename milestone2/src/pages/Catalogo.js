@@ -5,11 +5,11 @@ import Bookcard from '../components/Bookcard.js';
 import Booklist from '../components/Booklist.js';
 import FilterBox from '../components/FilterBox.js';
 
-import {useCar} from '../contexts/CarContext';
-import {useState, useEffect} from 'react';
+import { useCar } from '../contexts/CarContext';
+import { useState, useEffect } from 'react';
 
 function Catalogo() {
-	const {catalog} = useCar();
+	const { catalog } = useCar();
 	const [filtered_catalog, setFilteredCatalog] = useState(catalog);
 	const [filterOptions, setFilterOptions] = useState({});
 	const [useFilter, setUseFilter] = useState(false);
@@ -21,15 +21,15 @@ function Catalogo() {
 		setFilteredCatalog(catalog
 			.filter((item) => (item.title.toLowerCase().includes(actualSearch.toLowerCase())))
 			.filter((item) => {
-				for(const key of Object.keys(filterOptions)){
-					if(filterOptions[key] == "nil"){
+				for (const key of Object.keys(filterOptions)) {
+					if (filterOptions[key] == "nil") {
 						continue;
 					}
 
-					if(filterOptions[key] != item[key])
+					if (filterOptions[key] != item[key])
 						return false;
 				}
-				
+
 				return true;
 			})
 		);
@@ -40,7 +40,7 @@ function Catalogo() {
 	};
 
 	const handleKeyDown = (event) => {
-		if(event.key == 'Enter'){
+		if (event.key == 'Enter') {
 			searchButtonClick();
 		}
 	};
@@ -48,9 +48,9 @@ function Catalogo() {
 	useEffect(() => {
 		applyAnyFilters();
 	}, [actualSearch]);
-	
+
 	const addFilter = (object) => {
-		setFilterOptions(filterOptions => ({...filterOptions, ...object}));
+		setFilterOptions(filterOptions => ({ ...filterOptions, ...object }));
 	};
 
 	const resetFilter = () => {
@@ -62,22 +62,22 @@ function Catalogo() {
 	}, [filterOptions]);
 
 	const displayFilter = () => {
-		if(useFilter == true){
-			return (<FilterBox filterOptions={filterOptions} addFilter={addFilter} resetFilter={resetFilter} applyFilter={applyAnyFilters}/>);
+		if (useFilter == true) {
+			return (<FilterBox filterOptions={filterOptions} addFilter={addFilter} resetFilter={resetFilter} applyFilter={applyAnyFilters} />);
 		}
 	};
 
 	const applyFilter = () => {
 		setFilteredCatalog(catalog.filter((item) => {
-			for(const key of Object.keys(filterOptions)){
-				if(filterOptions[key] == "nil"){
+			for (const key of Object.keys(filterOptions)) {
+				if (filterOptions[key] == "nil") {
 					continue;
 				}
 
-				if(filterOptions[key] != item[key])
+				if (filterOptions[key] != item[key])
 					return false;
 			}
-			
+
 			return true;
 		}));
 	};
@@ -88,18 +88,18 @@ function Catalogo() {
 
 	return (
 		<div className="page">
-				<h1> Catálogo </h1>
-		
-				<div className="barra-busca">
-					<input type="text" placeholder="Buscar livros..." className="input-busca" onKeyDown={handleKeyDown} onChange={(event) => setSearch(event.target.value)}/> 
-					<button className="btn-busca" onClick={searchButtonClick}> Buscar </button>
-				</div>
+			<h1> Catálogo </h1>
 
-				<button className="btn-filtro" onClick={showFilter}>Filtros</button>
+			<div className="barra-busca">
+				<input type="text" placeholder="Buscar livros..." className="input-busca" onKeyDown={handleKeyDown} onChange={(event) => setSearch(event.target.value)} />
+				<button className="btn-busca" onClick={searchButtonClick}> Buscar </button>
+			</div>
 
-				{displayFilter()}
+			<button className="btn-filtro" onClick={showFilter}>Filtros</button>
 
-				<Booklist book_list={filtered_catalog} />
+			{displayFilter()}
+
+			<Booklist book_list={filtered_catalog} />
 		</div>
 	);
 }

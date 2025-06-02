@@ -1,5 +1,5 @@
 import "./Form.css";
-import {useLogin} from '../contexts/LoginContext';
+import { useLogin } from '../contexts/LoginContext';
 import { toast } from 'react-toastify';
 
 const SignInForm = () => {
@@ -53,14 +53,14 @@ const SignInForm = () => {
 
 		const success = await signUp(credentials);
 
-		if(success){
+		if (success) {
 			const inputs = document.querySelectorAll('.input');
-			inputs.forEach((input) => {input.classList.add('hidden');});
+			inputs.forEach((input) => { input.classList.add('hidden'); });
 
 			document.getElementById("submit").classList.add("hidden");
 			document.getElementById("title").textContent = "Conta criada com sucesso";
 		}
-		else{
+		else {
 			toast.error('Falha no cadastro. Por favor, tente novamente mais tarde.');
 		}
 	};
@@ -105,7 +105,7 @@ const SignInForm = () => {
 			</div>
 
 			<div className="submit-container">
-				<input id="submit" className="submit" type="submit" value="Criar Conta" onClick={validate}/>
+				<input id="submit" className="submit" type="submit" value="Criar Conta" onClick={validate} />
 			</div>
 		</div>
 	);

@@ -3,10 +3,10 @@ import EstoqueTable from '../components/EstoqueTable';
 import AddBookForm from '../components/AddBookForm';
 import SellsList from '../components/SellsList';
 import './Admin.css';
-import {useCar} from '../contexts/CarContext';
+import { useCar } from '../contexts/CarContext';
 
 const Admin = () => {
-	const {catalog, updateCatalog, addCatalog, removeCatalog} = useCar();
+	const { catalog, updateCatalog, addCatalog, removeCatalog } = useCar();
 
 	const [livrosEmEstoque, setLivrosEmEstoque] = useState([
 		{ id: 'dom-casmurro', title: 'Dom Casmurro', author: 'Machado de Assis', publisher: 'Editora Garnier', price: 29.90, amount: 15 },
@@ -59,8 +59,8 @@ const Admin = () => {
 			return;
 		}
 		if (!editora) {
-				alert("O campo editora não pode ser vazio.");
-				return;
+			alert("O campo editora não pode ser vazio.");
+			return;
 		}
 
 		updateCatalog(livroId, dadosAtualizados);
