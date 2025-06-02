@@ -85,6 +85,10 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ### Atualizar um produto
 
+![atualizar01](screenshots/atualizar_01.png)
+![atualizar02](screenshots/atualizar_02.png)
+![atualizar03](screenshots/atualizar_03.png)
+
 ### Criar novo usuário
 
 ### Login
