@@ -18,12 +18,14 @@ usecase "Estoque" as estoque
 usecase "Produtos vendidos" as prod_vend
 usecase "Catálogo" as compras
 usecase "Navbar" as navbar
+usecase "Perfil" as perfil
 
 navbar <--> home
 navbar <--> login
 navbar <--> about
 navbar <--> compras
 navbar <--> carrinho
+navbar <--> perfil
 login <--> login_client
 login <--> login_admin
 login <--> create_client

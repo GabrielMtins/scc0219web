@@ -25,7 +25,7 @@ O projeto é uma livraria online que tem como objetivo oferecer as seguintes fun
 - Cadastro de perfis e Login.
 - Adicionar ou remover produtos do carrinho.
 - Finalização de compras.
-- Filtrar por gênero, autor, editor.
+- Filtrar por gênero, autor, editora.
 - Busca por nome.
 - Adicionar ou remover novos produtos no catálogo (administrador).
 
@@ -130,3 +130,12 @@ sair dela após ela ser acessada.
 
 ## Comentários
 
+Para acessar a página de administrador no milestone 2, primeiro entre na parte
+de login e digite o nome de usuário como "admin", e a senha como qualquer (não
+há verificação de senha, essa parte será feita pelo backend). Depois, clique
+na navbar em "perfil". Você terá acesso ao painel de controle do administrador,
+em que você pode remover ou adicionar itens do estoque.
+
+A conta do administrador no produto final não poderá ser capaz de comprar produtos,
+mas para casos de testes, enquanto o backend não for implementado, o admin
+é capaz de adicionar e remover produtos do carrinho.
