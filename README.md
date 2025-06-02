@@ -91,7 +91,13 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ### Criar novo usuário
 
+![screen01](screenshots/screen_01.png)
+![screen02](screenshots/screen_02.png)
+
 ### Login
+
+![login01](screenshots/login_01.png)
+![login02](screenshots/login_02.png)
 
 ## Procedimentos de build
 
