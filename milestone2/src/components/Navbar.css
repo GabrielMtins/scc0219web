@@ -19,11 +19,7 @@
 	text-decoration: none;
 	color: var(--light_color);
 	font-family: 'Playfair Display', serif;
-}
-
-.logo:hover {
-	background-color: var(--comp_dark_color);
-	text-decoration: none;
+	cursor: pointer;
 }
 
 .nav-links a {

@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useLogin } from '../contexts/LoginContext';
+import { useCar } from '../contexts/CarContext';
 import '../palette.css';
 import './Navbar.css';
 
 function Navbar() {
 	const { user, logout } = useLogin();
+	const { resetCar } = useCar();
 
 	const login_logout = () => {
 		if(user == null){

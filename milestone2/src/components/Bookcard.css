@@ -17,6 +17,7 @@
 	height: 320px;
 	object-fit: cover;
 	border-bottom: 1px solid var(--comp_dark_color);
+	cursor: pointer;
 }
 
 .livro-info {

@@ -4,11 +4,21 @@ import Bookcard from '../components/Bookcard.js';
 import Booklist from '../components/Booklist.js';
 
 import { useCar } from '../contexts/CarContext';
+import { useLogin } from '../contexts/LoginContext';
 
 import CarList from '../components/CarList'
+import { useState, useEffect } from 'react';
 
 function Carrinho() {
-	const { car, addToCar, catalog } = useCar();
+	const { user } = useLogin();
+	const { car, resetCar, addToCar, catalog } = useCar();
+
+	useEffect(() => {
+		if(user == null && car != []){
+			resetCar();
+		}
+	}, [user]);
+
 	const items = Object.keys(car);
 
 	return (

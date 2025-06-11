@@ -1,0 +1,48 @@
+.bookpage-card {
+	height: 40rem;
+	background: var(--dark_color);
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s;
+	display: flex;
+	justify-content: space-between;
+}
+
+.bookpage-info {
+	padding: 2.5rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.bookpage-info h3 {
+	margin: 0 0 0.5rem 0;
+	font-size: 3.4rem;
+	color: var(--light_color);
+}
+
+.bookpage-button-container {
+	margin-top: auto;
+}
+
+.bookpage-button {
+	width: 100%;
+	margin-top: auto;
+	background: var(--comp_dark_color);
+	color: white;
+	border: none;
+	padding: 0.6rem 1.2rem;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.bookpage-button:hover {
+	background: var(--comp_light_color);
+}
+
+.description {
+	text-align: justify;
+	word-wrap: break-word;
+	color: white;
+}

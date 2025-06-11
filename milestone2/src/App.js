@@ -17,6 +17,7 @@ import SingUp from './pages/SingUp';
 import Admin from './pages/Admin';
 import CheckoutPage from './pages/CheckoutPage';
 import ProfilePage from './pages/Profile';
+import ProductPage from './pages/ProductPage';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -42,6 +43,7 @@ function App() {
 							<Route path="/admin" element={<Admin />} />
 							<Route path="/profile" element={<ProfilePage />} />
 							<Route path="/checkout" element={<CheckoutPage />} />
+							<Route path="/productpage" element={<ProductPage />} />
 						</Routes>
 			</main>
 

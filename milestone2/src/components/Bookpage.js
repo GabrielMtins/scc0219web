@@ -1,11 +1,11 @@
-import './Bookcard.css';
+import './Bookpage.css';
 
 import { useCar } from '../contexts/CarContext';
 import { ToastContainer, toast } from 'react-toastify';
 import { useLogin } from '../contexts/LoginContext';
 import { useNavigate } from 'react-router-dom';
 
-function Bookcard({ book }) {
+function Bookpage({ book }) {
 	const { car, addToCar, setCurrentBook } = useCar();
 	const { user } = useLogin();
 
@@ -25,24 +25,24 @@ function Bookcard({ book }) {
 		}
 	};
 
-	const goto_productpage = () => {
-		setCurrentBook(book.id);
-		navigate('/productpage');
-	};
-
 	return (
-		<div className="livro-card">
-			<img src={book.img_link} alt={book.title} onClick={goto_productpage} />
+		<div className="bookpage-card">
+			<img src={book.img_link} alt={book.title} />
 
-			<div className="livro-info">
+			<div className="bookpage-info">
 				<h3> {book.title} </h3>
 				<p className="autor"> {book.author} </p>
 				<p className="preco"> R$ {book.price} </p>
 				<p className="preco"> Estoque: {book.amount} </p>
-				<button className="btn-comprar" onClick={clicked}> Comprar </button>
+
+				<p className="description"> {book.description} </p>
+			
+				<div className="bookpage-button-container">
+					<button className="bookpage-button" onClick={clicked}> Comprar </button>
+				</div>
 			</div>
 		</div>
 	);
 }
 
-export default Bookcard;
+export default Bookpage;
