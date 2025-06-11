@@ -26,8 +26,8 @@ function ProfilePage() {
 			<div className="main-content">
 				<br />
 				<div className="profile-class">
-					<h1> Nome </h1>
-					<p> {fullname} </p>
+					<h1> Nome Completo </h1>
+					<p> TBD </p>
 					<br />
 				</div>
 
@@ -36,6 +36,14 @@ function ProfilePage() {
 				<div className="profile-class">
 					<h1> Nome de usuário </h1>
 					<p> {username} </p>
+					<br />
+				</div>
+
+				<br />
+
+				<div className="profile-class">
+					<h1> Email </h1>
+					<p> TBD </p>
 					<br />
 				</div>
 			</div>
