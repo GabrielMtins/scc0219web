@@ -9,6 +9,7 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 	const [amount, setQuantidade] = useState('');
 	const [genre, setGenre] = useState('');
 	const [img_link, setImgLink] = useState('');
+	const [description, setDescription] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -99,6 +100,14 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 					value={amount}
 					onChange={(e) => setQuantidade(e.target.value)}
 					placeholder="Quantidade"
+					min="0"
+					required
+				/>
+				<input
+					type="text"
+					value={description}
+					onChange={(e) => setDescription(e.target.value)}
+					placeholder="Descrição"
 					min="0"
 					required
 				/>
