@@ -108,7 +108,7 @@ export function CarProvider({ children }) {
 	};
 
 	const updateCatalog = (id, book) => {
-		setCatalog(catalog => catalog.map((item, i) => (i === id ? { ...item, ...book } : item)));
+		setCatalog(catalog => catalog.map((item) => (item.id === id ? { ...item, ...book } : item)));
 	};
 
 	const addCatalog = (book) => {
