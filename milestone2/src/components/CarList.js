@@ -2,11 +2,14 @@ import '../palette.css'
 import './CarList.css'
 import CarItem from '../components/CarItem'
 import { useCar } from '../contexts/CarContext';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CarList({ car_list }) {
 	const { car, catalog, getItemCatalog } = useCar();
+	const navigate = useNavigate();
 
 	let price = 0;
 	let filtered_car_list = [];
@@ -35,6 +38,15 @@ function CarList({ car_list }) {
 		}
 	}
 
+	const onPay = () => {
+		if(price != 0){
+			navigate('/checkout');
+		}
+		else{
+			toast.error('Insira um item no carrinho para realizar a compra');
+		}
+	}
+
 	updatePrice();
 
 	useEffect(() => {
@@ -52,9 +64,7 @@ function CarList({ car_list }) {
 
 				{displayItems()}
 
-				<Link to="/checkout">
-					<button className="pagar">Pagar R$ {price}</button>
-				</Link>
+				<button className="pagar" onClick={onPay}>Pagar R$ {price}</button>
 			</div>
 		</div>
 	);
