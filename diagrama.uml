@@ -13,12 +13,12 @@ usecase "Entrar como administrador" as login_admin
 usecase "Inserir ou remover produtos" as addrem_admin
 usecase "Criar conta cliente" as create_client
 usecase "Inserir dados das compras" as dados_compra
-usecase "Finalizar compra" as finalizar_compra
 usecase "Estoque" as estoque
 usecase "Produtos vendidos" as prod_vend
 usecase "Catálogo" as compras
 usecase "Navbar" as navbar
 usecase "Perfil" as perfil
+usecase "Página de Produto" as prod_page
 
 navbar <--> home
 navbar <--> login
@@ -37,7 +37,8 @@ login_admin <--> prod_vend
 compras <--> filtro
 compras <--> busca
 carrinho <--> dados_compra
-dados_compra <--> finalizar_compra
+home <--> prod_page
+compras <--> prod_page
 
 @enduml
 
