@@ -54,8 +54,12 @@ export function LoginProvider({ children }) {
 		}
 	};
 
+	const logout = () => {
+		setUser(null);
+	};
+
 	return (
-		<LoginContext.Provider value={{ user, login, signUp, loading }}>
+		<LoginContext.Provider value={{ user, login, signUp, loading, logout }}>
 			{children}
 		</LoginContext.Provider>
 	);

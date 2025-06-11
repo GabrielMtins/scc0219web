@@ -25,11 +25,12 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
 	return (
 		<div className="App">
+			<CarProvider>
+			<LoginProvider>
+
 			<Navbar />
 
 			<main className='main-content'>
-				<CarProvider>
-					<LoginProvider>
 						<Routes>
 							<Route path="/" element={<Home />} />
 							<Route path="/about" element={<About />} />
@@ -42,8 +43,6 @@ function App() {
 							<Route path="/profile" element={<ProfilePage />} />
 							<Route path="/checkout" element={<CheckoutPage />} />
 						</Routes>
-					</LoginProvider>
-				</CarProvider>
 			</main>
 
 			<ToastContainer
@@ -59,6 +58,9 @@ function App() {
 			/>
 
 			<Footer />
+
+			</LoginProvider>
+			</CarProvider>
 		</div>
 	);
 }
