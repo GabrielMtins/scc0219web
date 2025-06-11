@@ -121,10 +121,7 @@ export function CarProvider({ children }) {
 	};
 
 	const removeCatalog = (id) => {
-		setCatalog(catalog => ([
-			...catalog.slice(0, id),
-			...catalog.slice(id + 1)
-		]));
+		setCatalog(catalog => catalog.filter((item) => item.id != id));
 	};
 
 	return (
