@@ -27,11 +27,11 @@ function App() {
 	return (
 		<div className="App">
 			<CarProvider>
-			<LoginProvider>
-
-			<Navbar />
-
-			<main className='main-content'>
+				<LoginProvider>
+	
+				<Navbar />
+	
+				<main className='main-content'>
 						<Routes>
 							<Route path="/" element={<Home />} />
 							<Route path="/about" element={<About />} />
@@ -45,23 +45,23 @@ function App() {
 							<Route path="/checkout" element={<CheckoutPage />} />
 							<Route path="/productpage" element={<ProductPage />} />
 						</Routes>
-			</main>
-
-			<ToastContainer
-				position="bottom-right"
-				autoClose={2500}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-			/>
-
-			<Footer />
-
-			</LoginProvider>
+				</main>
+	
+				<ToastContainer
+					position="bottom-right"
+					autoClose={2500}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+				/>
+	
+				<Footer />
+	
+				</LoginProvider>
 			</CarProvider>
 		</div>
 	);
