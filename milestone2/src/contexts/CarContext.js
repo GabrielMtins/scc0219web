@@ -4,6 +4,9 @@ import { ToastContainer, toast } from 'react-toastify';
 const CarContext = createContext();
 
 export function CarProvider({ children }) {
+	/* Lista temporária para armazenar os livros,
+	 * no futuro essa lista deverá ser armazenada no backend. 
+	 */
 	const book_list = [
 		{
 			id: 0,
@@ -73,15 +76,32 @@ export function CarProvider({ children }) {
 		},
 	];
 
+	/* Car será o carrinho que o usuário pode utilizar, ele será
+	 * armazenado localmente. Provavelmente poderá ser salvo no backend
+	 * caso necessário. */
 	const [car, setCar] = useState({});
+
+	/* Catalog diz a respeito do objeto do catálogo, contendo
+	 * a lista de livros com suas propriedades. */
 	const [catalog, setCatalog] = useState(book_list);
+	/* nextId é apenas uma variável para ids de livros. Ela é usada
+	 * para garantir ids únicos. */
 	const [nextId, setNextId] = useState(100);
+	/* currentBook diz respeito ao livro que a página de
+	 * descrição irá mostrar. */
 	const [currentBook, setCurrentBook] = useState(null);
 
+	/* A seguir, estarão algumas funções relacionadas ao
+	 * carrinho e ao catálogo. Idealmente, algumas funções relacionadas
+	 * ao catálogo serão movidas para o backend. */
+
+	/* Função que retorna o item do catálogo dado o id */
 	const getItemCatalog = (id) => {
 		return catalog.find((book) => book.id == id)
 	};
 
+	/* Função que adicionará (ou remover) um item do 
+	 * carrinho. Ela performa a verificação do estoque disponível. */
 	const addToCar = (id, amount) => {
 		if (car[id] + amount > getItemCatalog(id).amount) {
 			toast.error('Não há mais desse produto no estoque.');
@@ -96,10 +116,14 @@ export function CarProvider({ children }) {
 		return true;
 	};
 
+	/* Limpa o carrinho, chamada quando o usuário
+	 * sai do login. */
 	const resetCar = () => {
 		setCar([]);
 	};
 
+	/* Basicamente remove um elemento do carrinho, marcando
+	 * sua quantidade como 0 */
 	const resetId = (id) => {
 		setCar(car => ({
 			...car,
@@ -107,10 +131,15 @@ export function CarProvider({ children }) {
 		}));
 	};
 
+	/* Atualiza as informações de um livro
+	 * no catálogo. Utilizada nas funções de atualização
+	 * da página de admin. */
 	const updateCatalog = (id, book) => {
 		setCatalog(catalog => catalog.map((item) => (item.id === id ? { ...item, ...book } : item)));
 	};
 
+	/* Adiciona um livro novo ao catálogo,
+	 * atualizando o slot de id disponível também. */
 	const addCatalog = (book) => {
 		setCatalog(catalog => ([
 			...catalog,
@@ -120,10 +149,12 @@ export function CarProvider({ children }) {
 		setNextId(nextId + 1);
 	};
 
+	/* Remove um livro do catálogo dado o id */
 	const removeCatalog = (id) => {
 		setCatalog(catalog => catalog.filter((item) => item.id != id));
 	};
 
+	/* Apenas as funções relacionadas ao contexto do carrinho */
 	return (
 		<CarContext.Provider value={{ car, resetCar, addToCar, catalog, resetId, setCatalog, updateCatalog, setCatalog, addCatalog, getItemCatalog, removeCatalog, currentBook, setCurrentBook }}>
 			{children}
