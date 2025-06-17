@@ -1,54 +1,53 @@
 import '../palette.css';
-import './Home.css';
-import './Profile.css'
+import './Profile.css';
 
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../contexts/LoginContext';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 function ProfilePage() {
-	const { user, login, loading } = useLogin();
-	const navigate = useNavigate();
-	const username = user === null ? "teste" : user.username;
-	const fullname = user === null ? "user.fullname" : user.fullname;
+  const { user, loading } = useLogin();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (user == null) {
-			navigate('/login');
-		}
-		else if (user.username == "admin") {
-			navigate('/admin');
-		}
-	});
+  useEffect(() => {
+    if (!loading) {
+      if (!user) navigate('/login');
+      else if (user.username === 'admin') navigate('/admin');
+    }
+  }, [user, loading, navigate]);
 
-	return (
-		<div className="page">
-			<div className="main-content">
-				<br />
-				<div className="profile-class">
-					<h1> Nome Completo </h1>
-					<p> TBD </p>
-					<br />
-				</div>
+  if (loading || !user) {
+    return (
+      <div className="profile-page">
+        <div className="profile-card">
+          <p className="loading-text">Carregando perfil...</p>
+        </div>
+      </div>
+    );
+  }
 
-				<br />
+  return (
+    <div className="profile-page">
+      <div className="profile-card">
+        <h1 className="profile-title">Meu Perfil</h1>
 
-				<div className="profile-class">
-					<h1> Nome de usuário </h1>
-					<p> {username} </p>
-					<br />
-				</div>
+        <ProfileField label="Nome Completo" value={user.fullname || 'Não informado'} />
+        <ProfileField label="Nome de Usuário" value={user.username} />
+        <ProfileField label="Email" value={user.email || 'Não informado'} />
+		<ProfileField label="Endereço" value={user.address || 'Não informado'} />
+		<ProfileField label="CEP" value={user.cep || 'Não informado'} />
+      </div>
+    </div>
+  );
+}
 
-				<br />
-
-				<div className="profile-class">
-					<h1> Email </h1>
-					<p> TBD </p>
-					<br />
-				</div>
-			</div>
-		</div>
-	);
+function ProfileField({ label, value }) {
+  return (
+    <div className="profile-field">
+      <span className="field-label">{label}</span>
+      <span className="field-value">{value}</span>
+    </div>
+  );
 }
 
 export default ProfilePage;

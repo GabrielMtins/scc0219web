@@ -1,21 +1,62 @@
-.profile-class {
+/* -------- Página de perfil -------- */
+.profile-page {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+  }
+  
+  /* -------- Cartão principal -------- */
+  .profile-card {
 	background-color: white;
-	border-radius: 10px;
+	border-radius: 12px;
+	padding: 30px 40px;
+	max-width: 500px;
+	width: 100%;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+  }
+  
+  /* -------- Título principal -------- */
+  .profile-title {
+	font-size: 2rem;
+	color: var(--comp_dark_color, #2c3e50);
 	text-align: center;
-	padding: 5px 40px;
-	justify-content: center;
-	align-items: center;
-}
-
-.profile-class h1 {
-	color: var(--comp_dark_color);
-	text-align: left;
-}
-
-.profile-class p {
-	justify-content: center;
-	align-items: center;
-	color: black;
-	text-align: left;
-	padding: 5px 30px;
-}
+	margin-bottom: 10px;
+  }
+  
+  /* -------- Campo do perfil -------- */
+  .profile-field {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	border-left: 4px solid var(--comp_dark_color, #2c3e50);
+	padding-left: 15px;
+	background-color: #fafafa;
+	border-radius: 6px;
+	padding: 10px 15px;
+  }
+  
+  /* -------- Rótulo de cada campo -------- */
+  .field-label {
+	font-weight: 600;
+	font-size: 1rem;
+	color: #444;
+  }
+  
+  /* -------- Valor do campo -------- */
+  .field-value {
+	font-size: 1.05rem;
+	color: #222;
+  }
+  
+  /* -------- Texto de carregamento -------- */
+  .loading-text {
+	text-align: center;
+	font-size: 1.2rem;
+	color: #555;
+  }
+  
