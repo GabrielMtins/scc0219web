@@ -1,13 +1,47 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 const CarContext = createContext();
+const API_URL = 'http://localhost:5000/posts'
 
 export function CarProvider({ children }) {
+	const [Books, setBooks] = useState([]);
+	const [newBookTitle, setNewBookTitle] = useState('');
+
+  	// useEffect para buscar os dados quando o componente montar
+  	useEffect(() => {
+    	const fetchBooks = async () => {
+			try {
+				// Faz a requisição GET para o backend
+				const response = await axios.get(API_URL);
+				setBooks(response.data); // Atualiza o estado com os dados recebidos
+			} catch (error) {
+				console.error("Erro ao buscar os livros:", error);
+			}
+		};
+
+		fetchBooks();
+	}, []); // O array vazio [] faz com que o useEffect rode apenas uma vez
+
+	// Função para lidar com o envio do formulário
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		if (!newBookTitle) return;
+
+		try {
+			const response = await axios.post(API_URL, { title: newBookTitle });
+			// Adiciona a nova tarefa à lista existente sem precisar buscar tudo de novo
+			setBooks([...Books, response.data]);
+			setNewBookTitle(''); // Limpa o input
+		} catch (error) {
+			console.error("Erro ao adicionar o livro:", error);
+		}
+	};
+
 	/* Lista temporária para armazenar os livros,
 	 * no futuro essa lista deverá ser armazenada no backend. 
-	 */
-	const book_list = [
+	const Books = [
 		{
 			id: 0,
 			author: 'George Orwell',
@@ -75,15 +109,16 @@ export function CarProvider({ children }) {
 			amount: 2,
 		},
 	];
-
+	*/
+	
 	/* Car será o carrinho que o usuário pode utilizar, ele será
-	 * armazenado localmente. Provavelmente poderá ser salvo no backend
-	 * caso necessário. */
+	* armazenado localmente. Provavelmente poderá ser salvo no backend
+	* caso necessário. */
 	const [car, setCar] = useState({});
 
 	/* Catalog diz a respeito do objeto do catálogo, contendo
 	 * a lista de livros com suas propriedades. */
-	const [catalog, setCatalog] = useState(book_list);
+	const [catalog, setCatalog] = useState(Books);
 	/* nextId é apenas uma variável para ids de livros. Ela é usada
 	 * para garantir ids únicos. */
 	const [nextId, setNextId] = useState(100);
@@ -97,7 +132,7 @@ export function CarProvider({ children }) {
 
 	/* Função que retorna o item do catálogo dado o id */
 	const getItemCatalog = (id) => {
-		return catalog.find((book) => book.id == id)
+		return catalog.find((book) => book._id == id)
 	};
 
 	/* Função que adicionará (ou remover) um item do 
