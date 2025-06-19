@@ -1,4 +1,8 @@
 import { createContext, useContext, useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+const LOGIN_API_URL = 'http://localhost:5001/users';
 
 const LoginContext = createContext();
 
@@ -36,12 +40,17 @@ export function LoginProvider({ children }) {
 		setLoading(true);
 
 		try {
-			/* inserir api fake aqui */
-			const response = await fakeLoginAPI(credentials);
-			setUser(credentials);
+			console.log(credentials);
+
+			const response = await axios.get(LOGIN_API_URL, 
+				{
+					params: credentials
+				}
+			);
+			setUser(response.data);
 			return true;
 		} catch (error) {
-			console.error("Login failed: ", error);
+			toast.error(error.response.data.error);
 			return false;
 		} finally {
 			setLoading(false);
@@ -56,11 +65,11 @@ export function LoginProvider({ children }) {
 
 		try {
 			/* inserir api fake aqui */
-			const response = await fakeSignUpAPI(credentials);
+			const response = await axios.post(LOGIN_API_URL, credentials);
 			setUser(credentials);
 			return true;
 		} catch (error) {
-			console.error("Login failed: ", error);
+			toast.error(error.response.data.error);
 			return false;
 		} finally {
 			setLoading(false);

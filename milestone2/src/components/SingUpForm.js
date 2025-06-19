@@ -1,9 +1,11 @@
 import "./Form.css";
 import { useLogin } from '../contexts/LoginContext';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const SignInForm = () => {
 	const { signUp } = useLogin();
+	const navigate = useNavigate();
 
 	const validate = async () => {
 		const nome = document.getElementById("nome").value.trim();
@@ -15,29 +17,29 @@ const SignInForm = () => {
 		const confirmarSenha = document.getElementById("confirmarSenha").value;
 
 		if (!nome || !usuario || !email || !endereco || !cep || !senha || !confirmarSenha) {
-			alert("Por favor, preencha todos os campos.");
+			toast.error("Por favor, preencha todos os campos.");
 			return;
 		}
 
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (!emailRegex.test(email)) {
-			alert("Email inválido.");
+			toast.error("Email inválido.");
 			return;
 		}
 
 		const cepRegex = /^\d{5}-?\d{3}$/;
 		if (!cepRegex.test(cep)) {
-			alert("CEP inválido. Use o formato 12345-678.");
+			toast.error("CEP inválido.");
 			return;
 		}
 
 		if (senha.length < 6) {
-			alert("A senha deve ter pelo menos 6 caracteres.");
+			toast.error("A senha deve ter pelo menos 6 caracteres.");
 			return;
 		}
 
 		if (senha !== confirmarSenha) {
-			alert("As senhas não coincidem.");
+			toast.error("As senhas não coincidem.");
 			return;
 		}
 
@@ -57,11 +59,8 @@ const SignInForm = () => {
 			const inputs = document.querySelectorAll('.input');
 			inputs.forEach((input) => { input.classList.add('hidden'); });
 
-			document.getElementById("submit").classList.add("hidden");
-			document.getElementById("title").textContent = "Conta criada com sucesso";
-		}
-		else {
-			toast.error('Falha no cadastro. Por favor, tente novamente mais tarde.');
+			navigate('/');
+			toast.success('Cadastro feito com sucesso!');
 		}
 	};
 

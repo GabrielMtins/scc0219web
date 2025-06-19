@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from 'react-toastify';
 import "./AddBookForm.css";
 
 const AddBookForm = ({ onAdicionarLivro }) => {
@@ -14,7 +15,7 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!title || !author || !publisher || !price || !amount || !img_link || !genre) { // Editora adicionada à validação
-			alert('Por favor, preencha todos os campos, incluindo a publisher.');
+			toast.error('Por favor, preencha todos os campos, incluindo a publisher.');
 			return;
 		}
 
@@ -22,11 +23,11 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 		const amountNum = parseInt(amount, 10);
 
 		if (isNaN(priceNum) || priceNum < 0) {
-			alert("O preço deve ser um número não negativo.");
+			toast.error("O preço deve ser um número não negativo.");
 			return;
 		}
 		if (isNaN(amountNum) || amountNum < 0) {
-			alert("A amount deve ser um número inteiro não negativo.");
+			toast.error("A amount deve ser um número inteiro não negativo.");
 			return;
 		}
 
@@ -37,7 +38,8 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 			'price': priceNum,
 			'amount': amountNum,
 			'img_link': img_link,
-			'genre': genre
+			'genre': genre,
+			'description': description
 		});
 
 		setTitulo('');

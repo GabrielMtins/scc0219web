@@ -4,6 +4,7 @@ import AddBookForm from '../components/AddBookForm';
 import SellsList from '../components/SellsList';
 import './Admin.css';
 import { useCar } from '../contexts/CarContext';
+import { toast } from 'react-toastify';
 
 const Admin = () => {
 	const { catalog, updateCatalog, addCatalog, removeCatalog } = useCar();
@@ -21,7 +22,7 @@ const Admin = () => {
 		{ id: 'venda-3', data: '2025-05-01', livroTitulo: 'Dom Casmurro', quantidadeVendida: 1, valorUnitario: 29.90, valorTotal: 29.90 },
 	]);
 
-	const handleAdicionarLivro = (novoLivro) => {
+	const handleAdicionarLivro = async (novoLivro) => {
 		const tituloNormalizado = novoLivro.title.trim().toLowerCase();
 		const autorNormalizado = novoLivro.author.trim().toLowerCase();
 		const editoraNormalizada = novoLivro.publisher.trim().toLowerCase(); // Adicionado
@@ -34,36 +35,36 @@ const Admin = () => {
 		);
 
 		if (duplicado) {
-			alert('Erro: Um livro com o mesmo título, autor e editora já existe no estoque.');
+			toast.error('Erro: Um livro com o mesmo título, autor e editora já existe no estoque.');
 			return;
 		}
 
-		addCatalog(novoLivro);
+		await addCatalog(novoLivro);
 	};
 
-	const handleRemoveLivro = (livroId) => {
-		removeCatalog(livroId);
+	const handleRemoveLivro = async (livroId) => {
+		await removeCatalog(livroId);
 	};
 
-	const handleAtualizarLivro = (livroId, dadosAtualizados) => {
+	const handleAtualizarLivro = async (livroId, dadosAtualizados) => {
 		const preco = parseFloat(dadosAtualizados.price);
 		const quantidade = parseInt(dadosAtualizados.amount, 10);
 		const editora = dadosAtualizados.publisher.trim(); // Editora é string
 
 		if (isNaN(preco) || preco < 0) {
-			alert("O preço deve ser um número não negativo.");
+			toast.error("O preço deve ser um número não negativo.");
 			return;
 		}
 		if (isNaN(quantidade) || quantidade < 0) {
-			alert("A quantidade deve ser um número inteiro não negativo.");
+			toast.error("A quantidade deve ser um número inteiro não negativo.");
 			return;
 		}
 		if (!editora) {
-			alert("O campo editora não pode ser vazio.");
+			toast.error("O campo editora não pode ser vazio.");
 			return;
 		}
 
-		updateCatalog(livroId, dadosAtualizados);
+		await updateCatalog(livroId, dadosAtualizados);
 	};
 
 	return (

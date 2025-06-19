@@ -3,11 +3,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
 const CarContext = createContext();
-const API_URL = 'http://localhost:5000/posts'
+const API_URL = 'http://localhost:5001/posts';
 
 export function CarProvider({ children }) {
-	const [Books, setBooks] = useState([]);
 	const [newBookTitle, setNewBookTitle] = useState('');
+	
+	/* Catalog diz a respeito do objeto do catálogo, contendo
+	 * a lista de livros com suas propriedades. */
+	const [catalog, setCatalog] = useState([]);
+
+	/* nextId é apenas uma variável para ids de livros. Ela é usada
+	 * para garantir ids únicos. */
+	const [nextId, setNextId] = useState(1000);
 
   	// useEffect para buscar os dados quando o componente montar
   	useEffect(() => {
@@ -15,7 +22,11 @@ export function CarProvider({ children }) {
 			try {
 				// Faz a requisição GET para o backend
 				const response = await axios.get(API_URL);
-				setBooks(response.data); // Atualiza o estado com os dados recebidos
+				const newCatalog = response.data;
+				const minNextId = Math.max(...newCatalog.map(book => book.id)) + 1;
+
+				setCatalog(newCatalog); // Atualiza o estado com os dados recebidos
+				setNextId(minNextId);
 			} catch (error) {
 				console.error("Erro ao buscar os livros:", error);
 			}
@@ -32,7 +43,7 @@ export function CarProvider({ children }) {
 		try {
 			const response = await axios.post(API_URL, { title: newBookTitle });
 			// Adiciona a nova tarefa à lista existente sem precisar buscar tudo de novo
-			setBooks([...Books, response.data]);
+			setCatalog([...catalog, response.data]);
 			setNewBookTitle(''); // Limpa o input
 		} catch (error) {
 			console.error("Erro ao adicionar o livro:", error);
@@ -110,18 +121,14 @@ export function CarProvider({ children }) {
 		},
 	];
 	*/
+
+	//console.log(Array.isArray(Books));
 	
 	/* Car será o carrinho que o usuário pode utilizar, ele será
 	* armazenado localmente. Provavelmente poderá ser salvo no backend
 	* caso necessário. */
 	const [car, setCar] = useState({});
 
-	/* Catalog diz a respeito do objeto do catálogo, contendo
-	 * a lista de livros com suas propriedades. */
-	const [catalog, setCatalog] = useState(Books);
-	/* nextId é apenas uma variável para ids de livros. Ela é usada
-	 * para garantir ids únicos. */
-	const [nextId, setNextId] = useState(100);
 	/* currentBook diz respeito ao livro que a página de
 	 * descrição irá mostrar. */
 	const [currentBook, setCurrentBook] = useState(null);
@@ -130,9 +137,10 @@ export function CarProvider({ children }) {
 	 * carrinho e ao catálogo. Idealmente, algumas funções relacionadas
 	 * ao catálogo serão movidas para o backend. */
 
-	/* Função que retorna o item do catálogo dado o id */
+	/* Função que retorna o item do catálogo dado o id.
+	 * Fazendo busca no front end. */
 	const getItemCatalog = (id) => {
-		return catalog.find((book) => book._id == id)
+		return catalog.find((book) => book.id == id)
 	};
 
 	/* Função que adicionará (ou remover) um item do 
@@ -169,24 +177,41 @@ export function CarProvider({ children }) {
 	/* Atualiza as informações de um livro
 	 * no catálogo. Utilizada nas funções de atualização
 	 * da página de admin. */
-	const updateCatalog = (id, book) => {
-		setCatalog(catalog => catalog.map((item) => (item.id === id ? { ...item, ...book } : item)));
+	const updateCatalog = async (id, book) => {
+		try {
+			const updated = {...getItemCatalog(id), ...book};
+			const response = await axios.put(`${API_URL}/${id}`, updated);
+
+			setCatalog(response.data);
+		} catch(error){
+			toast.error('Erro ao atualizar o livro.');
+			console.log(error);
+		}
 	};
 
 	/* Adiciona um livro novo ao catálogo,
 	 * atualizando o slot de id disponível também. */
-	const addCatalog = (book) => {
-		setCatalog(catalog => ([
-			...catalog,
-			{ 'id': nextId, ...book },
-		]));
-
-		setNextId(nextId + 1);
+	const addCatalog = async (book) => {
+		try {
+			const new_book = {'id': nextId, ...book};
+			console.log(new_book);
+			const response = await axios.post(API_URL, new_book);
+			setCatalog(response.data);
+			setNextId(nextId + 1);
+		} catch(error) {
+			toast.error('Erro ao adicionar livro');
+		}
 	};
 
 	/* Remove um livro do catálogo dado o id */
-	const removeCatalog = (id) => {
-		setCatalog(catalog => catalog.filter((item) => item.id != id));
+	const removeCatalog = async (id) => {
+		try {
+			const response = await axios.delete(`${API_URL}/${id}`);
+
+			setCatalog(response.data);
+		} catch(error) {
+			toast.error('Erro ao remover livro');
+		}
 	};
 
 	/* Apenas as funções relacionadas ao contexto do carrinho */

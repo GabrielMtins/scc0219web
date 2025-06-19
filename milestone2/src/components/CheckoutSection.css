@@ -1,130 +1,133 @@
 .checkout-main-content {
-	max-width: 600px;
-	margin: 40px auto;
-	padding: 0 20px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	color: var(--dark_color);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--dark_color);
 }
 
 .checkout-main-content h1 {
-	text-align: center;
-	color: var(--comp_dark_color);
-	margin-bottom: 30px;
-	font-size: 2.5rem;
-	font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: var(--comp_dark_color);
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
 }
 
 .form-compra {
-	max-width: 500px;
-	margin: 0 auto;
-	background-color: white;
-	padding: 30px 35px;
-	border-radius: 8px;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px 35px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .checkout-section-container {
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .checkout-section-container:last-of-type {
-	margin-bottom: 35px;
+    margin-bottom: 35px;
 }
 
 .checkout-section-container h2 {
-	margin-top: 0;
-	margin-bottom: 15px;
-	color: var(--comp_dark_color);
-	font-size: 1.6rem;
-	font-family: 'Playfair Display', serif;
-	border-bottom: 1px solid var(--comp_light_color);
-	padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--comp_dark_color);
+    font-size: 1.6rem;
+    font-family: 'Playfair Display', serif;
+    border-bottom: 1px solid var(--comp_light_color);
+    padding-bottom: 10px;
 }
 
 .checkout-section-container label {
-	display: block;
-	margin-bottom: 6px;
-	font-weight: bold;
-	color: var(--dark_color);
-	font-size: 0.9rem;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: var(--dark_color);
+    font-size: 0.9rem;
 }
 
-.checkout-section-container select,
 .checkout-section-container input[type="text"],
 .checkout-section-container input[type="email"],
 .checkout-section-container input[type="tel"] {
-	width: 100%;
-	padding: 10px 12px;
-	border: 1px solid var(--comp_light_color);
-	border-radius: 4px;
-	box-sizing: border-box;
-	font-size: 1rem;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	background-color: #fff;
-	color: var(--dark_color);
-}
-
-.checkout-section-container select {
-	margin-bottom: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--comp_light_color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #fff;
+    color: var(--dark_color);
 }
 
 .checkout-section-container input[type="text"]:focus,
 .checkout-section-container input[type="email"]:focus,
-.checkout-section-container input[type="tel"]:focus,
-.checkout-section-container select:focus {
-	outline: none;
-	border-color: var(--comp_dark_color);
-	box-shadow: 0 0 0 2px rgba(121, 18, 9, 0.2);
+.checkout-section-container input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--comp_dark_color);
+    box-shadow: 0 0 0 2px rgba(121, 18, 9, 0.2);
 }
 
 .checkout-section-container .btn-toggle {
-	display: inline-block;
-	margin-top: 8px;
-	margin-bottom: 15px;
-	background: none;
-	border: none;
-	color: var(--comp_dark_color);
-	cursor: pointer;
-	text-decoration: underline;
-	font-size: 0.85rem;
-	font-weight: bold;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	padding: 0;
+    display: inline-block;
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: var(--comp_dark_color);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0;
 }
 
 .checkout-section-container .btn-toggle:hover {
-	color: var(--comp_light_color);
-}
-
-.checkout-section-container .form-fields-container {
-	margin-top: 10px;
+    color: var(--comp_light_color);
 }
 
 .checkout-section-container .form-group {
-	margin-bottom: 18px;
+    margin-bottom: 18px;
 }
 
 .checkout-section-container .form-group:last-child {
-	margin-bottom: 5px;
+    margin-bottom: 0;
 }
 
 .form-compra .btn-comprar {
-	margin-top: 10px;
-	width: 100%;
-	padding: 12px 15px;
-	background-color: var(--comp_dark_color);
-	color: var(--light_color);
-	border: none;
-	border-radius: 5px;
-	font-size: 1.1rem;
-	font-weight: bold;
-	cursor: pointer;
-	font-family: 'Playfair Display', serif;
-	transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--comp_dark_color);
+    color: var(--light_color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .form-compra .btn-comprar:hover {
-	background-color: var(--comp_light_color);
-	color: var(--dark_color);
+    background-color: var(--comp_light_color);
+    color: var(--dark_color);
+}
+
+.profile-data-display {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.profile-data-display p {
+    margin: 0 0 5px 0;
+    font-size: 0.95em;
+}
+
+.profile-data-display p:last-child {
+    margin-bottom: 0;
 }
