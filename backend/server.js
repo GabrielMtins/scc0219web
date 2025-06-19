@@ -2,8 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// --- Modelos ---
+const User = require('./models/User');
+const Book = require('./models/Book');
+const Sale = require('./models/Sale');
+
 const app = express();
-const PORT = 5002;
+const PORT = 5000;
 
 const mongoURI = 'mongodb://localhost:27017/mydb';
 
@@ -16,153 +21,29 @@ mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB conectado com sucesso!'))
   .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
 
-// --- Modelo (Schema) de Tarefa ---
-const userSchema = new mongoose.Schema({
-	fullname: {
-		type: String,
-		required: [true, 'Nome completo é necessário'],
-		trim: true
-	},
-	username: {
-		type: String,
-		required: [true, 'Nome de usuário é necessário'],
-		unique: [true, 'Nome de usuário deve ser único'],
-		trim: true
-	},
-	email: {
-		type: String,
-		required: [true, 'Email é necessário'],
-		unique: [true, 'Email deve ser único'],
-		trim: true
-	},
-	cep: {
-		type: String,
-		required: [true, 'CEP é necessário'],
-		trim: true
-	},
-	address: {
-		type: String,
-		required: [true, 'Endereço é necessário'],
-		trim: true
-	},
-	password: {
-		type: String,
-		required: [true, 'Senha é necessária'],
-		trim: true
-	}
-});
-
-const postSchema = new mongoose.Schema({
-	id: {
-		type: Number,
-		required: [true, 'ID é necessário'],
-		unique: [true, 'ID deve ser único'],
-		trim: true
-	},
-	author: {
-		type: String,
-		required: [true, 'Autor é necessário'],
-		trim: true
-	},
-	img_link: {
-		type: String,
-		required: [true, 'Imagem é necessária'],
-		unique: [true, 'Imagem deve ser única'],
-		trim: true
-	},
-	title: {
-		type: String,
-		required: [true, 'Título é necessário'],
-		unique: [true, 'Título deve ser único'],
-		trim: true
-	},
-	price: {
-		type: Number,
-		required: [true, 'Preço é necessário'],
-		trim: true
-	},
-	genre: {
-		type: String,
-		required: [true, 'Gênero é necessário'],
-		trim: true
-	},
-	publisher: {
-		type: String,
-		required: [true, 'Editora é necessária'],
-		trim: true
-	},
-	description: {
-		type: String,
-		required: [true, 'Descrição é necessária'],
-		unique: [true, 'Descrição deve ser única'],
-		trim: true
-	},
-	amount: {
-		type: Number,
-		required: [true, 'Quantidade é necessária'],
-		trim: true
-	}
-});
-
-const saleSchema = new mongoose.Schema({
-	id: {
-		type: Number,
-		required: [true, 'ID é necessário'],
-		unique: [true, 'ID deve ser único'],
-		trim: true
-	},
-	buyer: {
-		type: String,
-		required: [true, 'Título é necessário'],
-		trim: true
-	},
-	title: {
-		type: String,
-		required: [true, 'Título é necessário'],
-		unique: [true, 'Título deve ser único'],
-		trim: true
-	},
-	amount: {
-		type: Number,
-		required: [true, 'Quantidade é necessária'],
-		trim: true
-	},
-	price: {
-		type: Number,
-		required: [true, 'Preço é necessário'],
-		trim: true
-	},
-	date: {
-		type: String,
-		default: () => {return new Date().toISOString().split('T')[0];},
-		immutable: false
-	}	
-})	
-
-const Post = mongoose.model('Post', postSchema);
-const User = mongoose.model('User', userSchema);
-const Sale = mongoose.model('Sale', saleSchema);
-
 app.use((req, _res, next) => {
 	console.log(`[${new Date().toISOString()}] ${req.method}`);
 	next();
 });	
 
-// --- Rotas da API ---
+// ----------------------------------
+// ---------- Rotas da API ----------
+// ----------------------------------
 // Rota para buscar todas as tarefas
 
+// ---------- USERS ----------
 // GET /users/all  – lista todos os users
 app.get('/users/all', async (req, res) => {
 	try {
-		const posts = await User.find();
-		res.json(posts);
+		const users = await User.find();
+		res.json(users);
 	} catch (error) {
 		console.error("Erro ao buscar os usuários:", error);
 		res.status(500).json({ error: 'Falha ao recuperar os usuários' });
 	}
 });
 
-// GET /users  – busca um post (parâmetros passados no front)
+// GET /users  – busca um usuário (parâmetros passados no front)
 app.get('/users', async (req, res) => {
 	try {
 		const { username, password } = req.query;
@@ -229,7 +110,7 @@ app.put('/users/:username', async (req, res) => {
 	}
 })
 
-// DELETE /posts/:username  – deleta um user
+// DELETE /users/:username  – deleta um user
 app.delete('/users/:username', async (req, res) => {
 	try {
 		const targetName = req.params.username;
@@ -247,109 +128,111 @@ app.delete('/users/:username', async (req, res) => {
 	}
 })
 
-// GET /posts  – lista todos os posts
-app.get('/posts', async (req, res) => {
+// ---------- BOOKS ----------
+// GET /books  – lista todos os livros
+app.get('/books', async (req, res) => {
 	try {
-		const posts = await Post.find();
-		res.json(posts);
+		const books = await Book.find();
+		res.json(books);
 	} catch (error) {
-		console.error("Erro ao buscar os posts:", error);
-		res.status(500).json({ error: 'Falha ao recuperar os posts' });
-	}	
-});	
+		console.error("Erro ao buscar os livros:", error);
+		res.status(500).json({ error: 'Falha ao recuperar os livros' });
+	}
+});
 
-// GET /posts/:id  – busca um post
-app.get('/posts/:id', async (req, res) => {
+// GET /books/:id  – busca um livro
+app.get('/books/:id', async (req, res) => {
 	try {
-		const postId = req.params.id;
+		const bookId = req.params.id;
 
-		const post = await Post.findOne({ id: postId });
+		const book = await Book.findOne({ id: bookId });
 
-		if (!post) {
-			return res.status(404).json({ error: `Post ${postId} não encontrado` });
-		}	
-		res.json(post);
+		if (!book) {
+			return res.status(404).json({ error: `Livro ${bookId} não encontrado` });
+		}
+		res.json(book);
 	} catch (error) {
-		console.error(`Erro ao buscar o post ${req.params.id}:`, error);
-		res.status(500).json({ error: 'Falha ao recuperar o post' });
-	}	
-});	
+		console.error(`Erro ao buscar o livro ${req.params.id}:`, error);
+		res.status(500).json({ error: 'Falha ao recuperar o livro' });
+	}
+});
 
-// POST /posts  – cria um novo post e retorna todos os posts
-app.post('/posts', async (req, res) => {
+// POST /books  – cria um novo livro e retorna todos os livros
+app.post('/books', async (req, res) => {
 	try {
 		const { id, author, img_link, title, price, genre, publisher, description, amount } = req.body;
 
 		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || !amount) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
-		}	
+		}
 
-		const newPost = new Post({ id, author, img_link, title, price, genre, publisher, description, amount });
-		const savedPost = await newPost.save();
-		const posts = await Post.find()
+		const newBook = new Book({ id, author, img_link, title, price, genre, publisher, description, amount });
+		await newBook.save();
+		const books = await Book.find();
 
-		res.status(201).json(posts);
+		res.status(201).json(books);
 	} catch (error) {
-		console.error("Erro ao criar o post:", error);
+		console.error("Erro ao criar o livro:", error);
 		if (error.name === 'ValidationError') {
-				return res.status(400).json({ error: error.message });
-		}		
-		res.status(500).json({ error: 'Falha ao criar o post' });
-	}	
-});	
+			return res.status(400).json({ error: error.message });
+		}
+		res.status(500).json({ error: 'Falha ao criar o livro' });
+	}
+});
 
-// PUT /posts/:id  – altera um post existente e retorna todos os posts
-app.put('/posts/:id', async (req, res) => {
+// PUT /books/:id  – altera um livro existente e retorna todos os livros
+app.put('/books/:id', async (req, res) => {
 	try {
-		const postId = req.params.id;
+		const bookId = req.params.id;
 
 		const { id, author, img_link, title, price, genre, publisher, description, amount } = req.body;
 		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || !amount) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
-		}	
+		}
 
-		const updatedPost = await Post.findOneAndUpdate(
-			{ id: postId },
+		const updatedBook = await Book.findOneAndUpdate(
+			{ id: bookId },
 			{ id, author, img_link, title, price, genre, publisher, description, amount },
 			{ new: true, runValidators: true }
-		);	
+		);
 
-		if (!updatedPost) {
-			return res.status(404).json({ error: `Post ${postId} não encontrado` });
-		}	
+		if (!updatedBook) {
+			return res.status(404).json({ error: `Livro ${bookId} não encontrado` });
+		}
 
-		const posts = await Post.find()
+		const books = await Book.find();
 
-		res.json(posts);
+		res.json(books);
 	} catch (error) {
-		console.error(`Erro no update do post ${req.params.id}:`, error);
+		console.error(`Erro na atualização do livro ${req.params.id}:`, error);
 		if (error.name === 'ValidationError') {
-				return res.status(400).json({ error: error.message });
-		}		
-		res.status(500).json({ error: 'Falha no update do post' });
-	}	
-});	
+			return res.status(400).json({ error: error.message });
+		}
+		res.status(500).json({ error: 'Falha na atualização do livro' });
+	}
+});
 
-// DELETE /posts/:id  – deleta um post e retorna todos os posts
-app.delete('/posts/:id', async (req, res) => {
+// DELETE /books/:id  – deleta um livro e retorna todos os livros
+app.delete('/books/:id', async (req, res) => {
 	try {
-		const postId = req.params.id;
+		const bookId = req.params.id;
 
-		const deletedPost = await Post.findOneAndDelete({ id: postId });
+		const deletedBook = await Book.findOneAndDelete({ id: bookId });
 
-		if (!deletedPost) {
-			return res.status(404).json({ error: `Post ${postId} não encontrado` });
-		}	
+		if (!deletedBook) {
+			return res.status(404).json({ error: `Livro ${bookId} não encontrado` });
+		}
 
-		const posts = await Post.find()
+		const books = await Book.find();
 
-		res.json(posts);
+		res.json(books);
 	} catch (error) {
-		console.error(`Erro deletando post ${req.params.id}:`, error);
-		res.status(500).json({ error: 'Falha ao deletar o post' });
-	}	
-});	
+		console.error(`Erro ao deletar o livro ${req.params.id}:`, error);
+		res.status(500).json({ error: 'Falha ao deletar o livro' });
+	}
+});
 
+// ---------- SALES ----------
 // GET /sales  – lista todos as vendas
 app.get('/sales', async (req, res) => {
 	try {
