@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-// import { useLogin } from '../contexts/LoginContext'; // Removido se 'user' não for usado
+import { useLogin } from '../contexts/LoginContext';
 
 import './CheckoutSection.css';
 
-// Dados mock para o perfil do usuário.
-const mockProfileData = {
-	comprador: { id: 'c1', nomeCompleto: 'Ana Silva', email: 'ana.silva@example.com', telefone: '11987654321' },
-	endereco: { id: 'e1', ruaNumero: 'Rua das Palmeiras, 100', bairro: 'Centro', cidade: 'São Paulo', cep: '01001-000' },
-};
-
-
 const CheckoutSection = () => {
-	// const { user } = useLogin(); // Removido se 'user' não for usado
+	const { user } = useLogin();
+
+	const ProfileData = {
+		comprador: {nomeCompleto: user.fullname, email: user.email},
+		endereco: {ruaNumero: user.address, cep: user.cep },
+	};
+
 	const initialFormData = {
 		nomeCompleto: '',
 		email: '',
@@ -51,14 +50,14 @@ const CheckoutSection = () => {
             fieldsToClear = { nomeCompleto: '', email: '', telefone: '' };
             errorsToClear = { nomeCompleto: '', email: '', telefone: '' };
             if (isSwitchingToProfile) {
-                dataToSet = { ...mockProfileData.comprador };
+                dataToSet = { ...ProfileData.comprador };
                 delete dataToSet.id;
             }
         } else if (section === 'endereco') {
             fieldsToClear = { ruaNumero: '', bairro: '', cidade: '', cep: '' };
             errorsToClear = { ruaNumero: '', bairro: '', cidade: '', cep: '' };
             if (isSwitchingToProfile) {
-                dataToSet = { ...mockProfileData.endereco };
+                dataToSet = { ...ProfileData.endereco };
                 delete dataToSet.id;
             }
         }
@@ -127,7 +126,7 @@ const CheckoutSection = () => {
 
 	// Helper para renderizar campos ou os dados do perfil
 	const renderSectionFields = (sectionName, fieldsConfig) => {
-        const profileData = mockProfileData[sectionName];
+        const profileData = ProfileData[sectionName];
 
 		if (showExisting[sectionName] && profileData) {
 			return (

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = 5001;
+const PORT = 5002;
 
 const mongoURI = 'mongodb://localhost:27017/mydb';
 
