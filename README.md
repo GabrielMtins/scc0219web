@@ -114,10 +114,24 @@ Nós fizemos alguns testes manuais. Eles são:
 ## Procedimentos de build
 
 Para executar o projeto, instale primeiro o _nodejs_, o _npm_ e o _git_ através
-do seu instalador de pacote. Depois, basta digitar em seu terminal:
+do seu instalador de pacote. Depois, clone o repositório:
 
 ```
 git clone https://github.com/GabrielMtins/scc0219web.git
+```
+Inicie a base de dados:
+```
+cd ssc0219web/backend
+npm install
+node server.js
+```
+Coloque os dados iniciais na base:
+```
+cd ssc0219web/backend
+node seed.js
+```
+Por fim rode o site:
+```
 cd ssc0219web/milestone2
 npm install
 npm start
