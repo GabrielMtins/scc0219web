@@ -42,92 +42,94 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 	};
 
 	return (
-		<section className="estoque">
+		<div>
 			<h2 className="section-title">Estoque Atual</h2>
-			<form onSubmit={(e) => e.preventDefault()}>
-				<table>
-					<thead>
-						<tr>
-							<th>Título</th>
-							<th>Autor</th>
-							<th>Editora</th> {/* Nova coluna */}
-							<th>Preço (R$)</th>
-							<th>Quantidade</th>
-							<th>Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						{livros.map((livro) => (
-							<React.Fragment key={livro.id}>
-								{editingRowId === livro.id ? (
-									// Linha em modo de edição
-									<tr>
-										<td>{livro.titulo}</td>
-										<td>{livro.autor}</td>
-										<td> {/* Campo de edição para Editora */}
-											<input
-												type="text"
-												name="publisher"
-												value={editFormData.publisher}
-												onChange={handleEditFormChange}
-												className="edit-input edit-input-publisher" // Classe específica se precisar de estilo diferente
-												required
-											/>
-										</td>
-										<td>
-											<input
-												type="number"
-												name="price"
-												value={editFormData.price}
-												onChange={handleEditFormChange}
-												step="0.01"
-												min="0"
-												className="edit-input"
-												required
-											/>
-										</td>
-										<td>
-											<input
-												type="number"
-												name="amount"
-												value={editFormData.amount}
-												onChange={handleEditFormChange}
-												min="0"
-												className="edit-input"
-												required
-											/>
-										</td>
-										<td className="actions-cell">
-											<button type="button" onClick={() => handleSaveClick(livro.id)} className="btn-salvar">Salvar</button>
-											<button type="button" onClick={handleCancelClick} className="btn-cancelar">Cancelar</button>
-										</td>
-									</tr>
-								) : (
-									// Linha em modo de visualização
-									<tr>
-										<td>{livro.title}</td>
-										<td>{livro.author}</td>
-										<td>{livro.publisher}</td> {/* Exibe a publisher */}
-										<td>{parseFloat(livro.price).toFixed(2)}</td>
-										<td>{livro.amount}</td>
-										<td className="actions-cell">
-											<button type="button" onClick={() => handleEditClick(livro)} className="btn-editar">Editar</button>
-											<button
-												type="button"
-												className="btn-remover"
-												onClick={() => onRemoveLivro(livro.id)}
-											>
-												Remover
-											</button>
-										</td>
-									</tr>
-								)}
-							</React.Fragment>
-						))}
-					</tbody>
-				</table>
-			</form>
-		</section>
+			<section className="estoque">
+				<form onSubmit={(e) => e.preventDefault()}>
+					<table>
+						<thead>
+							<tr>
+								<th>Título</th>
+								<th>Autor</th>
+								<th>Editora</th> {/* Nova coluna */}
+								<th>Preço (R$)</th>
+								<th>Quantidade</th>
+								<th>Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							{livros.map((livro) => (
+								<React.Fragment key={livro.id}>
+									{editingRowId === livro.id ? (
+										// Linha em modo de edição
+										<tr>
+											<td>{livro.titulo}</td>
+											<td>{livro.autor}</td>
+											<td> {/* Campo de edição para Editora */}
+												<input
+													type="text"
+													name="publisher"
+													value={editFormData.publisher}
+													onChange={handleEditFormChange}
+													className="edit-input edit-input-publisher" // Classe específica se precisar de estilo diferente
+													required
+													/>
+											</td>
+											<td>
+												<input
+													type="number"
+													name="price"
+													value={editFormData.price}
+													onChange={handleEditFormChange}
+													step="0.01"
+													min="0"
+													className="edit-input"
+													required
+													/>
+											</td>
+											<td>
+												<input
+													type="number"
+													name="amount"
+													value={editFormData.amount}
+													onChange={handleEditFormChange}
+													min="0"
+													className="edit-input"
+													required
+													/>
+											</td>
+											<td className="actions-cell">
+												<button type="button" onClick={() => handleSaveClick(livro.id)} className="btn-salvar">Salvar</button>
+												<button type="button" onClick={handleCancelClick} className="btn-cancelar">Cancelar</button>
+											</td>
+										</tr>
+									) : (
+										// Linha em modo de visualização
+										<tr>
+											<td>{livro.title}</td>
+											<td>{livro.author}</td>
+											<td>{livro.publisher}</td> {/* Exibe a publisher */}
+											<td>{parseFloat(livro.price).toFixed(2)}</td>
+											<td>{livro.amount}</td>
+											<td className="actions-cell">
+												<button type="button" onClick={() => handleEditClick(livro)} className="btn-editar">Editar</button>
+												<button
+													type="button"
+													className="btn-remover"
+													onClick={() => onRemoveLivro(livro.id)}
+													>
+													Remover
+												</button>
+											</td>
+										</tr>
+									)}
+								</React.Fragment>
+							))}
+						</tbody>
+					</table>
+				</form>
+			</section>
+		</div>
 	);
 }
 

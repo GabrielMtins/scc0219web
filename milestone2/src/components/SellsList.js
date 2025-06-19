@@ -1,6 +1,5 @@
-// SellsList.js
 import React from 'react';
-import "./SellsList.css"; // Seu CSS para a lista de vendas
+import "./SellsList.css"; 
 
 const SellsList = ({ vendas }) => {
 	if (!vendas || vendas.length === 0) {

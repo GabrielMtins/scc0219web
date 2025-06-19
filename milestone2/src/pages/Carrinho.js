@@ -22,10 +22,10 @@ function Carrinho() {
 	}, [user]);
 
 	useEffect(() => {
-    if (!loading) {
-      if (!user) navigate('/login');
-    }
-  }, [user, loading, navigate]);
+		if (!loading) {
+			if (!user) navigate('/login');
+    	}
+  	}, [user, loading, navigate]);
 
 	const items = Object.keys(car);
 
