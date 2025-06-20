@@ -20,17 +20,28 @@ const mockPurchaseHistory = [
 function ProfilePage() {
 	// ... (O resto do componente ProfilePage continua exatamente igual) ...
 	// ... (Não é necessário colar tudo de novo, apenas a alteração no PurchaseItem)
-	const { user, loading } = useLogin();
+	const { user, loading, getSalesHistory } = useLogin();
 	const navigate = useNavigate();
-	const purchaseHistory = mockPurchaseHistory;
 	const [activeView, setActiveView] = useState('profile');
+	const [purchaseHistory, setPurchaseHistory] = useState([]);
 
 	useEffect(() => {
 		if (!loading) {
 			if (!user) navigate('/login');
 			else if (user.username === 'admin') navigate('/admin');
+			else{
+			}
 		}
 	}, [user, loading, navigate]);
+
+	const goToHistory = async () => {
+		const newtxt = await getSalesHistory();
+		setPurchaseHistory(newtxt);
+		console.log(newtxt);
+		/*
+		*/
+		setActiveView('history');
+	};
 
 	if (loading || !user) {
 		return (
@@ -44,7 +55,7 @@ function ProfilePage() {
 				<h1 className="profile-title">{activeView === 'profile' ? 'Minhas Informações' : 'Meus Pedidos'}</h1>
 				<div className="profile-view-switcher">
 					<button className={`switcher-btn ${activeView === 'profile' ? 'active' : ''}`} onClick={() => setActiveView('profile')}>Perfil</button>
-					<button className={`switcher-btn ${activeView === 'history' ? 'active' : ''}`} onClick={() => setActiveView('history')}>Histórico</button>
+					<button className={`switcher-btn ${activeView === 'history' ? 'active' : ''}`} onClick={goToHistory}>Histórico</button>
 				</div>
 				<div className="profile-content">
 					{activeView === 'profile' && (
@@ -83,7 +94,7 @@ function ProfileField({ label, value }) { /* ...código inalterado... */
 
 // <<< MUDANÇA: Componente PurchaseItem atualizado para usar 'orderId' >>>
 function PurchaseItem({ purchase }) {
-	const formattedTotal = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(purchase.total);
+	const formattedTotal = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(purchase.price);
 	return (
 	  <div className="purchase-item">
 		<div className="purchase-header">
@@ -94,7 +105,7 @@ function PurchaseItem({ purchase }) {
 		</div>
 		<div className="purchase-body">
 		  {/* Opcional: remover a palavra "Itens" para um visual mais limpo */}
-		  <ul>{purchase.items.map((item, index) => <li key={index}>{item.quantity}x {item.name}</li>)}</ul>
+		  <ul>{JSON.parse(purchase.books).map((item, index) => <li key={index}>{item}</li>)}</ul>
 		</div>
 		<div className="purchase-footer">
 		  <span className="purchase-total-label">Total</span>

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const CarContext = createContext();
 const API_URL = 'http://localhost:5000/books';
-const SALES_API_URL = 'http://localhost:5000/sales'
+const SALES_API_URL = 'http://localhost:5000/sales';
 
 export function CarProvider({ children }) {
 	const [newBookTitle, setNewBookTitle] = useState('');
@@ -35,21 +35,6 @@ export function CarProvider({ children }) {
 
 		fetchBooks();
 	}, []); // O array vazio [] faz com que o useEffect rode apenas uma vez
-
-	// Função para lidar com o envio do formulário
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (!newBookTitle) return;
-
-		try {
-			const response = await axios.post(API_URL, { title: newBookTitle });
-			// Adiciona a nova tarefa à lista existente sem precisar buscar tudo de novo
-			setCatalog([...catalog, response.data]);
-			setNewBookTitle(''); // Limpa o input
-		} catch (error) {
-			console.error("Erro ao adicionar o livro:", error);
-		}
-	};
 
 	/* Car será o carrinho que o usuário pode utilizar, ele será
 	* armazenado localmente. Provavelmente poderá ser salvo no backend
@@ -116,6 +101,46 @@ export function CarProvider({ children }) {
 		}
 	};
 
+	const sendSaleToServer = async (username) => {
+		const sales_formated = Object.keys(car).map((id) => {
+			return car[id] + "x " + getItemCatalog(id).title;
+		});
+
+		const price = Object.keys(car).map((id) => (car[id] * getItemCatalog(id).price)).reduce((x, y) => (x + y));
+
+		const sale = {
+			'buyer': username,
+			'price': price,
+			'books': JSON.stringify(sales_formated),
+		};
+		console.log(sale);
+
+		try {
+			await axios.post(SALES_API_URL, sale);
+		} catch(error) {
+			console.log(error);
+		}
+	};
+
+	const updateCarToServer = async (username) => {
+		Object.keys(car).forEach(async (id) => {
+			const book = getItemCatalog(id);
+
+			const new_amount = book.amount - car[id];
+			console.log(new_amount);
+
+			if(new_amount >= 0){
+				const new_book = {...book, 'amount': new_amount};
+				console.log(new_book);
+				await updateCatalog(id, new_book);
+			}
+		});
+
+		await sendSaleToServer(username);
+
+		resetCar();
+	};
+
 	/* Adiciona um livro novo ao catálogo,
 	 * atualizando o slot de id disponível também. */
 	const addCatalog = async (book) => {
@@ -143,7 +168,7 @@ export function CarProvider({ children }) {
 
 	/* Apenas as funções relacionadas ao contexto do carrinho */
 	return (
-		<CarContext.Provider value={{ car, resetCar, addToCar, catalog, resetId, setCatalog, updateCatalog, setCatalog, addCatalog, getItemCatalog, removeCatalog, currentBook, setCurrentBook }}>
+		<CarContext.Provider value={{ updateCarToServer, car, resetCar, addToCar, catalog, resetId, setCatalog, updateCatalog, setCatalog, addCatalog, getItemCatalog, removeCatalog, currentBook, setCurrentBook }}>
 			{children}
 		</CarContext.Provider>
 	);

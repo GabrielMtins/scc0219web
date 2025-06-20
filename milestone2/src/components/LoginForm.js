@@ -57,7 +57,6 @@ const LoginForm = () => {
 				</div>
 			</div>
 
-			<div>Esqueceu a senha? <Link to="/recover"> Mudar senha</Link></div>
 			<div>Ainda não tem conta? <Link to="/singUp">Criar conta</Link></div>
 
 			<div className="submit-container">

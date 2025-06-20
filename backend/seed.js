@@ -98,26 +98,10 @@ const seedBooks = [
 
 const seedSales = [
 	{
-		id: 1,
 		buyer: 'teste',
-		title: 'Dom Casmurro',
-		amount: 1,
+		books: '[\"teste\"]',
 		price: 29.90
 	},
-	{
-		id: 2,
-		buyer: 'teste',
-		title: 'O Pequeno Príncipe',
-		amount: 1,
-		price: 39.90
-	},
-	{
-		id: 3,
-		buyer: 'teste',
-		title: 'Dom Casmurro',
-		amount: 2,
-		price: 29.90
-	}
 ];
 
 // --- Função de Povoamento ---

@@ -2,11 +2,13 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../contexts/LoginContext';
+import { useCar } from '../contexts/CarContext';
 
 import './CheckoutSection.css';
 
 const CheckoutSection = () => {
 	const { user, loading } = useLogin();
+	const { updateCarToServer } = useCar();
 	const navigate = useNavigate();
 	
 	useEffect(() => {
@@ -75,7 +77,7 @@ const CheckoutSection = () => {
 		setShowExisting(prev => ({ ...prev, [section]: isSwitchingToProfile }));
 	};
 
-	const validate = () => {
+	const validate = async () => {
 		const newErrors = {};
 		// Validação do Comprador
 		if (!formData.nomeCompleto.trim()) newErrors.nomeCompleto = 'Nome completo é obrigatório.';
@@ -108,14 +110,17 @@ const CheckoutSection = () => {
 		}
 		if (!formData.cvv.trim()) newErrors.cvv = 'CVV é obrigatório.';
 		else if (!/^\d{3,4}$/.test(formData.cvv)) newErrors.cvv = 'CVV inválido.';
+
+		await updateCarToServer(user.username);
 		
 		setErrors(newErrors);
 		return newErrors;
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const validationErrors = validate();
+		const validationErrors = await validate();
+
 		if (Object.keys(validationErrors).length === 0) {
 			console.log('Formulário válido! Dados enviados:', formData);
 			toast.success('Compra finalizada com sucesso!');

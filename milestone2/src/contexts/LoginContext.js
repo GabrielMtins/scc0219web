@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const LOGIN_API_URL = 'http://localhost:5000/users';
+const SALES_API_URL = 'http://localhost:5000/sales';
 
 const LoginContext = createContext();
 
@@ -76,13 +77,22 @@ export function LoginProvider({ children }) {
 		}
 	};
 
+	const getSalesHistory = async () => {
+		try {
+			const response = await axios.get(SALES_API_URL, user.username);
+			return response.data;
+		} catch(error) {
+			return [];
+		}
+	}
+
 	/* Função para logout, definindo o usuário para o padrão novamente. */
 	const logout = () => {
 		setUser(null);
 	};
 
 	return (
-		<LoginContext.Provider value={{ user, login, signUp, loading, logout }}>
+		<LoginContext.Provider value={{ user, login, signUp, loading, logout, getSalesHistory }}>
 			{children}
 		</LoginContext.Provider>
 	);

@@ -162,7 +162,7 @@ app.post('/books', async (req, res) => {
 	try {
 		const { id, author, img_link, title, price, genre, publisher, description, amount } = req.body;
 
-		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || !amount) {
+		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || isNaN(amount)) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
 		}
 
@@ -186,7 +186,7 @@ app.put('/books/:id', async (req, res) => {
 		const bookId = req.params.id;
 
 		const { id, author, img_link, title, price, genre, publisher, description, amount } = req.body;
-		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || !amount) {
+		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || isNaN(amount)) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
 		}
 
@@ -247,14 +247,21 @@ app.get('/sales', async (req, res) => {
 // GET /sales/:id  – busca uma venda
 app.get('/sales/:id', async (req, res) => {
 	try {
-		const saleId = req.params.id;
+		const buyerName = req.params.id;
 
-		const sale = await Sale.findOne({ id: saleId });
+		const sales = await Sale.find({ buyer: buyerName });
 
+		const first_sales = sales.sort((sale) => sale.date).slice(0, 5);
+
+		/*
 		if (!sale) {
-			return res.status(404).json({ error: `Venda ${saleId} não encontrada` });
+			return res.status(404).json({ error: `Venda ${buyerName} não encontrada` });
 		}
-		res.json(sale);
+		*/
+
+		console.log(sales);
+
+		res.json(first_sales);
 	} catch (error) {
 		console.error(`Erro ao buscar a venda ${req.params.id}:`, error);
 		res.status(500).json({ error: 'Falha ao recuperar a venda' });
@@ -264,13 +271,13 @@ app.get('/sales/:id', async (req, res) => {
 // POST /sales  – cria uma nova venda e retorna todos as vendas
 app.post('/sales', async (req, res) => {
 	try {
-		const { id, buyer, title, amount, price } = req.body;
+		const { buyer, books, price } = req.body;
 
-		if (!id || !buyer || !title || !amount || !price) {
+		if (!buyer || !books || !price) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
 		}
 
-		const newSale = new Sale({ id, buyer, title, amount, price });
+		const newSale = new Sale({ buyer, books, price });
 		const savedSale = await newSale.save();
 		const sales = await Sale.find()
 
@@ -338,6 +345,6 @@ app.delete('/sales/:id', async (req, res) => {
 
 // --- Iniciar o Servidor ---
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-  console.log('Servidor tem que estar em:', mongoURI);
+	console.log(`Servidor rodando na porta ${PORT}`);
+	console.log('Servidor tem que estar em:', mongoURI);
 });
