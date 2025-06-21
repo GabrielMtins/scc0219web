@@ -84,7 +84,16 @@ export function LoginProvider({ children }) {
 		} catch(error) {
 			return [];
 		}
-	}
+	};
+
+	const getAllSalesHistory = async () => {
+		try {
+			const response = await axios.get(SALES_API_URL);
+			return response.data;
+		} catch(error) {
+			return [];
+		}
+	};
 
 	/* Função para logout, definindo o usuário para o padrão novamente. */
 	const logout = () => {
@@ -92,7 +101,7 @@ export function LoginProvider({ children }) {
 	};
 
 	return (
-		<LoginContext.Provider value={{ user, login, signUp, loading, logout, getSalesHistory }}>
+		<LoginContext.Provider value={{ user, login, signUp, loading, logout, getSalesHistory, getAllSalesHistory }}>
 			{children}
 		</LoginContext.Provider>
 	);

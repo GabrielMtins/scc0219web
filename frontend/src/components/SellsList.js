@@ -26,7 +26,7 @@ const SellsList = ({ vendas }) => {
 	};
 
 	// Ordena as vendas pela data mais recente primeiro
-	const vendasOrdenadas = [...vendas].sort((a, b) => new Date(b.data) - new Date(a.data));
+	const vendasOrdenadas = [...vendas].sort((a, b) => new Date(b.date) - new Date(a.date));
 
 	return (
 		<section className="vendas-historico">
@@ -35,20 +35,27 @@ const SellsList = ({ vendas }) => {
 				{vendasOrdenadas.map((venda) => (
 					<div key={venda.id} className="venda-card">
 						<div className="venda-card-header">
-							<span>Venda em: {formatarData(venda.data)}</span>
+							<span>Venda em: {formatarData(venda.date)}</span>
 						</div>
 						<div className="venda-card-body">
 							<h3 className="venda-livro-titulo">{venda.livroTitulo}</h3>
+
+							Detalhes da compra:
+							{
+								JSON.parse(venda.books).map((item) => (
+									<p className="venda-detalhe">
+										{item}
+									</p>
+								))
+							}
+
 							<p className="venda-detalhe">
-								<span>Quantidade:</span> {venda.quantidadeVendida} un.
-							</p>
-							<p className="venda-detalhe">
-								<span>Preço Unitário:</span> R$ {parseFloat(venda.valorUnitario).toFixed(2)}
+								<span>Comprador: </span> {venda.buyer}
 							</p>
 						</div>
 						<div className="venda-card-footer">
 							<span>Total da Venda:</span>
-							<strong>R$ {parseFloat(venda.valorTotal).toFixed(2)}</strong>
+							<strong>R$ {parseFloat(venda.price).toFixed(2)}</strong>
 						</div>
 					</div>
 				))}

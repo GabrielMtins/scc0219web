@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EstoqueTable from '../components/EstoqueTable';
 import AddBookForm from '../components/AddBookForm';
 import SellsList from '../components/SellsList';
 import './Admin.css';
 import { useCar } from '../contexts/CarContext';
 import { toast } from 'react-toastify';
+import { useLogin } from '../contexts/LoginContext';
 
 const Admin = () => {
 	const { catalog, updateCatalog, addCatalog, removeCatalog } = useCar();
+	const { getAllSalesHistory } = useLogin();
 
 	const [livrosEmEstoque, setLivrosEmEstoque] = useState([
 		{ id: 'dom-casmurro', title: 'Dom Casmurro', author: 'Machado de Assis', publisher: 'Editora Garnier', price: 29.90, amount: 15 },
@@ -16,11 +18,16 @@ const Admin = () => {
 
 	// Histórico de vendas permanece com a mesma estrutura,
 	// a menos que queira adicionar editora aqui também.
-	const [historicoVendas, setHistoricoVendas] = useState([
-		{ id: 'venda-1', data: '2025-04-23', livroTitulo: 'Dom Casmurro', quantidadeVendida: 2, valorUnitario: 29.90, valorTotal: 59.80 },
-		{ id: 'venda-2', data: '2025-04-24', livroTitulo: 'O Pequeno Príncipe', quantidadeVendida: 1, valorUnitario: 39.90, valorTotal: 39.90 },
-		{ id: 'venda-3', data: '2025-05-01', livroTitulo: 'Dom Casmurro', quantidadeVendida: 1, valorUnitario: 29.90, valorTotal: 29.90 },
-	]);
+	const [historicoVendas, setHistoricoVendas] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await getAllSalesHistory();
+			setHistoricoVendas(data);
+		}
+
+		fetchData();
+	});
 
 	const handleAdicionarLivro = async (novoLivro) => {
 		const tituloNormalizado = novoLivro.title.trim().toLowerCase();
