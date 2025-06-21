@@ -32,7 +32,11 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: [true, 'Senha é necessária'],
 		trim: true
-	}
+	},
+	cart: {
+		type: String,
+		trim: true
+	},
 });
 
 module.exports = mongoose.model('User', userSchema);

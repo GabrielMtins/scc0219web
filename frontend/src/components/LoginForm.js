@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useLogin } from '../contexts/LoginContext';
+import { useCar } from '../contexts/CarContext';
 import "./Form.css";
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
-	const [success, setSuccess] = useState(false);
 
 	const { user, login, loading } = useLogin();
+	const { setCurrentUsername, setCar } = useCar();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
@@ -37,9 +38,12 @@ const LoginForm = () => {
 	};
 
 	useEffect(() => {
-		if (success == true)
-			navigate("/");
-	}, [success]);
+		if(user != null) {
+			setCurrentUsername(user.username);
+			setCar(car => JSON.parse(user.cart));
+			console.log(user.cart);
+		}
+	}, [user]);
 
 	return (
 		<div className="form-container">

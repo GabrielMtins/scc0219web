@@ -15,7 +15,8 @@ const seedUsers = [
 		email: 'admin@adm.adm',
 		cep: '12345-678',
 		address: 'Admin',
-		password: 'admin'
+		password: 'admin',
+		cart: '{}'
 	},
 	{
 		fullname: 'Teste teste teste teste',
@@ -23,7 +24,8 @@ const seedUsers = [
 		email: 'tst@tst.tst',
 		cep: '12345-678',
 		address: 'teste teste',
-		password: '123456'
+		password: '123456',
+		cart: '{}'
 	}
 ];
 
@@ -97,11 +99,13 @@ const seedBooks = [
 ];
 
 const seedSales = [
+	/*
 	{
 		buyer: 'teste',
 		books: '[\"teste\"]',
 		price: 29.90
 	},
+	*/
 ];
 
 // --- Função de Povoamento ---

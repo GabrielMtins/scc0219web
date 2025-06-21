@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 function Carrinho() {
 	const { user, loading } = useLogin();
 	const navigate = useNavigate();
-	const { car, resetCar, addToCar, catalog } = useCar();
+	const { car, resetCar, addToCar, catalog, getItemCatalog, resetIdAmount } = useCar();
 
 	useEffect(() => {
 		if(user == null && car != []){
@@ -26,6 +26,22 @@ function Carrinho() {
 			if (!user) navigate('/login');
     	}
   	}, [user, loading, navigate]);
+
+	useEffect(() => {
+		const updateData = async () => {
+			if(user){
+				Object.keys(car).forEach(async (id) => {
+					const car_item = getItemCatalog(id);
+
+					if(car[id] > car_item.amount){
+						await resetIdAmount(id, car_item.amount);
+					}
+				});
+			}
+		};
+
+		updateData();
+	});
 
 	const items = Object.keys(car);
 

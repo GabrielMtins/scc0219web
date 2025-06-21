@@ -11,14 +11,14 @@ function Bookpage({ book }) {
 
 	const navigate = useNavigate();
 
-	const clicked = () => {
+	const clicked = async () => {
 		if(user == null){
 			navigate('/login');
 			toast.error('Faça login para adicionar compras ao carrinho');
 			return;
 		}
 
-		const success = addToCar(book.id, 1);
+		const success = await addToCar(book.id, 1);
 
 		if (success) {
 			toast.success('Adicionado item ao carrinho');

@@ -11,16 +11,16 @@ function CarItem({ id }) {
 	//let foundItem = catalog[id];
 	let quantity = car[id];
 
-	const addItem = () => {
-		addToCar(id, 1);
+	const addItem = async () => {
+		await addToCar(id, 1);
 	};
 
-	const removeItem = () => {
-		addToCar(id, -1);
+	const removeItem = async () => {
+		await addToCar(id, -1);
 	};
 
-	const resetItem = () => {
-		resetId(id);
+	const resetItem = async () => {
+		await resetId(id);
 	};
 
 	useEffect(() => {

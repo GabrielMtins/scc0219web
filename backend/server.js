@@ -69,8 +69,9 @@ app.get('/users', async (req, res) => {
 app.post('/users', async (req, res) => {
 	try {
 		const { fullname, username, address, password, cep, email } = req.body;
+		const cart = "{}";
 
-		const newUser = new User({ fullname, username, address, password, cep, email });
+		const newUser = new User({ fullname, username, address, password, cep, email, cart });
 		const savedUser = await newUser.save();
 
 		res.status(201).json(newUser);
@@ -93,6 +94,36 @@ app.put('/users/:username', async (req, res) => {
 		const updatedUser = await User.findOneAndUpdate(
 			{ username: targetName },
 			{ fullname, username, email, address, cep, password },
+			{ new: true, runValidators: true }
+		);
+
+		if (!updatedUser) {
+			return res.status(404).json({ error: `Usuário ${targetName} não encontrado` });
+		}
+
+		res.status(200).json(updatedUser);
+	} catch (error) {
+		console.error(`Erro no update do usuário ${req.params.id}:`, error);
+		if (error.name === 'ValidationError') {
+				return res.status(400).json({ error: error.message });
+		}
+		res.status(500).json({ error: 'Falha no update do usuário' });
+	}
+})
+
+// PUT /users/:username  – altera os itens do carrinho do usuário
+app.put('/users/cart/:username', async (req, res) => {
+	try {
+		const targetName = req.params.username;
+
+		const { cart } = req.body;
+		if (!cart) {
+			return res.status(400).json({ error: 'Todos os campos são necessários' });
+		}
+
+		const updatedUser = await User.findOneAndUpdate(
+			{ username: targetName },
+			{ cart },
 			{ new: true, runValidators: true }
 		);
 
@@ -252,14 +283,6 @@ app.get('/sales/:id', async (req, res) => {
 		const sales = await Sale.find({ buyer: buyerName });
 
 		const first_sales = sales.sort((sale) => sale.date).slice(0, 5);
-
-		/*
-		if (!sale) {
-			return res.status(404).json({ error: `Venda ${buyerName} não encontrada` });
-		}
-		*/
-
-		console.log(sales);
 
 		res.json(first_sales);
 	} catch (error) {

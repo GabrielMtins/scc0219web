@@ -79,7 +79,7 @@ export function LoginProvider({ children }) {
 
 	const getSalesHistory = async () => {
 		try {
-			const response = await axios.get(SALES_API_URL, user.username);
+			const response = await axios.get(`${SALES_API_URL}/${user.username}`);
 			return response.data;
 		} catch(error) {
 			return [];

@@ -13,7 +13,7 @@ function Bookcard({ book }) {
 	const navigate = useNavigate();
 
 	/* Função para ser chamada quando o botão for clicado */
-	const clicked = () => {
+	const clicked = async () => {
 		/* Verifica se o usuário está logado, se não tiver,
 		 * emitir mensagem de erro */
 		if(user == null){
@@ -24,7 +24,7 @@ function Bookcard({ book }) {
 
 		/* A função addToCar indica se foi possível adicionar item ou não
 		 * (se ainda há elementos no estoque) */
-		const success = addToCar(book.id, 1);
+		const success = await addToCar(book.id, 1);
 
 		if (success) {
 			toast.success('Adicionado item ao carrinho');

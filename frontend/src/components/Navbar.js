@@ -7,7 +7,12 @@ import './Navbar.css';
 
 function Navbar() {
 	const { user, logout } = useLogin();
-	const { resetCar } = useCar();
+	const { resetCar, setCurrentUsername } = useCar();
+
+	const my_logout = () => {
+		logout();
+		setCurrentUsername(null);
+	}
 
 	const login_logout = () => {
 		if(user == null){
@@ -20,7 +25,7 @@ function Navbar() {
 		else{
 			return (
 				<>
-					<NavLink to="/" onClick={logout} > Logout </NavLink>
+					<NavLink to="/" onClick={my_logout} > Logout </NavLink>
 				</>
 			);
 		}

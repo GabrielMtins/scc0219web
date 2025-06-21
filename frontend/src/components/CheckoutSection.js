@@ -111,7 +111,6 @@ const CheckoutSection = () => {
 		if (!formData.cvv.trim()) newErrors.cvv = 'CVV é obrigatório.';
 		else if (!/^\d{3,4}$/.test(formData.cvv)) newErrors.cvv = 'CVV inválido.';
 
-		await updateCarToServer(user.username);
 		
 		setErrors(newErrors);
 		return newErrors;
@@ -125,7 +124,8 @@ const CheckoutSection = () => {
 			console.log('Formulário válido! Dados enviados:', formData);
 			toast.success('Compra finalizada com sucesso!');
 			navigate('/');
-			
+
+			await updateCarToServer(user.username);
 		} else {
 			console.log('Formulário inválido. Erros:', validationErrors);
 			toast.error('Por favor, corrija os erros no formulário.');
