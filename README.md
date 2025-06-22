@@ -14,9 +14,10 @@ O projeto necessitará dois usuários:
 - **Cliente**: esses são os usuários que usufruiram do serviço.
 
 É preciso armazenar os seguintes dados:
-- **Administrador**: nome, id, telefone, email.
-- **Cliente**: nome, id, endereço, telefone, email.
-- **Produto**: nome, id, foto, descrição, preço, quantidade no estoque, quantidade vendida, gênero, autor, editora.
+- **Administrador**: id, nome completo, nome de usuário, email, cep, telefone, senha, carrinho.
+- **Cliente**: id, nome completo, nome de usuário, email, cep, telefone, senha, carrinho.
+- **Produto**: id, autor, imagem, título, preço, gênero, editora, descrição, quantidade no estoque, quantidade vendida.
+- **Vendas**: id, comprador, livros, preço total, data.
 
 Os administradores teram livre acesso para gerenciar os recursos, como adicionar e remover livros.
 
@@ -39,21 +40,37 @@ Todos os mockups estão na pasta "mockup/".
 
 ## Comentários sobre o código
 
+### Frontend
+
 Utilizamos algumas bibliotecas, como react-router-dom para fazer as ligações
 entre as páginas e a navbar, e também a toastify, biblioteca para notificações.
 Utilizamos notificações para ter feedback ao usuário de que os livros foram
 adicionados no carrinho, por exemplo.
 
 O código está organizado na seguinte estrutura:
-- **milestone2/src/pages**: Equivalente às páginas html.
-- **milestone2/src/componentes**: Componentes modulares, que são reutilizados ao decorrer do código.
-- **milestone2/src/contexts**: Parte que utiliza a função createContext() do react para guardar contexto
+- **frontend/src/pages**: Equivalente às páginas html.
+- **frontend/src/componentes**: Componentes modulares, que são reutilizados ao decorrer do código.
+- **frontend/src/contexts**: Parte que utiliza a função createContext() do react para guardar contexto
 da aplicação, de forma que informações como itens no carrinho e contas também são salvas mesmo
-que a página seja trocada.
+que a página seja trocada. É nessa parte também que todas as chamadas às APIs estão
+implementadas.
 
-Também utilizamos _mock objects_ para realizar as funções de API. No arquivo que armazena
-contexto de login, temos algumas funções responsáveis pelo login e o signup ao servidor,
-em que elas utilizam um timer de javascript para simular o tempo de resposta do servidor.
+Nessa etapa do projeto, as funções de API já foram devidamente implementadas. 
+Foi utilizada a biblioteca axios para fazer as requisições ao backend.
+
+### Backend
+
+Para o backend, foi utilizado o mongoDB para gerenciamento da base de dados,
+e a biblioteca mongoose para gerenciar a conexão entre o javascript e o mongoDB.
+O código está organizado nos seguintes arquivos:
+
+- **backend/server.js**: Contém todas as chamadas de API definidas. Há 3 APIs principais:
+API de users, sales, books. A API de users é responsável pelo registro de dados de usuários.
+A API de sales é responsável pelo histórico de venda de produtos. Já a API de books é responsável
+por armazenar os livros no catálogo.
+- **backend/seed.js**: Contém a "seed", com os dados iniciais para serem enviados ao banco de dados.
+- **backend/models/**: Contém os Schemas, ou modelos, definidos para cada tipo de dados, User, Sale e Book.
+Os dados estão organizados na maneira descrita nos requisitos.
 
 ## Plano de testes
 
@@ -113,11 +130,24 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ## Procedimentos de build
 
-Para executar o projeto, instale primeiro o _nodejs_, o _npm_ e o _git_ através
+O projeto depende do nodeJS, npm, git e o mongoDB. Os três primeiros você pode
+instalar através do seu instalador de pacotes. O mongoDB é necessário seguir
+os passos [desse tutorial](https://www.mongodb.com/pt-br/docs/manual/installation/#std-label-tutorial-installation).
+Caso você prefira instalar por docker, siga [esse tutorial](https://www.mongodb.com/pt-br/docs/manual/tutorial/install-mongodb-community-with-docker/).
+Para fins de praticidade, no procedimento está incluído o procedimento de build com docker.
+
+Para executar o projeto, instale primeiro o _nodejs_, o _npm_, o _git_ e o _docker_ (caso você 
+queira utilizar o mongodb através do docker) através
 do seu instalador de pacote. Depois, clone o repositório:
 
 ```
 git clone https://github.com/GabrielMtins/scc0219web.git
+```
+Inicie o docker e o mongodb:
+```
+sudo systemctl start docker # válido para distros com systemd
+sudo docker pull mongodb/mongodb-community-server:latest # extrai a imagem do docker do mongodb
+sudo docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest # executa a imagem em um container
 ```
 Inicie a base de dados:
 ```
@@ -132,7 +162,7 @@ node seed.js
 ```
 Por fim rode o site:
 ```
-cd ssc0219web/milestone2
+cd ssc0219web/frontend
 npm install
 npm start
 ```
@@ -144,16 +174,6 @@ sair dela após ela ser acessada.
 
 ## Comentários
 
-Para acessar a página de administrador no milestone 2, primeiro entre na parte
-de login e digite o nome de usuário como "admin", e a senha como qualquer (não
-há verificação de senha, essa parte será feita pelo backend). Depois, clique
-na navbar em "perfil". Você terá acesso ao painel de controle do administrador,
-em que você pode remover ou adicionar itens do estoque.
-
-A conta do administrador no produto final não poderá ser capaz de comprar produtos,
-mas para casos de testes, enquanto o backend não for implementado, o admin
-é capaz de adicionar e remover produtos do carrinho.
-
-Para adicionar um item no carrinho, você primeiro precisa estar logado. Nesse caso,
-basta inserir qualquer usuário e senha no login, pois a verificação será feita
-no backend.
+A base de dados já vem com dois usuários por padrão: 
+- **Usuário de teste**: login "teste" e senha "123456".
+- **Administrador**: login "admin" e senha "admin".
