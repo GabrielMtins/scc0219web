@@ -175,3 +175,6 @@ npm start
 A base de dados já vem com dois usuários por padrão: 
 - **Usuário de teste**: login "teste" e senha "123456".
 - **Administrador**: login "admin" e senha "admin".
+
+Quando o usuário loga como administrador, a página de "profile" se torna
+o dashboard do administrador.

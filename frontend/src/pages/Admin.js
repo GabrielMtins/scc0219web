@@ -6,10 +6,12 @@ import './Admin.css';
 import { useCar } from '../contexts/CarContext';
 import { toast } from 'react-toastify';
 import { useLogin } from '../contexts/LoginContext';
+import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
 	const { catalog, updateCatalog, addCatalog, removeCatalog } = useCar();
-	const { getAllSalesHistory } = useLogin();
+	const { user, getAllSalesHistory } = useLogin();
+	const navigate = useNavigate();
 
 	const [livrosEmEstoque, setLivrosEmEstoque] = useState([
 		{ id: 'dom-casmurro', title: 'Dom Casmurro', author: 'Machado de Assis', publisher: 'Editora Garnier', price: 29.90, amount: 15 },
@@ -22,6 +24,10 @@ const Admin = () => {
 	// a menos que queira adicionar editora aqui também.
 
 	useEffect(() => {
+		if(!user || user.username != "admin") {
+			navigate('/');
+		}
+
 		const fetchData = async () => {
 			const data = await getAllSalesHistory();
 			setHistoricoVendas(data);
