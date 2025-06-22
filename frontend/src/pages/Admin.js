@@ -16,13 +16,15 @@ const Admin = () => {
 		{ id: 'pequeno-principe', title: 'O Pequeno Príncipe', author: 'Antoine de Saint-Exupéry', publisher: 'Agir', preco: 39.90, amount: 20 },
 	]);
 
+	const [historicoVendas, setHistoricoVendas] = useState([]);
+
 	// Histórico de vendas permanece com a mesma estrutura,
 	// a menos que queira adicionar editora aqui também.
-	let historicoVendas = [];
 
 	useEffect(() => {
 		const fetchData = async () => {
-			historicoVendas = await getAllSalesHistory();
+			const data = await getAllSalesHistory();
+			setHistoricoVendas(data);
 		}
 
 		fetchData();
@@ -32,17 +34,28 @@ const Admin = () => {
 		const tituloNormalizado = novoLivro.title.trim().toLowerCase();
 		const autorNormalizado = novoLivro.author.trim().toLowerCase();
 		const editoraNormalizada = novoLivro.publisher.trim().toLowerCase(); // Adicionado
+		const generoNormalizado = novoLivro.genre.trim().toLowerCase(); // Adicionado
 
-		const duplicado = catalog.find(
-			livro =>
-				livro.title.trim().toLowerCase() === tituloNormalizado &&
-				livro.author.trim().toLowerCase() === autorNormalizado &&
-				livro.editor.trim().toLowerCase() === editoraNormalizada // Adicionado
-		);
+		const found_already_title = catalog.find(livro => livro.title.trim().toLowerCase() === tituloNormalizado);
+		const found_already_author = catalog.find(livro => livro.author.trim().toLowerCase() === autorNormalizado);
+		const found_already_publisher = catalog.find(livro => livro.publisher.trim().toLowerCase() === editoraNormalizada);
+		const found_already_genre = catalog.find(livro => livro.genre.trim().toLowerCase() === generoNormalizado);
 
-		if (duplicado) {
-			toast.error('Erro: Um livro com o mesmo título, autor e editora já existe no estoque.');
+		if(found_already_title) {
+			toast.error('Livro com mesmo título já existe.');
 			return;
+		}
+
+		if(found_already_publisher) {
+			novoLivro.publisher = found_already_publisher.publisher;
+		}
+
+		if(found_already_author) {
+			novoLivro.author = found_already_author.author;
+		}
+
+		if(found_already_genre) {
+			novoLivro.genre = found_already_genre.genre;
 		}
 
 		await addCatalog(novoLivro);

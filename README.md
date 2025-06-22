@@ -170,9 +170,6 @@ npm start
 
 ## Problemas encontrados
 
-Foi encontrando um problema na página de checkout, onde não é possível mais
-sair dela após ela ser acessada.
-
 ## Comentários
 
 A base de dados já vem com dois usuários por padrão: 
