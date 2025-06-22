@@ -6,12 +6,14 @@ import { useLogin } from '../contexts/LoginContext';
 import { useNavigate } from 'react-router-dom';
 
 function Bookpage({ book }) {
+	/* Página de livros */
 	const { car, addToCar, setCurrentBook } = useCar();
 	const { user } = useLogin();
 
 	const navigate = useNavigate();
 
 	const clicked = async () => {
+		/* Se for clicado o botão mas o usuário for null, voltar para a página de login */
 		if(user == null){
 			navigate('/login');
 			toast.error('Faça login para adicionar compras ao carrinho');

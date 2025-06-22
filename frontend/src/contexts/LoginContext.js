@@ -7,26 +7,6 @@ const SALES_API_URL = 'http://localhost:5000/sales';
 
 const LoginContext = createContext();
 
-/* API fake de login, utilizando apenas um time para indicar o tempo
- * de resposta do servidor. No futuros será substituído por uma API
- * do backend. */
-const fakeLoginAPI = async (credentials) => {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve({});
-		}, 250);
-	});
-};
-
-/* API fake de sign up, no mesmo estilo da anterior. */
-const fakeSignUpAPI = async (credentials) => {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve({});
-		}, 500);
-	});
-};
-
 export function LoginProvider({ children }) {
 	/* Variável que armazena os estados do usuário, inicialmente
 	 * marcada como null. */
@@ -34,9 +14,8 @@ export function LoginProvider({ children }) {
 
 	const [loading, setLoading] = useState(false);
 
-	/* Função de login que tenta acessar o servidor
-	 * dado as credenciais. Utiliza a API falsa, mas que será
-	 * substituída pela verdadeira na milestone 3. */
+	/* Função que dada uma credencial retorna falso ou verdadeiro
+	 * para indicar se foi possível fazer login. */
 	const login = async (credentials) => {
 		setLoading(true);
 
@@ -58,9 +37,8 @@ export function LoginProvider({ children }) {
 		}
 	};
 
-	/* Função de login que tenta criar uma conta no servidor
-	 * dado as credenciais. Utiliza a API falsa, mas que será
-	 * substituída pela verdadeira na milestone 3. */
+	/* Função de sign up, retorna verdadeiro e automaticamente
+	 * troca para o usuário criado. */
 	const signUp = async (credentials) => {
 		setLoading(true);
 
@@ -77,6 +55,7 @@ export function LoginProvider({ children }) {
 		}
 	};
 
+	/* Retorna o histórico de vendas do usuário atual */
 	const getSalesHistory = async () => {
 		try {
 			const response = await axios.get(`${SALES_API_URL}/${user.username}`);
@@ -86,6 +65,7 @@ export function LoginProvider({ children }) {
 		}
 	};
 
+	/* Retorna o histórico de vendas completo */
 	const getAllSalesHistory = async () => {
 		try {
 			const response = await axios.get(SALES_API_URL);

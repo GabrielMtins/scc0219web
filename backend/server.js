@@ -111,7 +111,7 @@ app.put('/users/:username', async (req, res) => {
 	}
 })
 
-// PUT /users/:username  – altera os itens do carrinho do usuário
+// PUT /users/:username  – altera os itens do carrinho do usuário dado o seu id
 app.put('/users/cart/:username', async (req, res) => {
 	try {
 		const targetName = req.params.username;

@@ -8,6 +8,8 @@ const SALES_API_URL = 'http://localhost:5000/sales';
 const LOGIN_API_URL = 'http://localhost:5000/users';
 
 export function CarProvider({ children }) {
+	/* Esse livro nulo é apenas para facilitar
+	 * o uso do carrinho */
 	const nullbook = {
 		'amount': 0,
 		'price': 0
@@ -76,17 +78,14 @@ export function CarProvider({ children }) {
 	/* Função que adicionará (ou remover) um item do 
 	 * carrinho. Ela performa a verificação do estoque disponível. */
 	const addToCar = async (id, amount) => {
-		if (car[id] + amount > getItemCatalog(id).amount) {
+		if (car[id]||0 + amount > getItemCatalog(id).amount) {
 			toast.error('Não há mais desse produto no estoque.');
 			return false;
 		}
-
 		const new_car = {
 			...car,
 			[id]: (car[id] || 0) + amount
 		};
-
-		console.log(new_car);
 
 		await sendCartToServer(new_car);
 		setCar(car => ({...car, ...new_car}));
@@ -98,9 +97,10 @@ export function CarProvider({ children }) {
 	 * sai do login. */
 	const resetCar = async () => {
 		await sendCartToServer({});
-		setCar(car => ({}));
+		setCar({});
 	};
 
+	/* Reseta um item do carrinho com uma dada quantidade */
 	const resetIdAmount = async (id, amount) => {
 		const new_car = {
 			...car,
@@ -127,14 +127,16 @@ export function CarProvider({ children }) {
 
 			setCatalog(response.data);
 		} catch(error){
-			//toast.error('Erro ao atualizar o livro.');
 			console.log(error);
 		}
 	};
 
+	/* Envia os dados da venda para o servidor */
 	const sendSaleToServer = async (username) => {
 		const items = Object.keys(car);
 
+		/* Mapeia a string para o tipo
+		 * 1x Capital */
 		const sales_formated = items.map((id) => {
 			if(car[id] == 0)
 				return "";
@@ -157,6 +159,8 @@ export function CarProvider({ children }) {
 		}
 	};
 
+	/* Atualiza o carrinho e o catálogo no servidor, enviando também a venda para 
+	 * o servidor. */
 	const updateCarToServer = async (username) => {
 		Object.keys(car).forEach(async (id) => {
 			const book = getItemCatalog(id);
@@ -167,13 +171,14 @@ export function CarProvider({ children }) {
 			if(new_amount >= 0){
 				const new_book = {...book, 'amount': new_amount, 'sales': new_sales};
 				console.log(new_book);
+				/* atualiza os dados do catálogo */
 				await updateCatalog(id, new_book);
 			}
 		});
 
 		await sendSaleToServer(username);
 
-		resetCar();
+		await resetCar();
 	};
 
 	/* Adiciona um livro novo ao catálogo,

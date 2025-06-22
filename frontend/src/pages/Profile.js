@@ -18,8 +18,9 @@ const mockPurchaseHistory = [
 // -------------------------
 
 function ProfilePage() {
-	// ... (O resto do componente ProfilePage continua exatamente igual) ...
-	// ... (Não é necessário colar tudo de novo, apenas a alteração no PurchaseItem)
+	/* activeView funciona para definir qual tab estamos,
+	 * como há duas, o perfil e o histórico de vendas, então
+	 * temos que fazer tracking dessa variável */
 	const { user, loading, getSalesHistory } = useLogin();
 	const navigate = useNavigate();
 	const [activeView, setActiveView] = useState('profile');
@@ -34,12 +35,12 @@ function ProfilePage() {
 		}
 	}, [user, loading, navigate]);
 
+	/* Sempre que for clicado o botão de ir para o histórico de vendas,
+	 * carregamos novamente o histórico de vendas */
 	const goToHistory = async () => {
 		const newtxt = await getSalesHistory();
 		setPurchaseHistory(newtxt);
 		console.log(newtxt);
-		/*
-		*/
 		setActiveView('history');
 	};
 
@@ -83,7 +84,7 @@ function ProfilePage() {
 }
 
 
-function ProfileField({ label, value }) { /* ...código inalterado... */ 
+function ProfileField({ label, value }) { 
 	return (
 		<div className="profile-field">
 			<span className="field-label">{label}</span>
@@ -92,7 +93,7 @@ function ProfileField({ label, value }) { /* ...código inalterado... */
 	);
 }
 
-// <<< MUDANÇA: Componente PurchaseItem atualizado para usar 'orderId' >>>
+/* Componente de item de compra */
 function PurchaseItem({ purchase }) {
 	const formattedTotal = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(purchase.price);
 	return (
@@ -104,7 +105,6 @@ function PurchaseItem({ purchase }) {
 		  </div>
 		</div>
 		<div className="purchase-body">
-		  {/* Opcional: remover a palavra "Itens" para um visual mais limpo */}
 		  <ul>{JSON.parse(purchase.books).map((item, index) => <li key={index}>{item}</li>)}</ul>
 		</div>
 		<div className="purchase-footer">

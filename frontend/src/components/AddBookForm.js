@@ -3,9 +3,10 @@ import { toast } from 'react-toastify';
 import "./AddBookForm.css";
 
 const AddBookForm = ({ onAdicionarLivro }) => {
+	/* Estado do possível livro a ser adicionado */
 	const [title, setTitulo] = useState('');
 	const [author, setAutor] = useState('');
-	const [publisher, setEditora] = useState(''); // Adicionado
+	const [publisher, setEditora] = useState(''); 
 	const [price, setPreco] = useState('');
 	const [amount, setQuantidade] = useState('');
 	const [genre, setGenre] = useState('');
@@ -14,7 +15,7 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!title || !author || !publisher || !price || !amount || !img_link || !genre) { // Editora adicionada à validação
+		if (!title || !author || !publisher || !price || !amount || !img_link || !genre) { 
 			toast.error('Por favor, preencha todos os campos, incluindo a publisher.');
 			return;
 		}
@@ -31,10 +32,11 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 			return;
 		}
 
+		/* Enviar livro com os dados */
 		onAdicionarLivro({
 			'title': title,
 			'author': author,
-			'publisher': publisher, // Adicionado
+			'publisher': publisher, 
 			'price': priceNum,
 			'amount': amountNum,
 			'img_link': img_link,

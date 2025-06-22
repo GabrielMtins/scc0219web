@@ -17,6 +17,10 @@ function Catalogo() {
 	const [search, setSearch] = useState("");
 	const [actualSearch, setActualSearch] = useState("");
 
+	/* Aplica qualquer um dos filtros que existem:
+	 * se houver pesquisa, filtra
+	 * se houver filtros, também filtra
+	 */
 	const applyAnyFilters = () => {
 		setFilteredCatalog(catalog
 			.filter((item) => (item.title.toLowerCase().includes(actualSearch.toLowerCase())))
@@ -61,6 +65,8 @@ function Catalogo() {
 		applyAnyFilters();
 	}, [filterOptions]);
 
+	/* Essa função é apenas para verificar se o filtro foi selecionado
+	 * Se sim, mostra na tela */
 	const displayFilter = () => {
 		if (useFilter == true) {
 			return (<FilterBox filterOptions={filterOptions} addFilter={addFilter} resetFilter={resetFilter} applyFilter={applyAnyFilters} />);

@@ -14,7 +14,9 @@ function CarList({ car_list }) {
 	let price = 0;
 	let filtered_car_list = [];
 
+	/* Função de calcular os preços */
 	const updatePrice = () => {
+		/* Mapeia os ids para o cálculo de preço */
 		const price_list = car_list.map(
 			(id) => (getItemCatalog(id).price * car[id])
 		);

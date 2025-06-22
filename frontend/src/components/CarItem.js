@@ -6,9 +6,7 @@ import { useState, useEffect } from 'react';
 function CarItem({ id }) {
 	const { car, addToCar, catalog, resetId, getItemCatalog } = useCar();
 
-	//let foundItem = catalog.find((book) => (book.id === id));
 	let foundItem = getItemCatalog(id);
-	//let foundItem = catalog[id];
 	let quantity = car[id];
 
 	const addItem = async () => {
@@ -23,9 +21,9 @@ function CarItem({ id }) {
 		await resetId(id);
 	};
 
+	/* Atualizar os itens com suas respectivas mudanças de id */
 	useEffect(() => {
 		foundItem = getItemCatalog(id);
-		//foundItem = catalog[id];
 		quantity = car[id];
 	}, [id]);
 

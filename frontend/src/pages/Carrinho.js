@@ -21,12 +21,16 @@ function Carrinho() {
 		}
 	}, [user]);
 
+	/* Se o usuário for nulo, retorna para a página de login */
 	useEffect(() => {
 		if (!loading) {
 			if (!user) navigate('/login');
     	}
   	}, [user, loading, navigate]);
 
+	/* Fazer a verificação dos dados. Por exemplo, o usuário pode ter posto
+	 * dois livros no carrinho, mas o administrador retirou um dos livros. 
+	 * Nesse caso, resetamos automaticamente para a quantidade máxima */
 	useEffect(() => {
 		const updateData = async () => {
 			if(user){
