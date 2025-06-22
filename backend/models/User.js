@@ -28,6 +28,11 @@ const userSchema = new mongoose.Schema({
 		required: [true, 'Endereço é necessário'],
 		trim: true
 	},
+	phone: {
+		type: String,
+		required: [true, 'Telefone é necessário'],
+		trim: true
+	},
 	password: {
 		type: String,
 		required: [true, 'Senha é necessária'],

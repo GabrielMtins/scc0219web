@@ -18,12 +18,11 @@ const Admin = () => {
 
 	// Histórico de vendas permanece com a mesma estrutura,
 	// a menos que queira adicionar editora aqui também.
-	const [historicoVendas, setHistoricoVendas] = useState([]);
+	let historicoVendas = [];
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await getAllSalesHistory();
-			setHistoricoVendas(data);
+			historicoVendas = await getAllSalesHistory();
 		}
 
 		fetchData();

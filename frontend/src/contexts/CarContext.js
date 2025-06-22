@@ -127,27 +127,28 @@ export function CarProvider({ children }) {
 
 			setCatalog(response.data);
 		} catch(error){
-			toast.error('Erro ao atualizar o livro.');
+			//toast.error('Erro ao atualizar o livro.');
 			console.log(error);
 		}
 	};
 
 	const sendSaleToServer = async (username) => {
-		const sales_formated = Object.keys(car).map((id) => {
+		const items = Object.keys(car);
+
+		const sales_formated = items.map((id) => {
 			if(car[id] == 0)
 				return "";
 
 			return car[id] + "x " + getItemCatalog(id).title;
 		});
 
-		const price = Object.keys(car).map((id) => (car[id] * getItemCatalog(id).price)).reduce((x, y) => (x + y));
+		const price = items.map((id) => (car[id] * getItemCatalog(id).price)).reduce((x, y) => (x + y));
 
 		const sale = {
 			'buyer': username,
 			'price': price,
 			'books': JSON.stringify(sales_formated),
 		};
-		console.log(sale);
 
 		try {
 			await axios.post(SALES_API_URL, sale);
@@ -161,10 +162,10 @@ export function CarProvider({ children }) {
 			const book = getItemCatalog(id);
 
 			const new_amount = book.amount - car[id];
-			console.log(new_amount);
+			const new_sales = book.sales + car[id];
 
 			if(new_amount >= 0){
-				const new_book = {...book, 'amount': new_amount};
+				const new_book = {...book, 'amount': new_amount, 'sales': new_sales};
 				console.log(new_book);
 				await updateCatalog(id, new_book);
 			}

@@ -51,6 +51,7 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 							<tr>
 								<th>Título</th>
 								<th>Autor</th>
+								<th>Vendas</th>
 								<th>Editora</th> {/* Nova coluna */}
 								<th>Preço (R$)</th>
 								<th>Quantidade</th>
@@ -63,8 +64,9 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 									{editingRowId === livro.id ? (
 										// Linha em modo de edição
 										<tr>
-											<td>{livro.titulo}</td>
-											<td>{livro.autor}</td>
+											<td>{livro.title}</td>
+											<td>{livro.author}</td>
+											<td>{livro.sales}</td>
 											<td> {/* Campo de edição para Editora */}
 												<input
 													type="text"
@@ -108,6 +110,7 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 										<tr>
 											<td>{livro.title}</td>
 											<td>{livro.author}</td>
+											<td>{livro.sales}</td>
 											<td>{livro.publisher}</td> {/* Exibe a publisher */}
 											<td>{parseFloat(livro.price).toFixed(2)}</td>
 											<td>{livro.amount}</td>

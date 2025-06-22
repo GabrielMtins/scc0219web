@@ -39,7 +39,8 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 			'amount': amountNum,
 			'img_link': img_link,
 			'genre': genre,
-			'description': description
+			'description': description,
+			'sales': 0
 		});
 
 		setTitulo('');

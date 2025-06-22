@@ -13,10 +13,11 @@ const SignInForm = () => {
 		const email = document.getElementById("email").value.trim();
 		const endereco = document.getElementById("endereco").value.trim();
 		const cep = document.getElementById("cep").value.trim();
+		const telefone = document.getElementById("telefone").value.trim();
 		const senha = document.getElementById("senha").value;
 		const confirmarSenha = document.getElementById("confirmarSenha").value;
 
-		if (!nome || !usuario || !email || !endereco || !cep || !senha || !confirmarSenha) {
+		if (!nome || !usuario || !email || !endereco || !cep || !senha || !confirmarSenha || !telefone) {
 			toast.error("Por favor, preencha todos os campos.");
 			return;
 		}
@@ -30,6 +31,13 @@ const SignInForm = () => {
 		const cepRegex = /^\d{5}-?\d{3}$/;
 		if (!cepRegex.test(cep)) {
 			toast.error("CEP inválido.");
+			return;
+		}
+
+		const numberRegex = /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/;
+
+		if(!numberRegex.test(telefone)) {
+			toast.error("Telefone inválido.");
 			return;
 		}
 
@@ -50,7 +58,8 @@ const SignInForm = () => {
 			"email": email,
 			"address": endereco,
 			"cep": cep,
-			"password": senha
+			"password": senha,
+			"phone": telefone
 		};
 
 		const success = await signUp(credentials);
@@ -91,6 +100,11 @@ const SignInForm = () => {
 			<div className="input">
 				<label>CEP:</label>
 				<input type="text" id="cep" placeholder="Ex: 12345-678" required />
+			</div>
+
+			<div className="input">
+				<label>Telefone:</label>
+				<input type="text" id="telefone" placeholder="Ex: 11 981999999" required />
 			</div>
 
 			<div className="input">

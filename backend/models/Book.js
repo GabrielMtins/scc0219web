@@ -44,6 +44,10 @@ const bookSchema = new mongoose.Schema({
 	amount: {
 		type: Number,
 		required: [true, 'Quantidade é necessária'],
+	},
+	sales: {
+		type: Number,
+		required: [true, 'Vendas é necessária'],
 	}
 });
 

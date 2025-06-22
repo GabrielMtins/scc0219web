@@ -68,10 +68,10 @@ app.get('/users', async (req, res) => {
 // POST /users  – cria um novo user e retorna ele
 app.post('/users', async (req, res) => {
 	try {
-		const { fullname, username, address, password, cep, email } = req.body;
+		const { fullname, username, address, phone, password, cep, email } = req.body;
 		const cart = "{}";
 
-		const newUser = new User({ fullname, username, address, password, cep, email, cart });
+		const newUser = new User({ fullname, username, address, phone, password, cep, email, cart });
 		const savedUser = await newUser.save();
 
 		res.status(201).json(newUser);
@@ -191,13 +191,13 @@ app.get('/books/:id', async (req, res) => {
 // POST /books  – cria um novo livro e retorna todos os livros
 app.post('/books', async (req, res) => {
 	try {
-		const { id, author, img_link, title, price, genre, publisher, description, amount } = req.body;
+		const { id, author, img_link, title, price, genre, publisher, description, amount, sales} = req.body;
 
-		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || isNaN(amount)) {
+		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || isNaN(amount) || isNaN(sales)) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
 		}
 
-		const newBook = new Book({ id, author, img_link, title, price, genre, publisher, description, amount });
+		const newBook = new Book({ id, author, img_link, title, price, genre, publisher, description, amount, sales });
 		await newBook.save();
 		const books = await Book.find();
 
@@ -216,14 +216,14 @@ app.put('/books/:id', async (req, res) => {
 	try {
 		const bookId = req.params.id;
 
-		const { id, author, img_link, title, price, genre, publisher, description, amount } = req.body;
-		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || isNaN(amount)) {
+		const { id, author, img_link, title, price, genre, publisher, description, amount, sales} = req.body;
+		if (!id || !author || !img_link || !title || !price || !genre || !publisher || !description || isNaN(amount) || isNaN(sales)) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
 		}
 
 		const updatedBook = await Book.findOneAndUpdate(
 			{ id: bookId },
-			{ id, author, img_link, title, price, genre, publisher, description, amount },
+			{ id, author, img_link, title, price, genre, publisher, description, amount, sales },
 			{ new: true, runValidators: true }
 		);
 
