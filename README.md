@@ -130,8 +130,9 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ## Procedimentos de build
 
-O projeto depende do nodeJS, npm, git e o mongoDB. Os três primeiros você pode
-instalar através do seu instalador de pacotes. O mongoDB é necessário seguir
+O projeto depende do nodeJS, npm, git e o mongoDB.
+
+Para a instalação do mongoDB, é necessário seguir
 os passos [desse tutorial](https://www.mongodb.com/pt-br/docs/manual/installation/#std-label-tutorial-installation).
 Caso você prefira instalar por docker, siga [esse tutorial](https://www.mongodb.com/pt-br/docs/manual/tutorial/install-mongodb-community-with-docker/).
 Para fins de praticidade, no procedimento está incluído o procedimento de build com docker.
