@@ -326,8 +326,6 @@ npm install
 npm start
 ```
 
-## Problemas encontrados
-
 ## Comentários
 
 A base de dados já vem com dois usuários por padrão: 
