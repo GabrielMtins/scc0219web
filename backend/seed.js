@@ -107,13 +107,11 @@ const seedBooks = [
 ];
 
 const seedSales = [
-	/*
 	{
-		buyer: 'teste',
-		books: '[\"teste\"]',
-		price: 29.90
-	},
-	*/
+	buyer: 'teste',
+	books: '[\"teste\"]',
+	price: 29.90
+	}
 ];
 
 // --- Função de Povoamento ---

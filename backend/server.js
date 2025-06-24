@@ -111,7 +111,7 @@ app.put('/users/:username', async (req, res) => {
 	}
 })
 
-// PUT /users/:username  – altera os itens do carrinho do usuário dado o seu id
+// PUT /users/cart/:username  – altera os itens do carrinho do usuário dado o seu id
 app.put('/users/cart/:username', async (req, res) => {
 	try {
 		const targetName = req.params.username;
@@ -141,18 +141,20 @@ app.put('/users/cart/:username', async (req, res) => {
 	}
 })
 
-// DELETE /users/:username  – deleta um user
+// DELETE /users/:username  – deleta um user e retorna o restante
 app.delete('/users/:username', async (req, res) => {
 	try {
 		const targetName = req.params.username;
 
-		const deletedUser = await User.findOneAndDelete({ username: targetName });
+		const deletedUser = await User.findOneAndDelete({username: targetName});
 
 		if (!deletedUser) {
 			return res.status(404).json({ error: `Usuário ${targetName} não encontrado` });
 		}
 
-		res.status(200);
+		const users = await User.find();
+
+		res.json(users);
 	} catch (error) {
 		console.error(`Erro deletando usuário ${req.params.id}:`, error);
 		res.status(500).json({ error: 'Falha ao deletar o usuário' });
@@ -275,10 +277,10 @@ app.get('/sales', async (req, res) => {
 	}
 });
 
-// GET /sales/:id  – busca uma venda
-app.get('/sales/:id', async (req, res) => {
+// GET /sales/:buyer  – busca uma venda
+app.get('/sales/:buyer', async (req, res) => {
 	try {
-		const buyerName = req.params.id;
+		const buyerName = req.params.buyer;
 
 		const sales = await Sale.find({ buyer: buyerName });
 
@@ -286,7 +288,7 @@ app.get('/sales/:id', async (req, res) => {
 
 		res.json(first_sales);
 	} catch (error) {
-		console.error(`Erro ao buscar a venda ${req.params.id}:`, error);
+		console.error(`Erro ao buscar a venda ${req.params.buyer}:`, error);
 		res.status(500).json({ error: 'Falha ao recuperar a venda' });
 	}
 });
@@ -314,19 +316,19 @@ app.post('/sales', async (req, res) => {
 	}
 });
 
-// PUT /sales/:id  – altera uma venda existente e retorna todos as vendas
-app.put('/sales/:id', async (req, res) => {
+// PUT /sales/:_id  – altera uma venda existente e retorna todos as vendas
+app.put('/sales/:_id', async (req, res) => {
 	try {
-		const saleId = req.params.id;
+		const saleId = req.params._id;
 
-		const { id, buyer, title, amount, price } = req.body;
-		if (!id || !buyer || !title || !amount || !price) {
+		const { buyer, books, price } = req.body;
+		if ( !buyer || !books || !price) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' });
 		}
 
-		const updatedSale = await Sale.findOneAndUpdate(
-			{ id: saleId },
-			{ id, buyer, title, amount, price },
+		const updatedSale = await Sale.findByIdAndUpdate(
+			saleId,
+			{ buyer, books, price },
 			{ new: true, runValidators: true }
 		);
 
@@ -338,7 +340,7 @@ app.put('/sales/:id', async (req, res) => {
 
 		res.json(sales);
 	} catch (error) {
-		console.error(`Erro no update da venda ${req.params.id}:`, error);
+		console.error(`Erro no update da venda ${req.params._id}:`, error);
 		if (error.name === 'ValidationError') {
 				return res.status(400).json({ error: error.message });
 		}
@@ -346,12 +348,12 @@ app.put('/sales/:id', async (req, res) => {
 	}
 });
 
-// DELETE /sales/:id  – deleta uma venda e retorna todos as vendas
-app.delete('/sales/:id', async (req, res) => {
+// DELETE /sales/:_id  – deleta uma venda e retorna todos as vendas
+app.delete('/sales/:_id', async (req, res) => {
 	try {
-		const saleId = req.params.id;
+		const saleId = req.params._id;
 
-		const deletedSale = await Sale.findOneAndDelete({ id: saleId });
+		const deletedSale = await Sale.findOneAndDelete({ _id: saleId });
 
 		if (!deletedSale) {
 			return res.status(404).json({ error: `Venda ${saleId} não encontrada` });
@@ -361,7 +363,7 @@ app.delete('/sales/:id', async (req, res) => {
 
 		res.json(sales);
 	} catch (error) {
-		console.error(`Erro deletando venda ${req.params.id}:`, error);
+		console.error(`Erro deletando venda ${req.params._id}:`, error);
 		res.status(500).json({ error: 'Falha ao deletar a venda' });
 	}
 });

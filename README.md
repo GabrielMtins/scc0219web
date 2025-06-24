@@ -84,6 +84,8 @@ Nós fizemos alguns testes manuais. Eles são:
 - Busca
 - Filtro
 
+Para o backend foram feitos testes usando o postman, todas as tabelas (Usuários, Livros e Vendas) foram testadas para todas as operações do CRUD. Conforme mostrado no final dos resultados dos testes.
+
 ## Resultado dos testes
 
 ### Comprar um produto
@@ -127,6 +129,162 @@ Nós fizemos alguns testes manuais. Eles são:
 
 ![filtro01](screenshots/filtro_01.png)
 ![filtro02](screenshots/filtro_02.png)
+
+### Teste CRUD Usuários
+Antes dos testes a tabela de usuários era:
+```JSON
+[
+    {
+        "_id": "6859bce2e5f8f9d3d36c767d",
+        "fullname": "Admin",
+        "username": "admin",
+        "email": "admin@adm.adm",
+        "cep": "12345-678",
+        "address": "Admin",
+        "phone": "16 888888888",
+        "password": "admin",
+        "cart": "{}",
+        "__v": 0
+    },
+    {
+        "_id": "6859bce2e5f8f9d3d36c767e",
+        "fullname": "Teste teste teste teste",
+        "username": "teste",
+        "email": "tst@tst.tst",
+        "cep": "12345-678",
+        "address": "teste teste",
+        "phone": "16 999999999",
+        "password": "123456",
+        "cart": "{}",
+        "__v": 0
+    }
+]
+```
+
+#### GET /users/all  – lista todos os users
+http://localhost:5000/users/all
+![image](https://github.com/user-attachments/assets/626354f0-8c9e-4a01-8c18-73f0f445eb17)
+
+#### GET /users  – busca um usuário 
+http://localhost:5000/users/?username=teste&password=123456
+![image](https://github.com/user-attachments/assets/a5389811-7e80-4088-bfc7-8c0d4e094278)
+
+#### POST /users  – cria um novo user e retorna ele
+http://localhost:5000/users
+![image](https://github.com/user-attachments/assets/8896e7e7-128f-4b46-a80a-b5cce7ca013b)
+
+#### PUT /users/:username  – altera um user existente e retorna ele
+http://localhost:5000/users/helio
+![image](https://github.com/user-attachments/assets/4ec6e527-af91-463b-b9d5-37f022ca4803)
+
+#### PUT /users/cart/:username  – altera os itens do carrinho do usuário dado o seu username
+http://localhost:5000/users/cart/helio
+![image](https://github.com/user-attachments/assets/2c80f13d-395f-4625-9ec2-e71edfd1df88)
+
+#### DELETE /users/:username  – deleta um user e retorna o restante
+http://localhost:5000/users/teste
+![image](https://github.com/user-attachments/assets/80d2812f-8024-457f-a773-c3bbc435ddbe)
+
+### Teste CRUD Livros
+Antes dos testes o começo da tabela de livros (a tabela não foi mostrada por completo por ser muito grande) era:
+```JSON
+[
+    {
+        "_id": "6859bce2e5f8f9d3d36c7680",
+        "id": 1,
+        "author": "George Orwell",
+        "img_link": "https://m.media-amazon.com/images/I/819js3EQwbL._AC_UF1000,1000_QL80_.jpg",
+        "title": "1984",
+        "price": 29.9,
+        "genre": "Distopia",
+        "publisher": "Companhia das Letras",
+        "description": "Publicada originalmente em 1949, a distopia futurista 1984 é um dos romances mais influentes do século XX, um inquestionável clássico moderno. Lançada poucos meses antes da morte do autor, é uma obra magistral que ainda se impõe como uma poderosa reflexão ficcional sobre a essência nefasta de qualquer forma de poder totalitário.",
+        "amount": 4,
+        "sales": 0,
+        "__v": 0
+    },
+    {
+        "_id": "6859bce2e5f8f9d3d36c7681",
+        "id": 2,
+        "author": "Karl Marx",
+        "img_link": "https://boitempoeditorial.fbitsstatic.net/img/p/o-capital-livro-1-152742/338393.jpg?w=290&h=420&v=no-value",
+        "title": "O Capital",
+        "price": 89.9,
+        "genre": "Filosofia",
+        "publisher": "Boitempo Editorial",
+        "description": "O primeiro livro de O capital: crítica da economia política, intitulado O processo de produção do capital, é o único volume da principal obra de maturidade de Karl Marx publicado durante a vida do autor, morto em 1883. Esta terceira edição marca os 10 anos da publicação desta tradução no Brasil, feita diretamente do alemão. A edição se insere em um histórico esforço intelectual coletivo de trazer ao público brasileiro, em seu todo ou em versões reduzidas, a principal obra marxiana de crítica da economia política.",
+        "amount": 4,
+        "sales": 0,
+        "__v": 0
+    },
+{
+        "_id": "6859bce2e5f8f9d3d36c7682",
+        "id": 3,
+        "author": "Karl Marx",
+        "img_link": "https://m.media-amazon.com/images/I/61D7dwT4jjL._AC_UF1000,1000_QL80_.jpg",
+        "title": "A Ideologia Alemã",
+        "price": 79.9,
+        "genre": "Filosofia",
+        "publisher": "Boitempo Editorial",
+        "description": "Chega às livrarias a aguardada edição integral de A ideologia alemã, de Karl Marx e Friedrich Engels. Traduzida diretamente do alemão para o português por Rubens Enderle, Nélio Schneider e Luciano Martorano, com texto final de Rubens Enderle, a edição da Boitempo tem introdução escrita por Emir Sader e supervisão editorial de Leandro Konder, um dos maiores estudiosos do marxismo no Brasil. Além disso, será a versão mais fiel aos originais deixados pelos autores, pois é a primeira no mundo traduzida a partir da inovadora Mega-2.Essa nova edição cuidadosa, que se tornará referência para todos os interessados nos escritos de Marx e Engels, foi feita dentro da tradição de rigor com os livros desses autores estabelecida pela Boitempo.",
+        "amount": 4,
+        "sales": 0,
+        "__v": 0
+    },
+]
+```
+
+#### GET /books  – lista todos os livros
+http://localhost:5000/books
+![image](https://github.com/user-attachments/assets/ea0003ae-74b0-4905-a897-ce41f835f05a)
+
+#### GET /books/:id  – busca um livro
+http://localhost:5000/books/2
+![image](https://github.com/user-attachments/assets/98f10b42-9085-4364-ac7b-54c8947be91f)
+
+#### POST /books  – cria um novo livro e retorna todos os livros
+http://localhost:5000/books
+![image](https://github.com/user-attachments/assets/c8316cb7-bd9a-45e1-aa97-903226c599de)
+
+#### PUT /books/:id  – altera um livro existente e retorna todos os livros
+http://localhost:5000/books/7
+![image](https://github.com/user-attachments/assets/b02c60d5-0cd5-4dfb-97a2-da0ebbc1dbf1)
+
+#### DELETE /books/:id  – deleta um livro e retorna todos os livros
+http://localhost:5000/books/7
+![image](https://github.com/user-attachments/assets/43c19f62-e4bf-49aa-8350-4ef9d69fba81)
+
+### Teste CRUD Vendas
+Antes dos testes a tabela de vendas era:
+```JSON
+[
+	{
+    "buyer": "teste",
+    "books": "[\"teste\"]",
+    "price": 29.9
+  }
+]
+```
+
+#### GET /sales  – lista todos as vendas
+http://localhost:5000/sales                                   
+![image](https://github.com/user-attachments/assets/6a871e52-9042-45bc-82d6-4131853cf406)
+
+#### GET /sales/:buyer  – busca uma venda
+http://localhost:5000/sales/teste
+![image](https://github.com/user-attachments/assets/d8d90928-1548-40b2-88b1-6fbc5b15f7ff)
+
+#### POST /sales  – cria uma nova venda e retorna todos as vendas
+http://localhost:5000/sales
+![image](https://github.com/user-attachments/assets/e6b5d999-c6a4-4e0b-aa3e-8672365ed3da)
+
+#### PUT /sales/:_id  – altera uma venda existente e retorna todos as vendas
+http://localhost:5000/sales/6859ee05dde5b58b95581305
+![image](https://github.com/user-attachments/assets/474bb9dd-2020-4843-bbd4-91e4cd0ed93a)
+
+#### DELETE /sales/:_id  – deleta uma venda e retorna todos as vendas
+http://localhost:5000/sales/6859ee05dde5b58b95581305
+![image](https://github.com/user-attachments/assets/df3d887e-9f2b-45ac-9276-c5415edfcd48)
 
 ## Procedimentos de build
 
