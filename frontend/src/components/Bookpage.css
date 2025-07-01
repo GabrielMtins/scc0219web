@@ -7,42 +7,82 @@
 	transition: transform 0.3s;
 	display: flex;
 	justify-content: space-between;
+	/* Novos ajustes para desktop: */
+	max-width: 1200px; /* Limita a largura máxima */
+	margin: 0 auto; /* Centraliza na tela */
+}
+
+/* Imagem: ocupa 50% do container e mantém proporção */
+.bookpage-card img {
+	width: 50%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 .bookpage-info {
-	padding: 2.5rem;
+	padding: 3rem; /* Mais espaçamento interno */
 	display: flex;
 	flex-direction: column;
+	width: 50%; /* Garante que ocupe metade do container */
 }
 
 .bookpage-info h3 {
-	margin: 0 0 0.5rem 0;
+	margin: 0 0 1rem 0; /* Espaçamento maior */
 	font-size: 3.4rem;
 	color: var(--light_color);
 }
 
-.bookpage-button-container {
-	margin-top: auto;
-}
-
-.bookpage-button {
-	width: 100%;
-	margin-top: auto;
-	background: var(--comp_dark_color);
-	color: white;
-	border: none;
-	padding: 0.6rem 1.2rem;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background 0.3s;
-}
-
-.bookpage-button:hover {
-	background: var(--comp_light_color);
+/* Estilizações para textos adicionais (autor, preço, estoque) */
+.autor, .preco {
+	color: #eee;
+	font-size: 1.2rem;
+	margin-bottom: 0.8rem;
 }
 
 .description {
 	text-align: justify;
 	word-wrap: break-word;
 	color: white;
+	/*font-size: 12px;*/
+	line-height: 1.6;
+	margin: 2rem 0;
+	gap: 20px 20px;
+	flex-grow: 1; /* Ocupa espaço disponível */
+	overflow-y: auto; /* Scroll se o texto for muito longo */
+	max-height: 200px;
+}
+
+.bookpage-button-container {
+	margin-top: auto; /* Mantém o botão no rodapé */
+}
+
+.bookpage-button {
+	width: 100%;
+	background: var(--comp_dark_color);
+	color: white;
+	border: none;
+	padding: 1rem; /* Botão mais alto */
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s;
+	font-size: 1.2rem; /* Texto maior */
+}
+
+.bookpage-button:hover {
+	background: var(--comp_light_color);
+}
+
+.back-button {
+	background: var(--comp_dark_color);
+	color: white;
+	border: none;
+	padding: 8px 16px; /* Botão mais alto */
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.back-button:hover {
+	background: var(--comp_light_color);
 }
