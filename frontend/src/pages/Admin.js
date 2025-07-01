@@ -78,6 +78,7 @@ const Admin = () => {
 		const preco = parseFloat(dadosAtualizados.price);
 		const quantidade = parseInt(dadosAtualizados.amount, 10);
 		const editora = dadosAtualizados.publisher.trim();
+		const img_link = dadosAtualizados.img_link.trim();
 
 		if (isNaN(preco) || preco < 0) {
 			toast.error("O preço deve ser um número não negativo.");
@@ -89,6 +90,11 @@ const Admin = () => {
 		}
 		if (!editora) {
 			toast.error("O campo editora não pode ser vazio.");
+			return;
+		}
+
+		if(!img_link) {
+			toast.error("O campo do link para a imagem não pode ser vazio.");
 			return;
 		}
 

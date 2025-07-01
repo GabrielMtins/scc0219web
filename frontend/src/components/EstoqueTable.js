@@ -3,7 +3,7 @@ import "./EstoqueTable.css";
 
 const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 	const [editingRowId, setEditingRowId] = useState(null);
-	const [editFormData, setEditFormData] = useState({ publisher: '', price: '', amount: '' }); // Editora adicionada
+	const [editFormData, setEditFormData] = useState({ publisher: '', price: '', amount: '', img_link: '' }); // Editora adicionada
 
 	if (!livros || livros.length === 0) {
 		return (
@@ -19,7 +19,8 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 		setEditFormData({
 			publisher: livro.publisher, // Adicionado
 			price: parseFloat(livro.price).toFixed(2),
-			amount: livro.amount.toString()
+			amount: livro.amount.toString(),
+			img_link: livro.img_link
 		});
 	};
 
@@ -53,6 +54,7 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 								<th>Autor</th>
 								<th>Vendas</th>
 								<th>Editora</th> {/* Nova coluna */}
+								<th>Link para imagem</th> {/* Nova coluna */}
 								<th>Preço (R$)</th>
 								<th>Quantidade</th>
 								<th>Ações</th>
@@ -74,6 +76,17 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 													value={editFormData.publisher}
 													onChange={handleEditFormChange}
 													className="edit-input edit-input-publisher" // Classe específica se precisar de estilo diferente
+													required
+													/>
+											</td>
+											<td>
+												<input
+													type="text"
+													name="img_link"
+													value={editFormData.img_link}
+													onChange={handleEditFormChange}
+													min="0"
+													className="edit-input"
 													required
 													/>
 											</td>
@@ -112,6 +125,7 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 											<td>{livro.author}</td>
 											<td>{livro.sales}</td>
 											<td>{livro.publisher}</td> {/* Exibe a publisher */}
+											<td>{livro.img_link}</td> 
 											<td>{parseFloat(livro.price).toFixed(2)}</td>
 											<td>{livro.amount}</td>
 											<td className="actions-cell">
