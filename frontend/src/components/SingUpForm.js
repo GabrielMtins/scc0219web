@@ -59,7 +59,8 @@ const SignInForm = () => {
 			"address": endereco,
 			"cep": cep,
 			"password": senha,
-			"phone": telefone
+			"phone": telefone,
+			"admin": false
 		};
 
 		const success = await signUp(credentials);
