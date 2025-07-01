@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLogin } from '../contexts/LoginContext';
+import { ToastContainer, toast } from 'react-toastify';
 import "./UserManagement.css";
 
 const UserManagement = () => {
@@ -66,9 +67,14 @@ const UserManagement = () => {
 	// Atualiza o estado do formulário a cada mudança nos inputs
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
+
+		if(name === 'admin' && value === 'false' && editFormData.username === 'admin') {
+			toast.error("Não é possível mudar a função do administrador.");
+			return;
+		}
 		
 		const isCheckboxOrSelectBoolean = name === 'admin';
-		const finalValue = isCheckboxOrSelectBoolean ? (value === 'true') : value;
+		const finalValue = (isCheckboxOrSelectBoolean) ? (value === 'true') : value;
 
 		setEditFormData({ ...editFormData, [name]: finalValue });
 	};
