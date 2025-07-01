@@ -87,7 +87,7 @@ app.put('/users/:username', async (req, res) => {
 		const targetName = req.params.username;
 
 		const { fullname, username, email, cep, address, phone, password, admin, cart } = req.body;
-		if (!fullname || !username || !email || !cep || !address || !phone || !password || !admin ) {
+		if (!fullname || !username || !email || !cep || !address || !phone || !password ) {
 			return res.status(400).json({ error: 'Todos os campos são necessários' }); 
 		}
 
@@ -100,7 +100,7 @@ app.put('/users/:username', async (req, res) => {
 		if (!updatedUser) {
 			return res.status(404).json({ error: `Usuário ${targetName} não encontrado` });
 		}
-
+		
 		res.status(200).json(updatedUser);
 	} catch (error) {
 		console.error(`Erro no update do usuário ${req.params.id}:`, error);

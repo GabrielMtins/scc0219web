@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { data } from 'react-router-dom';
 
 const LOGIN_API_URL = 'http://localhost:5000/users';
 const SALES_API_URL = 'http://localhost:5000/sales';
@@ -65,9 +66,9 @@ export function LoginProvider({ children }) {
 		}
 	};
 
-	const updateUser = async (username) => {
+	const updateUser = async (username, credentials) => {
 		try {
-			const updated = await axios.put(`${LOGIN_API_URL}/${username}`);
+			const updated = await axios.put(`${LOGIN_API_URL}/${username}`, credentials);
 			return updated.data
 		} catch(error) {
 			console.log(error);

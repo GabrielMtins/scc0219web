@@ -8,7 +8,6 @@ const UserManagement = () => {
 	
 	// Estados do componente
 	const [users, setUsers] = useState([]);
-	// CORREÇÃO: Renomeado para maior clareza, agora armazena o username em edição
 	const [editingUsername, setEditingUsername] = useState(null); 
 	const [editFormData, setEditFormData] = useState({});
 
@@ -41,10 +40,6 @@ const UserManagement = () => {
 
 	// Salva as alterações feitas em um usuário
 	const handleSaveClick = async (username) => {
-		// --- ADICIONE ESTA LINHA PARA DEPURAR ---
-		console.log("Enviando estes dados para a API:", editFormData);
-		// -----------------------------------------
-
 		try {
 			const updatedUser = await updateUser(username, editFormData);
 
@@ -61,10 +56,7 @@ const UserManagement = () => {
 	// Exclui um usuário
 	const handleDeleteClick = async (username) => {
 		try {
-			await deleteUser(username); 
-
-			// Remove o usuário da lista localmente
-			const newUsers = users.filter((user) => user.username !== username);
+			const newUsers = await deleteUser(username);
 			setUsers(newUsers);
 		} catch (error) {
 			console.error("Falha ao excluir usuário:", error);
@@ -100,13 +92,12 @@ const UserManagement = () => {
 					</thead>
 					<tbody>
 						{users.map(user => (
-							<React.Fragment key={user.username}> {/* CORREÇÃO: Usando username como chave */}
-								{editingUsername === user.username ? ( // CORREÇÃO: Comparação com username
+							<React.Fragment key={user.username}>
+								{editingUsername === user.username ? (
 									// --- MODO DE EDIÇÃO ---
 									<tr className="edit-row">
 										<td><input type="text" name="fullname" value={editFormData.fullname} onChange={handleInputChange} /></td>
-										{/* MUDANÇA CRÍTICA: Campo username desabilitado para garantir estabilidade */}
-										<td><input type="text" name="username" value={editFormData.username} onChange={handleInputChange} disabled /></td>
+										<td><input type="text" name="username" value={editFormData.username} onChange={handleInputChange} /></td>
 										<td><input type="email" name="email" value={editFormData.email} onChange={handleInputChange} /></td>
 										<td><input type="text" name="cep" value={editFormData.cep} onChange={handleInputChange} /></td>
 										<td><input type="text" name="address" value={editFormData.address} onChange={handleInputChange} /></td>
@@ -118,7 +109,6 @@ const UserManagement = () => {
 											</select>
 										</td>
 										<td className="actions-cell">
-											{/* CORREÇÃO: Passando user.username para a função */}
 											<button onClick={() => handleSaveClick(user.username)} className="btn-action btn-salvar">Salvar</button>
 											<button onClick={handleCancelClick} className="btn-action btn-cancelar">Cancelar</button>
 										</td>
@@ -134,7 +124,6 @@ const UserManagement = () => {
 										<td>{user.phone}</td>
 										<td>{user.admin ? 'Admin' : 'Cliente'}</td>
 										<td className="actions-cell">
-											{/* CORREÇÃO: Passando o objeto user ou o user.username */}
 											<button onClick={() => handleEditClick(user)} className="btn-action btn-editar">Editar</button>
 											<button onClick={() => handleDeleteClick(user.username)} className="btn-action btn-excluir">Excluir</button>
 										</td>
