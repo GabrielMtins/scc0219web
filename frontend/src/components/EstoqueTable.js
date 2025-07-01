@@ -33,6 +33,7 @@ const EstoqueTable = ({ livros, onRemoveLivro, onAtualizarLivro }) => {
 			publisher: editFormData.publisher,
 			price: editFormData.price,
 			amount: editFormData.amount,
+			img_link: editFormData.img_link,
 		});
 		setEditingRowId(null);
 	};
