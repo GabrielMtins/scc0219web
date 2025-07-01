@@ -56,6 +56,11 @@ const UserManagement = () => {
 
 	// Exclui um usuário
 	const handleDeleteClick = async (username) => {
+		if(username === 'admin'){
+			toast.error('Não é possível excluir o administrador');
+			return;
+		}
+
 		try {
 			const newUsers = await deleteUser(username);
 			setUsers(newUsers);
