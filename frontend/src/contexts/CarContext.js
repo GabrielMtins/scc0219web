@@ -78,17 +78,18 @@ export function CarProvider({ children }) {
 	/* Função que adicionará (ou remover) um item do 
 	 * carrinho. Ela performa a verificação do estoque disponível. */
 	const addToCar = async (id, amount) => {
-		if (car[id]||0 + amount > getItemCatalog(id).amount) {
+		if ((car[id]||0) + amount > getItemCatalog(id).amount) {
 			toast.error('Não há mais desse produto no estoque.');
 			return false;
 		}
+
 		const new_car = {
 			...car,
 			[id]: (car[id] || 0) + amount
 		};
 
 		await sendCartToServer(new_car);
-		setCar(car => ({...car, ...new_car}));
+		setCar(new_car);
 
 		return true;
 	};
@@ -108,7 +109,7 @@ export function CarProvider({ children }) {
 		};
 
 		await sendCartToServer(new_car);
-		setCar(car => ({...car, ...new_car}));
+		setCar(new_car);
 	};
 
 	/* Basicamente remove um elemento do carrinho, marcando
