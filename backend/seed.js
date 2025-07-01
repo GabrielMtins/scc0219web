@@ -33,7 +33,7 @@ const seedUsers = [
 	},
 	{
 		fullname: 'Hélio Santos',
-		username: 'Helio',
+		username: 'helio',
 		email: 'helio@usp.br',
 		cep: '12345-678',
 		address: 'Minha casa',

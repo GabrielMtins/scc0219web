@@ -47,9 +47,12 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 
 		setTitulo('');
 		setAutor('');
-		setEditora(''); // Limpar campo
+		setEditora(''); 
+		setGenre('');
+		setImgLink('');
 		setPreco('');
 		setQuantidade('');
+		setDescription('');
 	};
 
 	return (
@@ -70,21 +73,21 @@ const AddBookForm = ({ onAdicionarLivro }) => {
 					placeholder="Autor"
 					required
 				/>
-				<input // Novo campo para Editora
+				<input 
 					type="text"
 					value={publisher}
 					onChange={(e) => setEditora(e.target.value)}
 					placeholder="Editora"
 					required
 				/>
-				<input // Novo campo para gênero
+				<input 
 					type="text"
 					value={genre}
 					onChange={(e) => setGenre(e.target.value)}
 					placeholder="Gênero"
 					required
 				/>
-				<input // Novo campo para gênero
+				<input 
 					type="text"
 					value={img_link}
 					onChange={(e) => setImgLink(e.target.value)}
