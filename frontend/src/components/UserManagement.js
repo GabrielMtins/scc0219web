@@ -30,7 +30,7 @@ const UserManagement = () => {
 
 	// Inicia o modo de edição para um usuário
 	const handleEditClick = (user) => {
-		setEditingUsername(user.username); // CORREÇÃO: Usa o username do usuário
+		setEditingUsername(user.username);
 		setEditFormData({ ...user });
 	};
 
@@ -42,6 +42,12 @@ const UserManagement = () => {
 	// Salva as alterações feitas em um usuário
 	const handleSaveClick = async (username) => {
 		try {
+			if(username === 'admin' && editFormData.username !== 'admin'){
+				toast.error("Não é possível mudar o usuário do administrador.");
+				setEditingUsername(null);
+				return;
+			}
+
 			const updatedUser = await updateUser(username, editFormData);
 
 			const updatedUsers = users.map((user) =>
@@ -75,6 +81,7 @@ const UserManagement = () => {
 
 		if(name === 'admin' && value === 'false' && editFormData.username === 'admin') {
 			toast.error("Não é possível mudar a função do administrador.");
+			setEditingUsername(null);
 			return;
 		}
 		
