@@ -17,6 +17,7 @@ const seedUsers = [
 		address: 'Admin',
 		phone: '16 888888888',
 		password: 'admin',
+		admin: true,
 		cart: '{}'
 	},
 	{
@@ -27,6 +28,18 @@ const seedUsers = [
 		address: 'teste teste',
 		phone: '16 999999999',
 		password: '123456',
+		admin: false,
+		cart: '{}'
+	},
+	{
+		fullname: 'Hélio Santos',
+		username: 'Helio',
+		email: 'helio@usp.br',
+		cep: '12345-678',
+		address: 'Minha casa',
+		phone: '86 222222222',
+		password: 'senha0',
+		admin: true,
 		cart: '{}'
 	}
 ];

@@ -1,0 +1,137 @@
+/* --- Estilos para Gerenciamento de Usuários (baseado no .estoque) --- */
+
+.user-management-container .section-title {
+    font-size: 2rem;
+    color: var(--comp_dark_color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.table-wrapper {
+    /* Permite rolagem horizontal em telas pequenas para tabelas largas */
+    overflow-x: auto;
+}
+
+.user-management-container .user-table {
+    width: 100%;
+    /* Largura mínima para evitar quebra excessiva das colunas */
+    min-width: 1200px;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.user-management-container .user-table th,
+.user-management-container .user-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--comp_light_color);
+    vertical-align: middle;
+    text-align: left;
+}
+
+.user-management-container .user-table th {
+    background-color: var(--comp_dark_color);
+    color: white;
+    font-weight: bold;
+    border-bottom: none;
+}
+
+.user-management-container .user-table td {
+    color: var(--dark_color);
+}
+
+.user-management-container .user-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Estilos para Modo de Edição --- */
+
+.user-management-container .edit-row input,
+.user-management-container .edit-row select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--comp_light_color);
+    border-radius: 4px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    background-color: white;
+    color: var(--dark_color);
+    box-sizing: border-box;
+}
+
+/* --- Estilos para Botões de Ação (Padrão .estoque) --- */
+
+.user-management-container .actions-cell {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.user-management-container .btn-action {
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    margin: 0 3px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    vertical-align: middle;
+}
+
+.user-management-container .btn-action:active {
+    transform: scale(0.96);
+}
+
+/* Botão Editar */
+.user-management-container .btn-editar {
+    background-color: var(--comp_light_color);
+    color: var(--dark_color);
+    border-color: var(--comp_light_color);
+}
+
+.user-management-container .btn-editar:hover {
+    background-color: var(--dark_color);
+    color: var(--light_color);
+    border-color: var(--dark_color);
+}
+
+/* Botão Salvar */
+.user-management-container .btn-salvar {
+    background-color: var(--comp_dark_color);
+    color: var(--light_color);
+    border-color: var(--comp_dark_color);
+}
+
+.user-management-container .btn-salvar:hover {
+    background-color: var(--comp_light_color);
+    color: var(--dark_color);
+    border-color: var(--comp_light_color);
+}
+
+/* Botão Cancelar */
+.user-management-container .btn-cancelar {
+    background-color: transparent;
+    color: var(--dark_color);
+    border: 1px solid var(--comp_light_color);
+}
+
+.user-management-container .btn-cancelar:hover {
+    background-color: var(--comp_light_color);
+    color: var(--dark_color);
+    border-color: var(--comp_light_color);
+}
+
+/* Botão Excluir (mesmo estilo do .btn-remover) */
+.user-management-container .btn-excluir {
+    background-color: var(--comp_dark_color);
+    color: var(--light_color);
+    border-color: var(--comp_dark_color);
+}
+
+.user-management-container .btn-excluir:hover {
+    background-color: var(--comp_light_color);
+    color: var(--dark_color);
+    border-color: var(--comp_light_color);
+}

@@ -54,6 +54,36 @@ export function LoginProvider({ children }) {
 			setLoading(false);
 		}
 	};
+	
+	/* Retorna todos os usuários cadastrados */
+	const getAllUsers = async () => {
+		try {
+			const response = await axios.get(`${LOGIN_API_URL}/all`);
+			return response.data;
+		} catch(error) {
+			return [];
+		}
+	};
+
+	const updateUser = async (username) => {
+		try {
+			const updated = await axios.put(`${LOGIN_API_URL}/${username}`);
+			return updated.data
+		} catch(error) {
+			console.log(error);
+			return [];
+		}
+	}
+
+	const deleteUser = async (username) => {
+		try {
+			const newUsers = await axios.delete(`${LOGIN_API_URL}/${username}`);
+			return newUsers.data
+		} catch(error) {
+			console.log(error);
+			return [];
+		}
+	}
 
 	/* Retorna o histórico de vendas do usuário atual */
 	const getSalesHistory = async () => {
@@ -81,7 +111,7 @@ export function LoginProvider({ children }) {
 	};
 
 	return (
-		<LoginContext.Provider value={{ user, login, signUp, loading, logout, getSalesHistory, getAllSalesHistory }}>
+		<LoginContext.Provider value={{ user, login, signUp, loading, logout, getAllUsers, updateUser, deleteUser, getSalesHistory, getAllSalesHistory }}>
 			{children}
 		</LoginContext.Provider>
 	);

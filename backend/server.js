@@ -68,10 +68,10 @@ app.get('/users', async (req, res) => {
 // POST /users  – cria um novo user e retorna ele
 app.post('/users', async (req, res) => {
 	try {
-		const { fullname, username, address, phone, password, cep, email } = req.body;
+		const { fullname, username, email, cep, address, phone, password, admin } = req.body;
 		const cart = "{}";
 
-		const newUser = new User({ fullname, username, address, phone, password, cep, email, cart });
+		const newUser = new User({ fullname, username, email, cep, address, phone, password, admin, cart });
 		const savedUser = await newUser.save();
 
 		res.status(201).json(newUser);
@@ -86,14 +86,14 @@ app.put('/users/:username', async (req, res) => {
 	try {
 		const targetName = req.params.username;
 
-		const { fullname, username, email, address, cep, password } = req.body;
-		if (!fullname || !username || !email || !address || !cep || !password) {
-			return res.status(400).json({ error: 'Todos os campos são necessários' });
+		const { fullname, username, email, cep, address, phone, password, admin, cart } = req.body;
+		if (!fullname || !username || !email || !cep || !address || !phone || !password || !admin ) {
+			return res.status(400).json({ error: 'Todos os campos são necessários' }); 
 		}
 
 		const updatedUser = await User.findOneAndUpdate(
 			{ username: targetName },
-			{ fullname, username, email, address, cep, password },
+			{ fullname, username, email, cep, address, phone, password, admin },
 			{ new: true, runValidators: true }
 		);
 

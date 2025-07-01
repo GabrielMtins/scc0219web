@@ -5,18 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../contexts/LoginContext';
 import { useEffect, useState } from 'react';
 
-// --- DADOS DE EXEMPLO ---
-// <<< MUDANÇA: Adicionado 'orderId' para um visual mais completo >>>
-const mockPurchaseHistory = [
-  { id: 'compra-001', orderId: '#BR2025-A5C1', date: '15/05/2025', total: 199.90, items: [{ name: 'Fone de Ouvido Bluetooth', quantity: 1 }, { name: 'Capa para Celular', quantity: 1 }] },
-  { id: 'compra-002', orderId: '#BR2025-B8F2', date: '10/06/2025', total: 89.90, items: [{ name: 'Mouse sem Fio', quantity: 1 }] },
-  { id: 'compra-003', orderId: '#BR2025-C9G3', date: '18/06/2025', total: 350.00, items: [{ name: 'Teclado Mecânico RGB', quantity: 1 }] },
-  { id: 'compra-004', orderId: '#BR2025-D1H4', date: '19/06/2025', total: 75.50, items: [{ name: 'Cabo USB-C 2m', quantity: 2 }] },
-  // Adicionei mais pedidos para forçar a barra de rolagem a aparecer
-  { id: 'compra-005', orderId: '#BR2024-E5J5', date: '22/01/2025', total: 1250.00, items: [{ name: 'Monitor 24 polegadas', quantity: 1 }] },
-];
-// -------------------------
-
 function ProfilePage() {
 	/* activeView funciona para definir qual tab estamos,
 	 * como há duas, o perfil e o histórico de vendas, então
@@ -29,7 +17,7 @@ function ProfilePage() {
 	useEffect(() => {
 		if (!loading) {
 			if (!user) navigate('/login');
-			else if (user.username === 'admin') navigate('/admin');
+			else if (user.admin === true) navigate('/admin');
 			else{
 			}
 		}

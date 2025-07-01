@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
 		required: [true, 'Senha é necessária'],
 		trim: true
 	},
+	admin: {
+		type: Boolean,
+		required: true
+	},
 	cart: {
 		type: String,
 		trim: true
